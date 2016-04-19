@@ -40,7 +40,6 @@ public class Menu extends javax.swing.JFrame {
         btnCitas = new javax.swing.JButton();
         btnFar = new javax.swing.JButton();
         btnActHist = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         btnGenHist = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
@@ -96,8 +95,6 @@ public class Menu extends javax.swing.JFrame {
         btnActHist.setText("Actualizar Historial");
         btnActHist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imss_2.png"))); // NOI18N
-
         btnGenHist.setText("Generar Historial");
         btnGenHist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGenHist.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,15 +137,14 @@ public class Menu extends javax.swing.JFrame {
                                 .addGap(76, 76, 76)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnGenHist)
-                                    .addComponent(btnActHist))
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel2))
+                                    .addComponent(btnActHist)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
                                 .addComponent(btnBuscar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addComponent(btnCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(157, 157, 157)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(76, 76, 76)
@@ -177,18 +173,13 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCitas)
                             .addComponent(btnRegPac))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(btnBuscar)
-                                .addGap(44, 44, 44)
-                                .addComponent(btnGenHist)
-                                .addGap(43, 43, 43)
-                                .addComponent(btnActHist)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
+                        .addGap(40, 40, 40)
+                        .addComponent(btnBuscar)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnGenHist)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnActHist)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegTra)
@@ -217,12 +208,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnRegPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegPacMouseClicked
         pac.setVisible(true);
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_btnRegPacMouseClicked
 
     private void btnRegTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegTraMouseClicked
         per.setVisible(true);
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_btnRegTraMouseClicked
 
     private void btnFarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFarMouseClicked
@@ -235,13 +226,13 @@ public class Menu extends javax.swing.JFrame {
     private void btnCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseClicked
         Citas n = new Citas();
         n.setVisible(true);
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_btnCitasMouseClicked
 
     private void btnRegSigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegSigMouseClicked
         Signos s = new Signos();
         s.setVisible(true);
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_btnRegSigMouseClicked
 
     private void btnGenHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenHistActionPerformed
@@ -251,13 +242,13 @@ public class Menu extends javax.swing.JFrame {
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         BuscarPaciente b = new BuscarPaciente();
         b.setVisible(true);
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnGenHistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenHistMouseClicked
         GenerarHistorial g= new GenerarHistorial();
         g.setVisible(true);
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_btnGenHistMouseClicked
 
     private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
@@ -314,7 +305,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnRegSig;
     private javax.swing.JButton btnRegTra;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
