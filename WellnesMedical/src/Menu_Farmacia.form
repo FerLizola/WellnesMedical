@@ -126,6 +126,7 @@
             <Property name="text" type="java.lang.String" value="Cambiar Contrase&#xf1;a"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCamConMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCamConActionPerformed"/>
           </Events>
         </Component>

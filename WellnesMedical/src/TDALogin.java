@@ -52,7 +52,7 @@ public boolean guardar(){
                            cam.setVisible(true);
                        }
                        else{
-                           Menu men= new Menu();
+                           Menu men= new Menu(user);
                            Login log=new Login();
                            men.setVisible(true);
                            log.dispose();
@@ -67,7 +67,7 @@ public boolean guardar(){
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Farmaceutico")){
-                       Menu_Farmacia men= new Menu_Farmacia("Farmaceutico");
+                       Menu_Farmacia men= new Menu_Farmacia("Farmaceutico",user);
                        Login log=new Login();
                        men.setVisible(true);
                        log.dispose();
@@ -122,7 +122,7 @@ public boolean guardar(){
                 if(r.next()==true){    
                    if(r.getString("PUESTO").equals("Administrador")){
                        
-                       Menu men= new Menu();
+                       Menu men= new Menu(user);
                        Login log=new Login();
                        men.setVisible(true);
                        log.dispose();
@@ -138,7 +138,7 @@ public boolean guardar(){
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Farmaceutico")){
-                       Menu_Farmacia men= new Menu_Farmacia("Farmaceutico");
+                       Menu_Farmacia men= new Menu_Farmacia("Farmaceutico",user);
                        Login log=new Login();
                        men.setVisible(true);
                        log.dispose();

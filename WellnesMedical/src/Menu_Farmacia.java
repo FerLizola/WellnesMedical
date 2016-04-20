@@ -17,7 +17,7 @@ public class Menu_Farmacia extends javax.swing.JFrame {
         initComponents();
     }
     String puesto;
-    public Menu_Farmacia(String puesto) {
+    public Menu_Farmacia(String puesto, String RFC) {
         initComponents();
         this.puesto=puesto;
     }
@@ -57,6 +57,11 @@ public class Menu_Farmacia extends javax.swing.JFrame {
         btnMod.setText("Modificar Informacion de Med");
 
         btnCamCon.setText("Cambiar Contraseña");
+        btnCamCon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCamConMouseClicked(evt);
+            }
+        });
         btnCamCon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCamConActionPerformed(evt);
@@ -138,12 +143,12 @@ public class Menu_Farmacia extends javax.swing.JFrame {
         if(puesto.equals("Administrador")){
             Menu obj= new Menu();
             obj.setVisible(true);
-            dispose();
+            setVisible(false);
         }
         else{
             Login log= new Login();
             log.setVisible(true);
-            dispose();
+            setVisible(false);
         }
             
     }//GEN-LAST:event_btnCerrarMouseClicked
@@ -151,8 +156,12 @@ public class Menu_Farmacia extends javax.swing.JFrame {
     private void btnRegMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegMouseClicked
         RegistrarMedicamento reg= new RegistrarMedicamento();
         reg.setVisible(true);
-        dispose();
+        setVisible(false);
     }//GEN-LAST:event_btnRegMouseClicked
+
+    private void btnCamConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCamConMouseClicked
+        CambiarContraseña cam= new CambiarContraseña();
+    }//GEN-LAST:event_btnCamConMouseClicked
 
     /**
      * @param args the command line arguments
