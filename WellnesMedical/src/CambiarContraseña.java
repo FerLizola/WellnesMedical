@@ -150,10 +150,9 @@ public class CambiarContraseña extends javax.swing.JFrame {
             char[] newC=txtRepCon.getPassword();
             String passRep=new String(newC);
             if(pass.equals(passRep)){
-                showMessageDialog(this,"¡Cambio de contraseña exitoso!");
                 TDALogin log= new TDALogin(txtRFC.getText(),pass);
                 log.changePass();
-                this.dispose();
+                dispose();
             }
             else{
                 showMessageDialog(this,"¡Las contraseñas no coinciden!");
