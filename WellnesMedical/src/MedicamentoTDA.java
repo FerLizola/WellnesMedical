@@ -2,6 +2,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -73,6 +75,15 @@ public class MedicamentoTDA {
     public String getPresentacion(){
         return presentacion;
     }
+    
+    private void setFecha(String fecha){
+        this.fecha=fecha;
+    }
+    
+    public String getFecha(){
+        return fecha;
+    }
+    
     public boolean guardar(){
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
@@ -80,21 +91,18 @@ public class MedicamentoTDA {
                Statement stmt = miCon.createStatement();
              
                stmt.executeUpdate("INSERT INTO MEDICAMENTO " +
-                  "VALUES ('"+nombre+"','"+descripcion+"','"+tipo+"','"+presentacion+"')"); 
-                
-                //JOptionPane.showMessageDialog(null,"Registro Exitoso, Medicamento Agregado a Inventario");
+                  "VALUES ("+cod+",'"+nombre+"','"+descripcion+"','"+tipo+"','"+presentacion+"',"+pieza+","+stock+",'"+fecha+"')"); 
                 miCon.close();
                 return true;
                 
             }
             catch(Exception e){
                 return false;
-                //JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         return true;
     }
-    public boolean buscar(String buscar){
+    public boolean buscarNom(String buscar){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
@@ -102,40 +110,126 @@ public class MedicamentoTDA {
         String sql = "SELECT * FROM MEDICAMENTO WHERE NOMBRE ='"+buscar+"'";
         ResultSet r = stmt.executeQuery(sql);
                 if(r.next()==true){ 
-                    miCon.close();
-                    nombre=r.getString("NOMBRE");
                     presentacion=r.getString("PRESENTACION");
                     tipo=r.getString("TIPO");
                     descripcion=r.getString("DESCRIPCION");
-                    pieza=Integer.parseInt(r.getString("PIEZA"));
+                    pieza=Integer.parseInt(r.getString("CANTIDAD"));
                     stock=Integer.parseInt(r.getString("STOCK"));
-                    cod=Long.parseLong(r.getString("CODIGO"));
-                    
-                    
-                   return(/*
-                   "Nombre: "+r.getString("NOMBRE")+"\n"+
-                   "Descripción: "+r.getString("DESCRIPCION")+"\n"+
-                   "Tipo: "+r.getString("TIPO")+"\n"+
-                   "Presentación: "+r.getString("PRESENTACION")*/ 
-                            true
-                   );
+                    cod=Long.parseLong(r.getString("ID_MEDICAMENTO"));
+                    fecha=r.getString("FECHA_CADUCIDAD");
                    
+                   return true;
                 }
-                else {
-                    //JOptionPane.showMessageDialog(null,"No existe el medicamento buscado","No Encontrado",JOptionPane.WARNING_MESSAGE);
+                else{
                     miCon.close();
-                    return(false);
+                    return false;
                      }
                 
             }
             catch(Exception e){
                 return false;
-                //JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         return false;
     }
-
+    
+    
+    public boolean buscarCod(long busca){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "SELECT * FROM MEDICAMENTO WHERE ID_MEDICAMENTO ="+busca+"";
+        ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                    nombre=r.getString("NOMBRE");
+                    presentacion=r.getString("PRESENTACION");
+                    tipo=r.getString("TIPO");
+                    descripcion=r.getString("DESCRIPCION");
+                    pieza=Integer.parseInt(r.getString("CANTIDAD"));
+                    stock=Integer.parseInt(r.getString("STOCK"));
+                    fecha=r.getString("FECHA_CADUCIDAD");
+                   
+                    return true;
+                }
+                
+                else{
+                    miCon.close();
+                    return false;
+                     }
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return false;
+    }
+    
+    public void mostrar(DefaultTableModel modelo){
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "SELECT * FROM MEDICAMENTO";
+        ResultSet r = stmt.executeQuery(sql);
+                
+                while(r.next()){ 
+                   long Codigo=r.getInt("ID_MEDICAMENTO");
+                   String Nombre=r.getString("NOMBRE");
+                   String Descripcion=r.getString("DESCRIPCION");
+                   String Tipo=r.getString("TIPO");
+                   String Presentacion=r.getString("PRESENTACION");
+                   int Cantidad=r.getInt("CANTIDAD");
+                   int Stock=r.getInt("STOCK");
+                   String Caducidad=r.getString("FECHA_CADUCIDAD");
+                   modelo.addRow(new Object[]{Codigo,Nombre,Descripcion,Tipo,Presentacion,Cantidad,Stock,Caducidad});
+                }
+                miCon.close();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+      }
+    
+    public boolean eliminar(JTable tabla){
+        int i=tabla.getSelectedRow();
+        if(i==-1){
+            return false;
+        }
+        else {
+            long cod=Long.parseLong(tabla.getValueAt(i, 0).toString());
+            Connection miCon = (new Conexion()).conectar();
+            if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        
+            String sql= "DELETE FROM MEDICAMENTO WHERE ID_MEDICAMENTO="+cod+"";
+            int a=stmt.executeUpdate(sql);
+            
+            if(a>0){
+                return true;
+            }
+            else
+                return false;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return true;
+        }
+    }
+    
+    public void limpiarTabla(JTable tabla){
+         DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
+            int filas=tabla.getRowCount();
+            for (int i = 0;filas>i; i++) {
+                modelo.removeRow(0);
+            }
+    }
+    
     private void setPieza(int pieza) {
         this.pieza=pieza;
     }
@@ -148,7 +242,4 @@ public class MedicamentoTDA {
         this.cod=cod;
     }
 
-    private void setFecha(String fecha) {
-        this.fecha=fecha;
-    }
 }
