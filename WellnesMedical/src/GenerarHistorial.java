@@ -64,6 +64,15 @@ public class GenerarHistorial extends javax.swing.JFrame {
 
         jLabel3.setText("NSS:");
 
+        txtNSS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNSSKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNSSKeyPressed(evt);
+            }
+        });
+
         jLabel4.setText("Nombre:");
 
         txtNom.setEditable(false);
@@ -250,6 +259,26 @@ public class GenerarHistorial extends javax.swing.JFrame {
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked
+
+    private void txtNSSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyPressed
+        Character e= evt.getKeyChar();
+        if(((e < '0') ||
+         (e > '9')) &&
+         (e != '\b' /*corresponde a BACK_SPACE*/))
+      {
+         evt.consume();  // ignorar el evento de teclado
+      }
+    }//GEN-LAST:event_txtNSSKeyPressed
+
+    private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
+        Character e= evt.getKeyChar();
+        if(((e < '0') ||
+         (e > '9')) &&
+         (e != '\b' /*corresponde a BACK_SPACE*/))
+      {
+         evt.consume();  // ignorar el evento de teclado
+      }
+    }//GEN-LAST:event_txtNSSKeyTyped
 
     /**
      * @param args the command line arguments

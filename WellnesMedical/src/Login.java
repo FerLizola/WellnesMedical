@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -60,11 +61,21 @@ public class Login extends javax.swing.JFrame {
                 btnEntrarMouseClicked(evt);
             }
         });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
+            }
+        });
 
         txtPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPassActionPerformed(evt);
+            }
+        });
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
             }
         });
 
@@ -169,6 +180,18 @@ public class Login extends javax.swing.JFrame {
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            btnEntrarMouseClicked(null);
+        }
+    }//GEN-LAST:event_btnEntrarKeyPressed
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            btnEntrarMouseClicked(null);
+        }
+    }//GEN-LAST:event_txtPassKeyPressed
 
     /**
      * @param args the command line arguments
