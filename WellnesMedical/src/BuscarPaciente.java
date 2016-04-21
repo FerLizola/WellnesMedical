@@ -1,3 +1,6 @@
+
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,13 +35,17 @@ public class BuscarPaciente extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
-        txtNom1 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtDomicilio = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtConsultorio = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtDoctor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +56,18 @@ public class BuscarPaciente extends javax.swing.JFrame {
 
         jLabel2.setText("NSS:");
 
+        txtNSS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNSSKeyTyped(evt);
+            }
+        });
+
         txtBuscar.setText("Buscar");
+        txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBuscarMouseClicked(evt);
+            }
+        });
 
         jLabel3.setText("Nombre:");
 
@@ -60,13 +78,13 @@ public class BuscarPaciente extends javax.swing.JFrame {
             }
         });
 
-        txtNom1.setEditable(false);
+        txtNombre.setEditable(false);
 
         jLabel4.setText("Edad:");
 
         jLabel5.setText("Domicilio:");
 
-        jTextField1.setEditable(false);
+        txtDomicilio.setEditable(false);
 
         jLabel6.setText("Estado:");
 
@@ -84,6 +102,22 @@ public class BuscarPaciente extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Consultorio:");
+
+        txtConsultorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConsultorioActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Doctor:");
+
+        txtDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDoctorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -92,6 +126,10 @@ public class BuscarPaciente extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,24 +150,33 @@ public class BuscarPaciente extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addGap(90, 90, 90))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(26, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                        .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(txtConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(112, 112, 112)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(txtDoctor)
+                                .addGap(26, 26, 26))
+                            .addComponent(jLabel8)))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(62, 62, 62)
-                    .addComponent(txtNom1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(223, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,15 +202,23 @@ public class BuscarPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(32, 32, 32))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(167, 167, 167)
-                    .addComponent(txtNom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(246, Short.MAX_VALUE)))
         );
 
@@ -198,6 +253,47 @@ public class BuscarPaciente extends javax.swing.JFrame {
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void txtBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarMouseClicked
+        // TODO add your handling code here:
+        if(txtNSS.getText().isEmpty()){
+            showMessageDialog(null,"Ingrese el nss del paciente a buscar");
+        }else{
+            String buscar = txtNSS.getText();
+            TDAPaciente pac = new TDAPaciente();
+            if(pac.buscarNSS(buscar)){
+                showMessageDialog(null,"Paciente encontrado");
+                txtNombre.setText(pac.getNombre());
+                txtEdad.setText(pac.getEdad()+"");
+                txtDomicilio.setText(pac.getDomicilio());
+                txtEstado.setText(pac.getEstado());
+                txtConsultorio.setText(pac.getConsultorio());
+                txtDoctor.setText(pac.getDoctor());
+            }else{
+                showMessageDialog(null,"No encontrado");
+            }
+        }
+    }//GEN-LAST:event_txtBuscarMouseClicked
+
+    private void txtConsultorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConsultorioActionPerformed
+
+    private void txtDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDoctorActionPerformed
+
+    private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
+        // TODO add your handling code here:
+        Character e= evt.getKeyChar();
+        if(((e < '0') ||
+         (e > '9')) &&
+         (e != '\b' /*corresponde a BACK_SPACE*/))
+        {
+         evt.consume();  // ignorar el evento de teclado
+        }
+                                   
+    }//GEN-LAST:event_txtNSSKeyTyped
 
     /**
      * @param args the command line arguments
@@ -242,12 +338,16 @@ public class BuscarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton txtBuscar;
+    private javax.swing.JTextField txtConsultorio;
+    private javax.swing.JTextField txtDoctor;
+    private javax.swing.JTextField txtDomicilio;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNSS;
-    private javax.swing.JTextField txtNom1;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

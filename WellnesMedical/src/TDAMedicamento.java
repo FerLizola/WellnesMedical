@@ -92,7 +92,7 @@ public class TDAMedicamento {
         String sql = "SELECT * FROM MEDICAMENTO WHERE NOMBRE ='"+buscar+"'";
         ResultSet r = stmt.executeQuery(sql);
                 if(r.next()==true){ 
-                    miCon.close();
+                   miCon.close();
                    return(
                    "Nombre: "+r.getString("NOMBRE")+"\n"+
                    "Descripción: "+r.getString("DESCRIPCION")+"\n"+

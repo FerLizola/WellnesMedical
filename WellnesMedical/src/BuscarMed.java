@@ -111,6 +111,11 @@ public class BuscarMed extends javax.swing.JFrame {
                 btnLimpMouseClicked(evt);
             }
         });
+        btnLimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Fecha Caducidad:");
 
@@ -310,6 +315,10 @@ public class BuscarMed extends javax.swing.JFrame {
      f.setVisible(true);
      this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnLimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpActionPerformed
 
     /**
      * @param args the command line arguments

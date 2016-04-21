@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date; //pendiente sql.Date o util.Date
 import javax.swing.JOptionPane;
@@ -7,7 +8,15 @@ import javax.swing.JOptionPane;
 public class TDAPaciente {
     
     private String nombre, nss, domicilio, unidad_medica, telefono, curp, doctor,
-                    ciudad, estado, edo_civil, ocupacion;
+                    ciudad, estado, edo_civil, ocupacion, consultorio;
+
+    public String getConsultorio() {
+        return consultorio;
+    }
+
+    public void setConsultorio(String consultorio) {
+        this.consultorio = consultorio;
+    }
     private String fecha; //Pendiente analizar el uso de util.Date ó sql.Date para almacenar la fecha
     private int edad, codigo_postal;
     public TDAPaciente(){
@@ -33,6 +42,36 @@ public class TDAPaciente {
         }
         return true;
    }
+    
+    public boolean buscarNSS(String buscar){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT * FROM PACIENTE WHERE NSS ='"+buscar+"'";
+                ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                    nss = r.getString("NSS");
+                    nombre = r.getString("NOMBRE");
+                    consultorio = r.getString("CONSULTORIO");
+                    doctor = r.getString("DOCTOR");
+                    edad = Integer.parseInt(r.getString("EDAD"));
+                    domicilio = r.getString("DOMICILIO");
+                    estado = r.getString("ESTADO");
+                    return true;
+                }
+                else{
+                    miCon.close();
+                    return false;
+                }
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return false;
+    }
 
     public String getDomicilio() {
         return domicilio;
