@@ -1,5 +1,3 @@
-
-
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -381,7 +379,7 @@ public class Farmacia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       MedicamentoTDA m=new MedicamentoTDA();
+       MedicamentoTDA m = new MedicamentoTDA();
        
        if(m.eliminar(tabla)){
            showMessageDialog(null,"Medicamento Eliminado Correctamente");

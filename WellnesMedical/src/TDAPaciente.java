@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date; //pendiente sql.Date o util.Date
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class TDAPaciente {
     
@@ -42,6 +44,80 @@ public class TDAPaciente {
         }
         return true;
    }
+    
+    public boolean eliminar(JTable tabla){
+        int i=tabla.getSelectedRow();
+        if(i==-1){
+            return false;
+        }
+        else {
+            long nss=Long.parseLong(tabla.getValueAt(i, 0).toString());
+            Connection miCon = (new Conexion()).conectar();
+            if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        
+            String sql= "DELETE FROM PACIENTE WHERE NSS="+nss+"";
+            int a=stmt.executeUpdate(sql);
+            
+            if(a>0){
+                return true;
+            }
+            else
+                return false;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return true;
+        }
+    }
+    
+    public void limpiarTabla(JTable tabla){
+         DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
+            int filas=tabla.getRowCount();
+            for (int i = 0;filas>i; i++) {
+                modelo.removeRow(0);
+            }
+    }
+    
+    public void mostrar(DefaultTableModel modelo){
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "SELECT * FROM PACIENTE";
+        ResultSet r = stmt.executeQuery(sql);
+                
+                while(r.next()){ 
+                   String nss = r.getString("NSS");
+                   String Nombre = r.getString("NOMBRE");
+                   String Domicilio = r.getString("DOMICILIO");
+                   String Unidad = r.getString("UNIDAD_MEDICA");
+                   String Telefono = r.getString("TELEFONO");
+                   String Curp = r.getString("CURP");
+                   String Fecha_nac = r.getString("FECHA_NACIMIENTO");
+                   String Doctor = r.getString("DOCTOR");
+                   String Ciudad = r.getString("CIUDAD");
+                   String Estado = r.getString("ESTADOS");
+                   String Estado_civ = r.getString("ESTADO_CIVIL");
+                   String Ocupacion = r.getString("OCUPACION");
+                   String Edad = r.getString("EDAD");
+                   String Cp = r.getString("CP");
+                   String Consultorio = r.getString("CONSULTORIO");
+                   
+                   modelo.addRow(new Object[]{nss,Nombre,Domicilio,Unidad,Telefono,
+                       Curp,Fecha_nac,Doctor,Ciudad,Estado,Estado_civ,Ocupacion,
+                       Edad,Cp,Consultorio});
+                }
+                miCon.close();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+      }
     
     public boolean buscarNSS(String buscar){
         Connection miCon = (new Conexion()).conectar();
