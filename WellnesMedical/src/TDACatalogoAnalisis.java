@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
 public class TDACatalogoAnalisis {
     
     private String nombre, descripcion;
-    
+    int x;
     TDACatalogoAnalisis(String nombre, String descripcion){
         
         setNombre(nombre);
@@ -72,15 +73,16 @@ public class TDACatalogoAnalisis {
         return null;
     }
 
-    public Object[][] getDatos(){
+    public Object[] getDatos(DefaultTableModel modelo){
         Connection miCon=(new Conexion()).conectar();
-        int x=0;//Obtención de registros existentes
+        x=0;//Obtención de registros existentes
         try{
             Statement stmt=miCon.createStatement();
             //stmt.executeQuery("SELECT COUNT(1) AS TOTAL FROM ANALISIS");
             ResultSet res= stmt.executeQuery("SELECT COUNT(1) AS TOTAL FROM ANALISIS");
             res.next();
             x=res.getInt("TOTAL");
+            //JOptionPane.showMessageDialog(null,x);
             res.close();
         }
         
@@ -88,33 +90,37 @@ public class TDACatalogoAnalisis {
             return null;
         }
         
-        Object[][] s= new String[x][4];
+        Object[]s= new String[3];
         
         try{
             Statement stmt=miCon.createStatement();
-            //stmt.executeQuery("SELECT COUNT(1) AS TOTAL FROM ANALISIS");
             ResultSet res= stmt.executeQuery("SELECT * FROM ANALISIS");
-            res.next();
-            x=res.getInt("TOTAL");
-            int i=0;
+            
+            
             while(res.next()){
                 String id=res.getString("ID_ANALISIS");
                 String nom=res.getString("NOMBRE");
                 String des=res.getString("DESCRIPCION");
-                s[i][0]=false;
-                s[i][1]=id;
-                s[i][2]=nom;
-                s[i][3]=nom;
-                i++;
+                //Object a=""+0;
+                
+                s[0]=id;
+                s[1]=nom;
+                s[2]=des;
+                
+                modelo.addRow(s);
+                
             }
+            
             res.close();
+            return s;
         }
         
         catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
         
-        return s;
+        
     }
     
     private void setNombre(String nombre) {

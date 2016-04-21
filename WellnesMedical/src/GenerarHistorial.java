@@ -273,8 +273,8 @@ public class GenerarHistorial extends javax.swing.JFrame {
     private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
         Character e= evt.getKeyChar();
         if(((e < '0') ||
-         (e > '9')) &&
-         (e != '\b' /*corresponde a BACK_SPACE*/))
+         (e > '9'))) 
+         //(e != '\b' /*corresponde a BACK_SPACE*/))
       {
          evt.consume();  // ignorar el evento de teclado
       }
