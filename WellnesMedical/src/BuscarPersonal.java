@@ -111,6 +111,11 @@ public class BuscarPersonal extends javax.swing.JFrame {
 
         btnRegresar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRegresar.setText("Regresar");
+        btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseClicked(evt);
+            }
+        });
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
@@ -246,6 +251,12 @@ public class BuscarPersonal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnBuscarMouseClicked
+
+    private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
+       Menu m=new Menu();
+       m.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_btnRegresarMouseClicked
 
     /**
      * @param args the command line arguments
