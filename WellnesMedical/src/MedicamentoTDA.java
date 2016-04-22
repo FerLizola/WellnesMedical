@@ -230,6 +230,29 @@ public class MedicamentoTDA {
             }
     }
     
+    public boolean ActualizarMedicamento(int id, String fechaC, int cantidad, int stoc){
+        
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        
+            String sql= "UPDATE MEDICAMENTO SET FECHA_CADUCIDAD='"+fechaC+"', CANTIDAD="+cantidad+", STOCK="+stoc+"  WHERE ID_MEDICAMENTO="+id+"";
+            int a=stmt.executeUpdate(sql);
+            
+            if(a>0){
+                return true;
+            }
+            else
+                return false;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return true;
+    }
+    
     private void setPieza(int pieza) {
         this.pieza=pieza;
     }
