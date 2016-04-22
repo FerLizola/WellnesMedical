@@ -1,14 +1,24 @@
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
+
 
 public class TDAPersonal {
     
     private String rfc, nombre, domicilio, telefono, puesto, pass, horario;
+
+    public String getPass() {
+        return pass;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
     private Date hora_ini, hora_fin;
     
     public TDAPersonal(){
+        
     }
     public TDAPersonal(String rfc,String nombre, String domicilio, String telefono, String puesto,String horario, String pass){
         setRfc(rfc);
@@ -38,6 +48,34 @@ public class TDAPersonal {
             }
         }
         return true;
+    }
+    
+    public boolean buscarRFC(String buscar){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT * FROM PERSONAL WHERE RFC ='"+buscar+"'";
+                ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                    nombre = r.getString("NOMBRE");
+                    domicilio = r.getString("DOMICILIO");
+                    telefono = r.getString("TELEFONO");
+                    puesto = r.getString("PUESTO");
+                    horario = r.getString("HORARIO");
+                    return true;
+                }
+                else{
+                    miCon.close();
+                    return false;
+                }
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return false;
     }
     
     public String getRfc() {
