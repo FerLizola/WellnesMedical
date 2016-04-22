@@ -18,9 +18,15 @@ public class Farmacia extends javax.swing.JFrame {
      * Creates new form Farmacia
      */
     DefaultTableModel modelo;
+    String RFC;
     public Farmacia() {
         initComponents();
         modelo = (DefaultTableModel)tabla.getModel();
+    }
+    public Farmacia(String RFC) {
+        initComponents();
+        modelo = (DefaultTableModel)tabla.getModel();
+        this.RFC=RFC;
     }
   
     /**
@@ -329,7 +335,7 @@ public class Farmacia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseClicked
-        Menu obj=new Menu();
+        Menu obj=new Menu(RFC);
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnMenuMouseClicked

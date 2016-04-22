@@ -250,8 +250,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegTraMouseClicked
 
     private void btnFarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFarMouseClicked
-        Menu_Farmacia men= new Menu_Farmacia("Administrador",rfc);
+        /*Menu_Farmacia men= new Menu_Farmacia("Administrador",rfc);
         men.setVisible(true);
+        setVisible(false);*/
+        Farmacia far= new Farmacia(rfc);
+        far.setVisible(true);
         setVisible(false);
                        
     }//GEN-LAST:event_btnFarMouseClicked

@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -17,13 +18,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TDACatalogoAnalisis {
     
-    private String nombre, descripcion;
+    private String nombre, descripcion, valRef;
     int x;
-    TDACatalogoAnalisis(String nombre, String descripcion){
+    TDACatalogoAnalisis(String nombre, String descripcion,String valRef){
         
         setNombre(nombre);
         setDescripcion(descripcion);
-        
+        this.valRef=valRef;
     }
     TDACatalogoAnalisis(){
     }
@@ -36,7 +37,7 @@ public class TDACatalogoAnalisis {
                Statement stmt = miCon.createStatement();
         
                 stmt.executeUpdate("INSERT INTO ANALISIS " +
-                "VALUES ('"+nombre+"','"+descripcion+"')"); 
+                "VALUES ('"+nombre+"','"+descripcion+"','"+valRef+"')"); 
                 miCon.close();
                 return true;
             }
@@ -90,7 +91,7 @@ public class TDACatalogoAnalisis {
             return null;
         }
         
-        Object[]s= new String[3];
+        Object[]s= new String[4];
         
         try{
             Statement stmt=miCon.createStatement();
@@ -101,11 +102,13 @@ public class TDACatalogoAnalisis {
                 String id=res.getString("ID_ANALISIS");
                 String nom=res.getString("NOMBRE");
                 String des=res.getString("DESCRIPCION");
+                String val=res.getString("REFERENCIA");
                 //Object a=""+0;
                 
                 s[0]=id;
                 s[1]=nom;
                 s[2]=des;
+                s[3]=val;
                 
                 modelo.addRow(s);
                 
@@ -129,5 +132,34 @@ public class TDACatalogoAnalisis {
 
     private void setDescripcion(String descripcion) {
         this.descripcion=descripcion;
+    }
+    
+    public boolean eliminar(JTable tabla){
+        int i=tabla.getSelectedRow();
+        if(i==-1){
+            return false;
+        }
+        else {
+            long cod=Long.parseLong(tabla.getValueAt(i, 0).toString());
+            Connection miCon = (new Conexion()).conectar();
+            if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        
+            String sql= "DELETE FROM ANALISIS WHERE ID_ANALISIS="+cod+"";
+            int a=stmt.executeUpdate(sql);
+            
+            if(a>0){
+                return true;
+            }
+            else
+                return false;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return true;
+        }
     }
 }
