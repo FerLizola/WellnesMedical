@@ -47,7 +47,7 @@ public class BuscarPaciente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtConsultorio = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtDoctor = new javax.swing.JTextField();
+        txtCiudad = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -105,29 +105,28 @@ public class BuscarPaciente extends javax.swing.JFrame {
 
         jLabel7.setText("Consultorio:");
 
+        txtConsultorio.setEditable(false);
         txtConsultorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtConsultorioActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Doctor:");
+        jLabel8.setText("Ciudad:");
 
-        txtDoctor.addActionListener(new java.awt.event.ActionListener() {
+        txtCiudad.setEditable(false);
+        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDoctorActionPerformed(evt);
+                txtCiudadActionPerformed(evt);
             }
         });
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "NSS", "Nombre", "Domicilio", "Unidad Medica", "Telefono", "CURP", "Fecha Nac", "Doctor", "Ciudad", "Estado", "Edo Civil", "Ocupación", "Edad", "Codigo postal", "Consultorio"
+                "NSS", "Nombre", "Domicilio", "Unidad Medica", "Telefono", "CURP", "Fecha Nac", "Ciudad", "Estado", "Edo Civil", "Ocupación", "Edad", "Codigo postal", "Sexo", "Consultorio"
             }
         ));
         jScrollPane1.setViewportView(tabla);
@@ -163,23 +162,21 @@ public class BuscarPaciente extends javax.swing.JFrame {
                                                 .addGap(40, 40, 40)
                                                 .addComponent(txtBuscar))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtDoctor))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel6)))
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 400, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -215,7 +212,7 @@ public class BuscarPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -303,7 +300,7 @@ public class BuscarPaciente extends javax.swing.JFrame {
                 txtDomicilio.setText(pac.getDomicilio());
                 txtEstado.setText(pac.getEstado());
                 txtConsultorio.setText(pac.getConsultorio());
-                txtDoctor.setText(pac.getDoctor());
+                txtCiudad.setText(pac.getCiudad());
             }else{
                 showMessageDialog(null,"No encontrado");
             }
@@ -314,9 +311,9 @@ public class BuscarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConsultorioActionPerformed
 
-    private void txtDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoctorActionPerformed
+    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDoctorActionPerformed
+    }//GEN-LAST:event_txtCiudadActionPerformed
 
     private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
         // TODO add your handling code here:
@@ -338,7 +335,7 @@ public class BuscarPaciente extends javax.swing.JFrame {
             pac.limpiarTabla(tabla);
             pac.mostrar(modelo);
         }else{
-            showMessageDialog(null,"Seleccione un pacienta para eliminar");
+            showMessageDialog(null,"Seleccione un paciente para eliminar");
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -401,8 +398,8 @@ public class BuscarPaciente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tabla;
     private javax.swing.JButton txtBuscar;
+    private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtConsultorio;
-    private javax.swing.JTextField txtDoctor;
     private javax.swing.JTextField txtDomicilio;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEstado;

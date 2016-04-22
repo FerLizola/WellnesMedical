@@ -51,13 +51,13 @@ public class TDAPaciente {
             return false;
         }
         else {
-            long nss=Long.parseLong(tabla.getValueAt(i, 0).toString());
+            String nss=tabla.getValueAt(i, 0).toString();
             Connection miCon = (new Conexion()).conectar();
             if(miCon!=null){
             try{
                Statement stmt = miCon.createStatement();
         
-            String sql= "DELETE FROM PACIENTE WHERE NSS="+nss+"";
+            String sql= "DELETE FROM PACIENTE WHERE NSS='"+nss+"'";
             int a=stmt.executeUpdate(sql);
             
             if(a>0){
@@ -98,18 +98,18 @@ public class TDAPaciente {
                    String Telefono = r.getString("TELEFONO");
                    String Curp = r.getString("CURP");
                    String Fecha_nac = r.getString("FECHA_NACIMIENTO");
-                   String Doctor = r.getString("DOCTOR");
                    String Ciudad = r.getString("CIUDAD");
-                   String Estado = r.getString("ESTADOS");
+                   String Estado = r.getString("ESTADO");
                    String Estado_civ = r.getString("ESTADO_CIVIL");
                    String Ocupacion = r.getString("OCUPACION");
                    String Edad = r.getString("EDAD");
                    String Cp = r.getString("CP");
+                   String Sexo = r.getString("SEXO");
                    String Consultorio = r.getString("CONSULTORIO");
                    
                    modelo.addRow(new Object[]{nss,Nombre,Domicilio,Unidad,Telefono,
-                       Curp,Fecha_nac,Doctor,Ciudad,Estado,Estado_civ,Ocupacion,
-                       Edad,Cp,Consultorio});
+                       Curp,Fecha_nac,Ciudad,Estado,Estado_civ,Ocupacion,
+                       Edad,Cp,Sexo,Consultorio});
                 }
                 miCon.close();
             }
@@ -130,7 +130,7 @@ public class TDAPaciente {
                     nss = r.getString("NSS");
                     nombre = r.getString("NOMBRE");
                     consultorio = r.getString("CONSULTORIO");
-                    doctor = r.getString("DOCTOR");
+                    ciudad = r.getString("CIUDAD");
                     edad = Integer.parseInt(r.getString("EDAD"));
                     domicilio = r.getString("DOMICILIO");
                     estado = r.getString("ESTADO");
