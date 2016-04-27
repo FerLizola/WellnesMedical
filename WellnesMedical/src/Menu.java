@@ -298,7 +298,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegTraActionPerformed
 
     private void btnCatAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatAnMouseClicked
-        CatalogoAnalisis cat= new CatalogoAnalisis();
+        CatalogoAnalisis cat= new CatalogoAnalisis(rfc);
         cat.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnCatAnMouseClicked

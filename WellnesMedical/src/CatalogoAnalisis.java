@@ -17,10 +17,18 @@ public class CatalogoAnalisis extends javax.swing.JFrame {
      * Creates new form CatalagoAnalisis
      */
     DefaultTableModel model;
+    String rfc;
     public CatalogoAnalisis() {
         initComponents();
         this.setLocationRelativeTo(null);
         
+        model= (DefaultTableModel)tblMostrar.getModel();
+        tabla();
+    }
+    public CatalogoAnalisis(String rfc) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.rfc=rfc;
         model= (DefaultTableModel)tblMostrar.getModel();
         tabla();
     }
@@ -179,7 +187,7 @@ public class CatalogoAnalisis extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseClicked
-        Menu men= new Menu();
+        Menu men= new Menu(rfc);
         men.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnMenuMouseClicked

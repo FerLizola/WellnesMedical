@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class TDAPaciente {
     
     private String nombre, nss, domicilio, unidad_medica, telefono, curp, doctor,
-                    ciudad, estado, edo_civil, ocupacion, consultorio;
+                    ciudad, estado, edo_civil, ocupacion, consultorio,sexo;
 
     public String getConsultorio() {
         return consultorio;
@@ -73,7 +73,34 @@ public class TDAPaciente {
         return true;
         }
     }
-    
+    public boolean Modificar(){
+        int i=0;
+        if(i==-1){
+            return false;
+        }
+        else {
+            
+            Connection miCon = (new Conexion()).conectar();
+            if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        
+            String sql= "DELETE FROM PACIENTE WHERE NSS='"+nss+"'";
+            int a=stmt.executeUpdate(sql);
+            
+            if(a>0){
+                return true;
+            }
+            else
+                return false;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return true;
+        }
+    }
     public void limpiarTabla(JTable tabla){
          DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
             int filas=tabla.getRowCount();
@@ -134,6 +161,7 @@ public class TDAPaciente {
                     edad = Integer.parseInt(r.getString("EDAD"));
                     domicilio = r.getString("DOMICILIO");
                     estado = r.getString("ESTADO");
+                    
                     return true;
                 }
                 else{
