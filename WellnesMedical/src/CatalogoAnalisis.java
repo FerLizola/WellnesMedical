@@ -16,10 +16,12 @@ public class CatalogoAnalisis extends javax.swing.JFrame {
     /**
      * Creates new form CatalagoAnalisis
      */
-    DefaultTableModel model;
     String rfc;
+    DefaultTableModel model;
+    
     public CatalogoAnalisis() {
         initComponents();
+        
         this.setLocationRelativeTo(null);
         
         model= (DefaultTableModel)tblMostrar.getModel();
@@ -32,6 +34,8 @@ public class CatalogoAnalisis extends javax.swing.JFrame {
         model= (DefaultTableModel)tblMostrar.getModel();
         tabla();
     }
+    
+    
     protected void tabla(){
         TDACatalogoAnalisis a= new TDACatalogoAnalisis();
         Clear_Table();

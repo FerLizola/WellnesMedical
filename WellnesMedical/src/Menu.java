@@ -47,7 +47,7 @@ public class Menu extends javax.swing.JFrame {
         btnCitas = new javax.swing.JButton();
         btnFar = new javax.swing.JButton();
         btnActHist = new javax.swing.JButton();
-        btnGenHist = new javax.swing.JButton();
+        btnBuscarPer = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         btnCatAn = new javax.swing.JButton();
@@ -109,16 +109,16 @@ public class Menu extends javax.swing.JFrame {
         btnActHist.setText("Actualizar Historial");
         btnActHist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnGenHist.setText("Generar Historial");
-        btnGenHist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGenHist.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBuscarPer.setText("Buscar Personal");
+        btnBuscarPer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarPer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGenHistMouseClicked(evt);
+                btnBuscarPerMouseClicked(evt);
             }
         });
-        btnGenHist.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarPer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenHistActionPerformed(evt);
+                btnBuscarPerActionPerformed(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(76, 76, 76)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnGenHist)
+                                    .addComponent(btnBuscarPer)
                                     .addComponent(btnActHist)
                                     .addComponent(btnCatAn)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -208,7 +208,7 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(btnRegTra))
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGenHist)
+                            .addComponent(btnBuscarPer)
                             .addComponent(btnRegSig))
                         .addGap(43, 43, 43)
                         .addComponent(btnActHist)
@@ -271,9 +271,9 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegSigMouseClicked
 
-    private void btnGenHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenHistActionPerformed
+    private void btnBuscarPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenHistActionPerformed
+    }//GEN-LAST:event_btnBuscarPerActionPerformed
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         BuscarPaciente b = new BuscarPaciente();
@@ -281,11 +281,11 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBuscarMouseClicked
 
-    private void btnGenHistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenHistMouseClicked
-        GenerarHistorial g= new GenerarHistorial();
+    private void btnBuscarPerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarPerMouseClicked
+        BuscarPersonal g= new BuscarPersonal();
         g.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnGenHistMouseClicked
+    }//GEN-LAST:event_btnBuscarPerMouseClicked
 
     private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
         Login log= new Login();
@@ -349,11 +349,11 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActHist;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarPer;
     private javax.swing.JButton btnCatAn;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnCitas;
     private javax.swing.JButton btnFar;
-    private javax.swing.JButton btnGenHist;
     private javax.swing.JButton btnRegPac;
     private javax.swing.JButton btnRegSig;
     private javax.swing.JButton btnRegTra;

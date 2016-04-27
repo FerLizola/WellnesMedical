@@ -10,10 +10,18 @@ import javax.swing.table.DefaultTableModel;
 public class TDAPaciente {
     
     private String nombre, nss, domicilio, unidad_medica, telefono, curp, doctor,
-                    ciudad, estado, edo_civil, ocupacion, consultorio,sexo;
+                    ciudad, estado, edo_civil, ocupacion, consultorio, sexo;
 
     public String getConsultorio() {
         return consultorio;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public void setConsultorio(String consultorio) {
@@ -30,7 +38,7 @@ public class TDAPaciente {
                Statement stmt = miCon.createStatement();
              
                stmt.executeUpdate("INSERT INTO PACIENTE " +
-                  "VALUES ('"+nss+"','"+nombre+"','"+domicilio+"','"+unidad_medica+"','"+telefono+"','"+curp+"','"+fecha+"','"+doctor+"','"+ciudad+"','"+estado+"','"+edo_civil+"','"+ocupacion+"',"+edad+","+codigo_postal+")"); 
+                  "VALUES ('"+nss+"','"+nombre+"','"+domicilio+"','"+unidad_medica+"','"+telefono+"','"+curp+"','"+fecha+"','"+ciudad+"','"+estado+"','"+edo_civil+"','"+ocupacion+"',"+edad+","+codigo_postal+",'"+sexo+"',"+consultorio+")"); 
                 
                 //JOptionPane.showMessageDialog(null,"Registro de Paciente, Exitoso..!");
                 miCon.close();
