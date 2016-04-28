@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -54,6 +57,11 @@ public class Signos extends javax.swing.JFrame {
         jLabel2.setText("NSS:");
 
         jButton1.setText("Buscar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jLabel3.setText("Nombre:");
 
@@ -69,6 +77,11 @@ public class Signos extends javax.swing.JFrame {
 
         btnGuardar.setText("Guardar");
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseClicked(evt);
+            }
+        });
 
         btnCancel.setText("Cancelar");
         btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -183,6 +196,40 @@ public class Signos extends javax.swing.JFrame {
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if(!txtNSS.getText().isEmpty()){
+            TDAGenerarHistorial gh= new TDAGenerarHistorial(txtNSS.getText());
+            if(gh.buscarNSS(txtNSS.getText())){
+                txtNom.setText(gh.getNombre());
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "¡El beneficiario NO ha sido encontrado, \nfavor de verificar sus datos!");
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        if(txtPeso.getText().isEmpty()||txtPresion.getText().isEmpty()||
+                txtTemp.getText().isEmpty()||txtAlt.getText().isEmpty())
+            JOptionPane.showMessageDialog(this, "¡Rellene todos los campos!");
+        else{
+            TDAGenerarHistorial gh= new TDAGenerarHistorial(txtPresion.getText(),Float.parseFloat(txtAlt.getText()),
+                    Float.parseFloat(txtPeso.getText()),Float.parseFloat(txtTemp.getText()));
+            if(gh.regSigVit()){
+                JOptionPane.showMessageDialog(this, "¡Se han actualizado correctamente los signos vitales!");
+                txtPeso.setText("");
+                txtAlt.setText("");
+                txtTemp.setText("");
+                txtPresion.setText("");
+                txtNom.setText("");
+                txtNSS.setText("");
+            }
+            else
+                JOptionPane.showMessageDialog(this, "¡No ha sido posible registrar los signos vitales"
+                        + "\nverifique su información!");
+        }
+    }//GEN-LAST:event_btnGuardarMouseClicked
 
     /**
      * @param args the command line arguments
