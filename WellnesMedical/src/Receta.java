@@ -28,6 +28,7 @@ public class Receta extends javax.swing.JFrame {
     
     java.util.Date date;
     Timestamp t;
+    String f,h;
             
     public Receta() {
         initComponents();
@@ -81,6 +82,8 @@ public class Receta extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Fecha y fecha:");
 
+        tiempo.setDate(new java.util.Date(1461822384000L));
+        tiempo.setPattern("yyyy-MM-dd HH:mm");
         tiempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tiempoActionPerformed(evt);
@@ -160,11 +163,12 @@ public class Receta extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -192,47 +196,32 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_tiempoActionPerformed
 
     private void tiempoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tiempoPropertyChange
-        // TODO add your handling code here:
-        //http://www.lavantech.com/datetimepicker/trial/download/
+      
         String sdia,smes;
         int dia = tiempo.getCalendar().getTime().getDate();
         sdia = dia + "";
         if(dia < 10){ sdia = "0"+dia; }
         int mes = tiempo.getCalendar().getTime().getMonth() + 1;
         smes = mes + "";
-        if(dia < 10){ smes = "0"+mes; }
+        if(mes < 10){ smes = "0"+mes; }
         int ano = tiempo.getCalendar().getTime().getYear() + 1900;
         int hora = tiempo.getCalendar().getTime().getHours();
         int minuto = tiempo.getCalendar().getTime().getMinutes();
-        int segundo = tiempo.getCalendar().getTime().getSeconds();
-        
-        Integer fecha = Integer.parseInt(ano+""+smes+""+sdia+"");
-        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
-        String Hora = ano+"-"+mes+"-"+dia+" "+hora+":"+minuto+":"+segundo+".00000";
-        t = Timestamp.valueOf(Hora);
-        try {
-            date = originalFormat.parse(fecha.toString());
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(Receta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        showMessageDialog(null,"Seleccionaste: " + dia +" "+mes+" "+ano+ " "+fecha);
-        showMessageDialog(null,"A la hora: "+hora+" : "+minuto+"  "+t);
+      
+        f=ano+"-"+smes+"-"+sdia;
+        h=hora+":"+minuto;
         
     }//GEN-LAST:event_tiempoPropertyChange
 
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
-        // TODO add your handling code here:
         TDAReceta rec = new TDAReceta();
         
         if(!txtNSS.getText().isEmpty() && !txtPersonal.getText().isEmpty() 
                 && !txtPres.getText().isEmpty()){
             rec.setNss(txtNSS.getText());
             rec.setPersonal(txtPersonal.getText());
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            rec.setFecha(sqlDate);
-            rec.setHora(t);
+            rec.setFcha(f);
+            rec.setHra(h);
             rec.setPrescripcion(txtPres.getText());
             if(rec.insertar()){
                 showMessageDialog(null,"Receta registrada");

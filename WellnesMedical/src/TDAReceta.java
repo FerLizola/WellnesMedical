@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @author Bryan
  */
 public class TDAReceta {
-    private String nss, personal, prescripcion;
+    private String nss, personal, prescripcion, fcha, hra;
     private Date fecha;
     private Timestamp hora;
 
@@ -51,6 +51,24 @@ public class TDAReceta {
     public void setHora(Timestamp hora) {
         this.hora = hora;
     }
+
+    public String getFcha() {
+        return fcha;
+    }
+
+    public void setFcha(String fcha) {
+        this.fcha = fcha;
+    }
+
+    public String getHra() {
+        return hra;
+    }
+
+    public void setHra(String hra) {
+        this.hra = hra;
+    }
+    
+    
     
     public boolean insertar(){ 
     Connection miCon = (new Conexion()).conectar();
@@ -59,7 +77,7 @@ public class TDAReceta {
                 Statement stmt = miCon.createStatement();
              
                 stmt.executeUpdate("INSERT INTO RECETA " +
-                  "VALUES ('"+nss+"','"+personal+"','"+fecha+"','"+hora+"','"+prescripcion+"')"); 
+                  "VALUES ('"+nss+"','"+personal+"','"+fcha+"','"+hra+"','"+prescripcion+"','Pendiente')"); 
                 
                 miCon.close();
                 return true;
