@@ -48,6 +48,16 @@ public class Resultados_Analisis extends javax.swing.JFrame {
         jLabel1.setText("Resultados de Analisis");
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseClicked(evt);
+            }
+        });
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         btnMostrar.setText("Mostrar Resultados");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +204,16 @@ public class Resultados_Analisis extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(null, "No ha sido posible Modificar el estado de Revision"); 
     }
     }//GEN-LAST:event_btnEstadoActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
+        Menu_Medico m=new Menu_Medico();
+        m.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegresarMouseClicked
 
     /**
      * @param args the command line arguments

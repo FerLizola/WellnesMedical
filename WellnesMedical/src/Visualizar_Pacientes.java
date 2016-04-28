@@ -63,6 +63,11 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Tabla);
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         btnMostrar.setText("Mostrar");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +130,12 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
            javax.swing.JOptionPane.showMessageDialog(null,"No tiene pacientes a su cargo");
        }
     }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        Menu_Medico m=new Menu_Medico();
+        m.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments

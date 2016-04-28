@@ -73,6 +73,11 @@ public class Visualizar_Receta extends javax.swing.JFrame {
         txtFechaHora.setEditable(false);
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +218,12 @@ public class Visualizar_Receta extends javax.swing.JFrame {
            javax.swing.JOptionPane.showMessageDialog(null, "No ha sido posible modificar el estado de Receta");
        }
     }//GEN-LAST:event_btnEstadoActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+       Menu_Farmacia m=new Menu_Farmacia();
+       m.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments

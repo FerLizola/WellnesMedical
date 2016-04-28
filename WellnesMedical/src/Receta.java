@@ -104,6 +104,11 @@ public class Receta extends javax.swing.JFrame {
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnGenerar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnGenerar.setText("Generar");
@@ -246,6 +251,12 @@ public class Receta extends javax.swing.JFrame {
          evt.consume();  // ignorar el evento de teclado
         }
     }//GEN-LAST:event_txtNSSKeyTyped
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Menu_Medico m=new Menu_Medico();
+        m.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -73,6 +73,13 @@ public boolean guardar(){
                        log.dispose();
                        return true;
                    }
+                   if(r.getString("PUESTO").equals("Medico General")){
+                       Menu_Medico men= new Menu_Medico();
+                       Login log=new Login();
+                       men.setVisible(true);
+                       log.dispose();
+                       return true;
+                   }
                 }
                 else {
                     //JOptionPane.showMessageDialog(null,"No puede ser Autenticado, porfavor verifique su Usuario y Password","Campos no validos",JOptionPane.WARNING_MESSAGE);

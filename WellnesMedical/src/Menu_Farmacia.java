@@ -53,6 +53,11 @@ public class Menu_Farmacia extends javax.swing.JFrame {
         btnMed.setText("Buscar Medicamento");
 
         btnRec.setText("Surtir Receta");
+        btnRec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecActionPerformed(evt);
+            }
+        });
 
         btnMod.setText("Modificar Informacion de Med");
 
@@ -68,7 +73,7 @@ public class Menu_Farmacia extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar.setText("Cerrar Sesión.");
+        btnCerrar.setText("Cerrar Sesión");
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCerrarMouseClicked(evt);
@@ -123,7 +128,7 @@ public class Menu_Farmacia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 72, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,6 +167,12 @@ public class Menu_Farmacia extends javax.swing.JFrame {
     private void btnCamConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCamConMouseClicked
         CambiarContraseña cam= new CambiarContraseña();
     }//GEN-LAST:event_btnCamConMouseClicked
+
+    private void btnRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecActionPerformed
+        Visualizar_Receta v= new Visualizar_Receta();
+        v.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRecActionPerformed
 
     /**
      * @param args the command line arguments
