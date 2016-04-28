@@ -65,7 +65,7 @@ public class TDAGenerarHistorial {
             try{
                Statement stmt = miCon.createStatement();
              
-               stmt.executeUpdate("INSERT INTO PACIENTE (ID_HISTORIAL, NSS, ALERGIAS, CIRUJIAS"
+               stmt.executeUpdate("INSERT INTO HISTORIAL (ID_HISTORIAL, NSS, ALERGIAS, CIRUJIAS"
                        + ", VACUNAS, ANTECEDENTES_FAMILIARES, GPOSANGUINEO_RH) " +
                   "VALUES ('"+expediente+"','"+nss+"','"+alergias+"','"+cirujias+"','"
                        +vacunas+"','"+antecedentes+"','"+ts+"')"); 
@@ -74,7 +74,7 @@ public class TDAGenerarHistorial {
                 return true;
             }
             catch(Exception e){
-                //JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
@@ -108,27 +108,72 @@ public class TDAGenerarHistorial {
         }
         return true;
     }
-    public boolean regSigVit(){
+    public boolean regSigVit(String NSS){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
                Statement stmt = miCon.createStatement();
         
-            String sql= "UPDATE HISTORIAL SET PESO='"+peso+"', ALTURA="+altura+", TEMPERATURA="+temperatura+", PRESION_ARTERIAL="+presion +" WHERE NSS="+NSS+"";
-            int a=stmt.executeUpdate(sql);
-            
-            if(a>0){
-                return true;
-            }
-            else
-                return false;
+            String sql= "UPDATE HISTORIAL SET PESO="+peso+", ALTURA="+altura+", "
+                    + "TEMPERATURA="+temperatura+", PRESION_ARTERIAL='"+presion +"' WHERE NSS='"+NSS+"'";
+            stmt.executeUpdate(sql);
+            miCon.close();
+            return true;
             }
             catch(Exception e){
-                //JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                return false;}
+        }return true;
+    }
+    public boolean modificarHistorial(String NSS){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+            String sql= "UPDATE HISTORIAL SET ALERGIAS='"+alergias+"', CIRUJIAS='"+cirujias+"', VACUNAS='"+vacunas+
+                    "', ANTECEDENTES_FAMILIARES='"+antecedentes +"', GPOSANGUINEO_RH='"+ts+"' WHERE NSS='"+NSS+"'";
+            int a=stmt.executeUpdate(sql);
+            miCon.close();
+            return true;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
         return true;
+    }
+    public boolean obtenerRegistro(String busca){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "SELECT * FROM HISTORIAL WHERE NSS ='"+busca+"'";
+        JOptionPane.showMessageDialog(null,expediente);
+        ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                    expediente=r.getString("ID_HISTORIAL");
+                    
+                    alergias=r.getString("ALERGIAS");
+                    cirujias=r.getString("CIRUJIAS");
+                    vacunas=r.getString("VACUNAS");
+                    antecedentes=r.getString("ANTECEDENTES_FAMILIARES");
+                    ts=r.getString("GPOSANGUINEO_RH");
+                    miCon.close();
+                    return true;
+                }
+                else{
+                    miCon.close();
+                    return false;
+                     }
+                
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        return false;
     }
     private void setNSS(String NSS){
         this.NSS=NSS;
@@ -218,5 +263,8 @@ public class TDAGenerarHistorial {
     }
     public String getTS(){
         return ts;
+    }
+    public String getExpediente(){
+        return expediente;
     }
 }

@@ -192,7 +192,7 @@ public class Signos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        Menu obj=new Menu();
+        Menu_Auxiliar obj=new Menu_Auxiliar();
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked
@@ -216,7 +216,7 @@ public class Signos extends javax.swing.JFrame {
         else{
             TDAGenerarHistorial gh= new TDAGenerarHistorial(txtPresion.getText(),Float.parseFloat(txtAlt.getText()),
                     Float.parseFloat(txtPeso.getText()),Float.parseFloat(txtTemp.getText()));
-            if(gh.regSigVit()){
+            if(gh.regSigVit(txtNSS.getText())){
                 JOptionPane.showMessageDialog(this, "¡Se han actualizado correctamente los signos vitales!");
                 txtPeso.setText("");
                 txtAlt.setText("");
