@@ -185,6 +185,33 @@ public class TDAPaciente {
         return false;
     }
 
+    public boolean mostrarPaciente(DefaultTableModel modelo,String rfc){
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql ="select NSS, NOMBRE, CURP, TELEFONO from PACIENTE \n" +
+                    "inner join CONSULTORIO on PACIENTE.CONSULTORIO = CONSULTORIO.N_CONSULTORIO \n" +
+                    "and CONSULTORIO.MEDICO =  '"+rfc+"'";
+        ResultSet r = stmt.executeQuery(sql);
+                
+                while(r.next()){ 
+                   String NSS = r.getString("NSS");
+                   String Nombre = r.getString("NOMBRE");
+                   String Curp = r.getString("CURP");
+                   String Telefono = r.getString("TELEFONO");
+                   modelo.addRow(new Object[]{NSS,Nombre,Curp,Telefono});
+                }
+                miCon.close();
+                return true;
+            }
+            catch(Exception e){
+               return false;
+            }
+        }
+        return false;
+      }
+    
     public String getDomicilio() {
         return domicilio;
     }
