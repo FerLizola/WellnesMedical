@@ -55,6 +55,11 @@ public class Menu_Auxiliar extends javax.swing.JFrame {
         });
 
         jButton3.setText("Modificar Expediente");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setText("Buscar Expediente");
 
@@ -125,6 +130,12 @@ public class Menu_Auxiliar extends javax.swing.JFrame {
         gh.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        ModificarHistorial md=new ModificarHistorial();
+        md.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
