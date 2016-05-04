@@ -17,9 +17,16 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
      * Creates new form Visualizar_Pacientes
      */
      DefaultTableModel modelo;
+     String rfc, puesto;
     public Visualizar_Pacientes() {
         initComponents();
          modelo = (DefaultTableModel)Tabla.getModel();
+    }
+    public Visualizar_Pacientes(String rfc, String puesto){
+        initComponents();
+        modelo=(DefaultTableModel)Tabla.getModel();
+        this.rfc=rfc;
+        this.puesto=puesto;
     }
 
     /**
@@ -132,7 +139,7 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        Menu_Medico m=new Menu_Medico();
+        Menu_Medico m=new Menu_Medico(rfc,puesto);
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed

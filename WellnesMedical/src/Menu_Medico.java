@@ -141,7 +141,7 @@ public class Menu_Medico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      Visualizar_Pacientes v=new Visualizar_Pacientes();
+      Visualizar_Pacientes v=new Visualizar_Pacientes(rfc,puesto);
       v.setVisible(true);
       this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
