@@ -30,7 +30,7 @@ public class Citas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNuevaCita = new javax.swing.JTextField();
+        txtNSS = new javax.swing.JTextField();
         txtAgendar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -53,24 +53,28 @@ public class Citas extends javax.swing.JFrame {
 
         txtAgendar.setText("Agendar");
         txtAgendar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgendarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(txtAgendar)))
+                .addContainerGap()
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtAgendar)
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +84,7 @@ public class Citas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAgendar))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -127,7 +131,7 @@ public class Citas extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        txtMenu.setText("Menu Principal");
+        txtMenu.setText("Regresar");
         txtMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -182,8 +186,19 @@ public class Citas extends javax.swing.JFrame {
     private void txtMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMenuMouseClicked
         MenuSecretaria obj=new MenuSecretaria();
         obj.setVisible(true);
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_txtMenuMouseClicked
+
+    private void txtAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgendarActionPerformed
+     String nss=txtNSS.getText();
+     if(nss.isEmpty()){
+         javax.swing.JOptionPane.showMessageDialog(this,"Ingrese un NSS para continuar");
+     } else {
+         AgendarCita a=new AgendarCita(nss);
+         a.setVisible(true);
+         this.setVisible(false);
+     }
+    }//GEN-LAST:event_txtAgendarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +248,6 @@ public class Citas extends javax.swing.JFrame {
     private javax.swing.JButton txtAgendar;
     private javax.swing.JTextField txtConsultar;
     private javax.swing.JButton txtMenu;
-    private javax.swing.JTextField txtNuevaCita;
+    private javax.swing.JTextField txtNSS;
     // End of variables declaration//GEN-END:variables
 }
