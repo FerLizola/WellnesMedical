@@ -65,7 +65,7 @@ public class TDAGenerarHistorial {
             try{
                Statement stmt = miCon.createStatement();
              
-               stmt.executeUpdate("INSERT INTO HISTORIAL (ID_HISTORIAL, NSS, ALERGIAS, CIRUJIAS"
+               stmt.executeUpdate("INSERT INTO EXPEDIENTE (ID_EXPEDIENTE, NSS, ALERGIAS, CIRUJIAS"
                        + ", VACUNAS, ANTECEDENTES_FAMILIARES, GPOSANGUINEO_RH) " +
                   "VALUES ('"+expediente+"','"+nss+"','"+alergias+"','"+cirujias+"','"
                        +vacunas+"','"+antecedentes+"','"+ts+"')"); 
@@ -86,7 +86,7 @@ public class TDAGenerarHistorial {
             try{
                Statement stmt = miCon.createStatement();
              
-               String sql=("SELECT * FROM HISTORIAL WHERE NSS= '" +NSS+"')");
+               String sql=("SELECT * FROM EXPEDIENTE WHERE NSS= '" +NSS+"')");
                 ResultSet r = stmt.executeQuery(sql);
                 if(r.next()==true){ 
                     NSS = r.getString("NSS");
@@ -114,7 +114,7 @@ public class TDAGenerarHistorial {
             try{
                Statement stmt = miCon.createStatement();
         
-            String sql= "UPDATE HISTORIAL SET PESO="+peso+", ALTURA="+altura+", "
+            String sql= "UPDATE EXPEDIENTE SET PESO="+peso+", ALTURA="+altura+", "
                     + "TEMPERATURA="+temperatura+", PRESION_ARTERIAL='"+presion +"' WHERE NSS='"+NSS+"'";
             stmt.executeUpdate(sql);
             miCon.close();
@@ -130,7 +130,7 @@ public class TDAGenerarHistorial {
         if(miCon!=null){
             try{
                Statement stmt = miCon.createStatement();
-            String sql= "UPDATE HISTORIAL SET ALERGIAS='"+alergias+"', CIRUJIAS='"+cirujias+"', VACUNAS='"+vacunas+
+            String sql= "UPDATE EXPEDIENTE SET ALERGIAS='"+alergias+"', CIRUJIAS='"+cirujias+"', VACUNAS='"+vacunas+
                     "', ANTECEDENTES_FAMILIARES='"+antecedentes +"', GPOSANGUINEO_RH='"+ts+"' WHERE NSS='"+NSS+"'";
             int a=stmt.executeUpdate(sql);
             miCon.close();
@@ -148,11 +148,11 @@ public class TDAGenerarHistorial {
         if(miCon!=null){
             try{
                Statement stmt = miCon.createStatement();
-        String sql = "SELECT * FROM HISTORIAL WHERE NSS ='"+busca+"'";
+        String sql = "SELECT * FROM EXPEDIENTE WHERE NSS ='"+busca+"'";
         JOptionPane.showMessageDialog(null,expediente);
         ResultSet r = stmt.executeQuery(sql);
                 if(r.next()==true){ 
-                    expediente=r.getString("ID_HISTORIAL");
+                    expediente=r.getString("ID_EXPEDIENTE");
                     
                     alergias=r.getString("ALERGIAS");
                     cirujias=r.getString("CIRUJIAS");

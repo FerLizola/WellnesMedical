@@ -13,8 +13,15 @@ public class MenuSecretaria extends javax.swing.JFrame {
     /**
      * Creates new form MenuAdministrador
      */
+   String rfc, puesto;
     public MenuSecretaria() {
         initComponents();
+    }
+    public MenuSecretaria(String RFC,String puesto){
+        
+        initComponents();
+        rfc=RFC;
+        this.puesto=puesto;
     }
 
     /**
@@ -136,25 +143,27 @@ public class MenuSecretaria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegPacMouseClicked
-        Paciente pac= new Paciente();
+        Paciente pac= new Paciente(rfc,puesto);
         pac.setVisible(true);
-        this.hide();
+        dispose();
     }//GEN-LAST:event_btnRegPacMouseClicked
 
     private void btnCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseClicked
         Citas cit= new Citas();
         cit.setVisible(true);
-        this.hide();
+        dispose();
     }//GEN-LAST:event_btnCitasMouseClicked
 
     private void btnBusPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBusPacMouseClicked
-        BuscarPaciente bp=new BuscarPaciente();
+        BuscarPaciente bp=new BuscarPaciente(rfc,puesto);
         bp.setVisible(true);
-        this.hide();
+        dispose();
     }//GEN-LAST:event_btnBusPacMouseClicked
 
     private void btnModPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModPacMouseClicked
-        // TODO add your handling code here:
+        ActualizarPaciente act = new ActualizarPaciente(rfc,puesto);
+        act.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnModPacMouseClicked
 
     /**

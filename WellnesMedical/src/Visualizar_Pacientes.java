@@ -134,7 +134,7 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         Menu_Medico m=new Menu_Medico();
         m.setVisible(true);
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**

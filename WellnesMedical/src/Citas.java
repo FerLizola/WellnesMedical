@@ -180,7 +180,7 @@ public class Citas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMenuMouseClicked
-        Menu obj=new Menu();
+        MenuSecretaria obj=new MenuSecretaria();
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_txtMenuMouseClicked

@@ -13,8 +13,14 @@ public class ConsultarAnalisis extends javax.swing.JFrame {
     /**
      * Creates new form ConsultarAnalisis
      */
+    String rfc,puesto;
     public ConsultarAnalisis() {
         initComponents();
+    }
+    public ConsultarAnalisis(String rfc, String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
     }
 
     /**

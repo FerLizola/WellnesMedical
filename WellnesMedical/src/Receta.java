@@ -28,12 +28,18 @@ public class Receta extends javax.swing.JFrame {
     
     java.util.Date date;
     Timestamp t;
-    String f,h;
+    String f,h,rfc,puesto;
             
     public Receta() {
         initComponents();
     }
-
+    public Receta(String rfc,String puesto, String NSS){
+        initComponents();
+        txtNSS.setText(NSS);
+        txtPersonal.setText(rfc);
+        this.rfc=rfc;
+        this.puesto=puesto;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,9 +259,9 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNSSKeyTyped
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Menu_Medico m=new Menu_Medico();
-        m.setVisible(true);
-        this.setVisible(false);
+        Consulta c= new Consulta(rfc,puesto);
+        c.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

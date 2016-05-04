@@ -16,8 +16,14 @@ public class BuscarMed extends javax.swing.JFrame {
     /**
      * Creates new form BuscarMed
      */
+    String rfc,puesto;
     public BuscarMed() {
         initComponents();
+    }
+    public BuscarMed(String rfc, String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
     }
 
     /**
@@ -338,7 +344,7 @@ public class BuscarMed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarCodMouseClicked
 
     private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
-     Farmacia f=new Farmacia();
+     Farmacia f=new Farmacia(rfc,puesto);
      f.setVisible(true);
      this.dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked

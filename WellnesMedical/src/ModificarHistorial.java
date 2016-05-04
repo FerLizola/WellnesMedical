@@ -16,8 +16,14 @@ public class ModificarHistorial extends javax.swing.JFrame {
     /**
      * Creates new form GenHist
      */
+    String rfc,puesto;
     public ModificarHistorial() {
         initComponents();
+    }
+    public ModificarHistorial(String rfc,String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
     }
 
     /**
@@ -281,7 +287,7 @@ public class ModificarHistorial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        Menu_Auxiliar a= new Menu_Auxiliar();
+        Menu_Auxiliar a= new Menu_Auxiliar(rfc,puesto);
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked

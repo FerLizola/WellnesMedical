@@ -17,11 +17,18 @@ public class BuscarPaciente extends javax.swing.JFrame {
      * Creates new form BuscarPaciente
      */
     DefaultTableModel modelo;
+    String puesto,rfc;
     public BuscarPaciente() {
         initComponents();
         modelo = (DefaultTableModel)tabla.getModel();
     }
-
+    public BuscarPaciente(String rfc, String puesto){
+    
+        initComponents();
+        modelo=(DefaultTableModel)tabla.getModel();
+        this.rfc=rfc;
+        this.puesto=puesto;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -281,7 +288,7 @@ public class BuscarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEstadoActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Menu a= new Menu();
+        MenuSecretaria a= new MenuSecretaria(rfc,puesto);
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked

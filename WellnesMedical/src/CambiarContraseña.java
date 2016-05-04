@@ -16,12 +16,15 @@ public class CambiarContraseña extends javax.swing.JFrame {
     /**
      * Creates new form CambiarContraseña
      */
+    String rfc,puesto;
     public CambiarContraseña() {
         initComponents();
     }
-    public CambiarContraseña(String RFC) {
+    public CambiarContraseña(String RFC,String puesto) {
         initComponents();
         txtRFC.setText(RFC);
+        rfc=RFC;
+        this.puesto=puesto;
     }
 
     /**
@@ -149,7 +152,7 @@ public class CambiarContraseña extends javax.swing.JFrame {
             String pass= new String(arrayC);
             char[] newC=txtRepCon.getPassword();
             String passRep=new String(newC);
-            if(pass.equals(passRep)){
+            if(pass.equals(passRep)&&!pass.isEmpty()){
                 TDALogin log= new TDALogin(txtRFC.getText(),pass);
                 log.changePass();
                 dispose();

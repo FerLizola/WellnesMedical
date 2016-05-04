@@ -16,18 +16,18 @@ public class Menu extends javax.swing.JFrame {
     Paciente pac;
     Personal per;
     Farmacia far;
-    String rfc;
+    String rfc, puesto;
     public Menu() {
         initComponents();
         pac=new Paciente();
         per=new Personal();
         far=new Farmacia();
     }
-    public Menu(String RFC){
+    public Menu(String RFC,String puesto){
         
         initComponents();
         rfc=RFC;
-        
+        this.puesto=puesto;
     }
 
     /**
@@ -253,7 +253,7 @@ public class Menu extends javax.swing.JFrame {
         /*Menu_Farmacia men= new Menu_Farmacia("Administrador",rfc);
         men.setVisible(true);
         setVisible(false);*/
-        Farmacia far= new Farmacia(rfc);
+        Farmacia far= new Farmacia(rfc,"Administrador");
         far.setVisible(true);
         setVisible(false);
                        
@@ -298,13 +298,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegTraActionPerformed
 
     private void btnCatAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatAnMouseClicked
-        CatalogoAnalisis cat= new CatalogoAnalisis(rfc);
+        CatalogoAnalisis cat= new CatalogoAnalisis(rfc,"Administrador");
         cat.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnCatAnMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        CambiarContraseña cam= new CambiarContraseña(rfc);
+        CambiarContraseña cam= new CambiarContraseña(rfc,"Administrador");
         cam.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked

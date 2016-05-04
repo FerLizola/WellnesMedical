@@ -16,9 +16,16 @@ public class Signos extends javax.swing.JFrame {
     /**
      * Creates new form Signos
      */
+    String rfc,puesto;
     public Signos() {
         initComponents();
     }
+    public Signos(String rfc,String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,7 +199,7 @@ public class Signos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        Menu_Auxiliar obj=new Menu_Auxiliar();
+        Menu_Auxiliar obj=new Menu_Auxiliar(rfc,puesto);
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked

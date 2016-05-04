@@ -16,10 +16,11 @@ public class Menu_Farmacia extends javax.swing.JFrame {
     public Menu_Farmacia(){
         initComponents();
     }
-    String puesto;
+    String puesto,rfc;
     public Menu_Farmacia(String puesto, String RFC) {
         initComponents();
         this.puesto=puesto;
+        this.rfc=RFC;
     }
 
     /**
@@ -32,25 +33,15 @@ public class Menu_Farmacia extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnReg = new javax.swing.JButton();
-        btnMed = new javax.swing.JButton();
         btnRec = new javax.swing.JButton();
-        btnMod = new javax.swing.JButton();
         btnCamCon = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(java.awt.Color.white);
-
-        btnReg.setText("Registrar Medicamento");
-        btnReg.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegMouseClicked(evt);
-            }
-        });
-
-        btnMed.setText("Buscar Medicamento");
 
         btnRec.setText("Surtir Receta");
         btnRec.addActionListener(new java.awt.event.ActionListener() {
@@ -58,8 +49,6 @@ public class Menu_Farmacia extends javax.swing.JFrame {
                 btnRecActionPerformed(evt);
             }
         });
-
-        btnMod.setText("Modificar Informacion de Med");
 
         btnCamCon.setText("Cambiar Contraseña");
         btnCamCon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,55 +69,58 @@ public class Menu_Farmacia extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Inventario de Medicamentos");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel1.setText("Farmacia");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnReg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(btnMed)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnMod)
-                        .addGap(80, 80, 80))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton1)
+                        .addGap(60, 60, 60)
                         .addComponent(btnRec)
-                        .addGap(102, 102, 102)
-                        .addComponent(btnCamCon)
-                        .addGap(197, 197, 197))))
+                        .addGap(42, 42, 42)
+                        .addComponent(btnCamCon))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)))
+                .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnCerrar)
-                .addGap(95, 95, 95))
+                .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReg)
-                    .addComponent(btnMed)
-                    .addComponent(btnMod))
-                .addGap(111, 111, 111)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
                     .addComponent(btnRec)
                     .addComponent(btnCamCon))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addGap(70, 70, 70)
                 .addComponent(btnCerrar)
-                .addGap(32, 32, 32))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +133,9 @@ public class Menu_Farmacia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCamConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCamConActionPerformed
-        // TODO add your handling code here:
+        CambiarContraseña cam= new CambiarContraseña(rfc,puesto);
+        cam.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnCamConActionPerformed
 
     private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
@@ -158,21 +152,23 @@ public class Menu_Farmacia extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnCerrarMouseClicked
 
-    private void btnRegMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegMouseClicked
-        RegistrarMedicamento reg= new RegistrarMedicamento();
-        reg.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnRegMouseClicked
-
     private void btnCamConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCamConMouseClicked
         CambiarContraseña cam= new CambiarContraseña();
+        cam.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnCamConMouseClicked
 
     private void btnRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecActionPerformed
-        Visualizar_Receta v= new Visualizar_Receta();
+        Visualizar_Receta v= new Visualizar_Receta(rfc,puesto);
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRecActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        Farmacia f= new Farmacia(rfc,puesto);
+        f.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -213,10 +209,9 @@ public class Menu_Farmacia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCamCon;
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnMed;
-    private javax.swing.JButton btnMod;
     private javax.swing.JButton btnRec;
-    private javax.swing.JButton btnReg;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
