@@ -16,8 +16,14 @@ public class GenerarHistorial extends javax.swing.JFrame {
     /**
      * Creates new form GenerarHistorial
      */
+    String rfc,puesto;
     public GenerarHistorial() {
         initComponents();
+    }
+    public GenerarHistorial(String rfc,String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
     }
 
     /**
@@ -263,7 +269,7 @@ public class GenerarHistorial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        Menu_Auxiliar a= new Menu_Auxiliar();
+        Menu_Auxiliar a= new Menu_Auxiliar(rfc,puesto);
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked

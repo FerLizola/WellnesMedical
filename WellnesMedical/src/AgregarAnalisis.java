@@ -16,10 +16,15 @@ public class AgregarAnalisis extends javax.swing.JFrame {
     /**
      * Creates new form AgregarAnalisis
      */
+    String puesto,rfc;
     public AgregarAnalisis() {
         initComponents();
     }
-
+    public AgregarAnalisis(String rfc,String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,8 +152,8 @@ public class AgregarAnalisis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        CatalogoAnalisis cat=new CatalogoAnalisis();
-        cat.setVisible(true);
+        /*CatalogoAnalisis cat=new CatalogoAnalisis();
+        cat.setVisible(true);*/
         dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
@@ -156,7 +161,7 @@ public class AgregarAnalisis extends javax.swing.JFrame {
         if(!txtNom.getText().isEmpty()||!txtDesc.getText().isEmpty()||txtVal.getText().isEmpty()){
             TDACatalogoAnalisis cad= new TDACatalogoAnalisis(txtNom.getText(),txtDesc.getText(),txtVal.getText());
             if(cad.guardar()){
-                CatalogoAnalisis cat=new CatalogoAnalisis();
+                CatalogoAnalisis cat=new CatalogoAnalisis(rfc,puesto);
                 cat.tabla();
                 showMessageDialog(this,"¡Análisis registrado con éxito!");
                 txtNom.setText("");

@@ -13,8 +13,15 @@ public class MenuSecretaria extends javax.swing.JFrame {
     /**
      * Creates new form MenuAdministrador
      */
+   String rfc, puesto;
     public MenuSecretaria() {
         initComponents();
+    }
+    public MenuSecretaria(String RFC,String puesto){
+        
+        initComponents();
+        rfc=RFC;
+        this.puesto=puesto;
     }
 
     /**
@@ -33,6 +40,7 @@ public class MenuSecretaria extends javax.swing.JFrame {
         btnCitas = new javax.swing.JButton();
         btnBusPac = new javax.swing.JButton();
         btnModPac = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +84,14 @@ public class MenuSecretaria extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jButton1.setText("Cerrar Sesión");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,30 +109,38 @@ public class MenuSecretaria extends javax.swing.JFrame {
                         .addComponent(btnModPac)
                         .addGap(25, 25, 25))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegPac)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))))
+                        .addGap(92, 92, 92))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(48, 48, 48))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegPac)
-                    .addComponent(btnCitas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBusPac)
-                    .addComponent(btnModPac))
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRegPac)
+                            .addComponent(btnCitas))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBusPac)
+                            .addComponent(btnModPac))
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(52, 52, 52))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,26 +160,41 @@ public class MenuSecretaria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegPacMouseClicked
-        Paciente pac= new Paciente();
+        Paciente pac= new Paciente(rfc,puesto);
         pac.setVisible(true);
-        this.hide();
+        dispose();
     }//GEN-LAST:event_btnRegPacMouseClicked
 
     private void btnCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseClicked
         Citas cit= new Citas();
         cit.setVisible(true);
-        this.hide();
+        dispose();
     }//GEN-LAST:event_btnCitasMouseClicked
 
     private void btnBusPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBusPacMouseClicked
-        BuscarPaciente bp=new BuscarPaciente();
+        BuscarPaciente bp=new BuscarPaciente(rfc,puesto);
         bp.setVisible(true);
-        this.hide();
+        dispose();
     }//GEN-LAST:event_btnBusPacMouseClicked
 
     private void btnModPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModPacMouseClicked
-        // TODO add your handling code here:
+        ActualizarPaciente act = new ActualizarPaciente(rfc,puesto);
+        act.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnModPacMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if(puesto.equals("Administrador")){
+            Menu obj= new Menu();
+            obj.setVisible(true);
+            setVisible(false);
+        }
+        else{
+            Login log= new Login();
+            log.setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,6 +237,7 @@ public class MenuSecretaria extends javax.swing.JFrame {
     private javax.swing.JButton btnCitas;
     private javax.swing.JButton btnModPac;
     private javax.swing.JButton btnRegPac;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

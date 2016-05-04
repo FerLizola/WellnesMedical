@@ -16,8 +16,14 @@ public class RegistrarMedicamento extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarMedicamento
      */
+    String rfc,puesto;
     public RegistrarMedicamento() {
         initComponents();
+    }
+    public RegistrarMedicamento(String rfc, String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
     }
 
     /**
@@ -246,7 +252,7 @@ public class RegistrarMedicamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-        Menu_Farmacia men= new Menu_Farmacia();
+        Farmacia men= new Farmacia(puesto,rfc);
         men.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSalirMouseClicked

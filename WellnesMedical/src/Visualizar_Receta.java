@@ -13,8 +13,14 @@ public class Visualizar_Receta extends javax.swing.JFrame {
     /**
      * Creates new form Visualizar_Receta
      */
+    String rfc,puesto;
     public Visualizar_Receta() {
         initComponents();
+    }
+    public Visualizar_Receta(String rfc,String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
     }
 
     /**
@@ -220,7 +226,7 @@ public class Visualizar_Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadoActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-       Menu_Farmacia m=new Menu_Farmacia();
+       Menu_Farmacia m=new Menu_Farmacia(rfc,puesto);
        m.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed

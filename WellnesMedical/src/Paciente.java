@@ -17,9 +17,16 @@ public class Paciente extends javax.swing.JFrame {
     /**
      * Creates new form Paciente
      */
+    String rfc,puesto;
     public Paciente() {
         initComponents();
     }
+    public Paciente(String rfc,String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
+    }
+            
     
     
     protected void prueba(){}
@@ -319,7 +326,7 @@ public class Paciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        Menu a= new Menu();
+        MenuSecretaria a= new MenuSecretaria(rfc,puesto);
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked

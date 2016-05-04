@@ -13,10 +13,17 @@ public class Resultados_Analisis extends javax.swing.JFrame {
     /**
      * Creates new form Resultados_Analisis
      */
+    String rfc,puesto;
     public Resultados_Analisis() {
         initComponents();
     }
-
+    public Resultados_Analisis(String rfc, String puesto,String NSS){
+        initComponents();
+        txtPaciente.setText(NSS);
+        btnMostrarActionPerformed(null);
+        this.rfc=rfc;
+        this.puesto=puesto;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -210,9 +217,9 @@ public class Resultados_Analisis extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
-        Menu_Medico m=new Menu_Medico();
-        m.setVisible(true);
-        this.setVisible(false);
+        Consulta c= new Consulta(rfc,puesto);
+        c.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked
 
     /**

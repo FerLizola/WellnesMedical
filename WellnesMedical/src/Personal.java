@@ -74,7 +74,7 @@ public class Personal extends javax.swing.JFrame {
 
         jLabel5.setText("Puesto:");
 
-        cbxPuesto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medico General", "Medico Especialista", "Secretaria", "Farmaceutico", "Laboratorista", "Administrador" }));
+        cbxPuesto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medico General", "Medico Especialista", "Secretaria", "Farmaceutico", "Laboratorista", "Administrador", "Auxiliar Medico" }));
         cbxPuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxPuestoActionPerformed(evt);
