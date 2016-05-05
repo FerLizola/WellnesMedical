@@ -23,8 +23,8 @@ public class TDAExpediente {
             try{
                Statement stmt = miCon.createStatement();
              
-               stmt.executeUpdate("INSERT INTO EXPEDIENTE (NSS, ANALISIS)"
-                       + "VALUES ('"+nss+"','"+analisis+"')"); 
+               stmt.executeUpdate("UPDATE EXPEDIENTE SET NSS='"+nss+"', ANALISIS='" 
+                       +analisis+"' WHERE NSS='"+nss+"'"); 
                 miCon.close();
                 return true;
             }

@@ -173,7 +173,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
         Character e= evt.getKeyChar();
         if(((e < '0') ||
          (e > '9')) &&
-         (e != '\b' /*corresponde a BACK_SPACE*/))
+         (e != '\b' /*corresponde a BACK_SPACE*/&&e!='-'))
         {
          evt.consume();  // ignorar el evento de teclado
         }
