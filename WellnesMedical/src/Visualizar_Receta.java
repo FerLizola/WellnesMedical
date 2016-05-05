@@ -1,3 +1,10 @@
+
+import com.itextpdf.text.DocumentException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -93,6 +100,11 @@ public class Visualizar_Receta extends javax.swing.JFrame {
         });
 
         btnImprimir.setText("Imprimir");
+        btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImprimirMouseClicked(evt);
+            }
+        });
 
         jLabel7.setText("Estado:");
 
@@ -199,17 +211,17 @@ public class Visualizar_Receta extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(null, "Ingrese un NSS");
         }
         else{
-        if(r.mostrarReceta(NSS)){
-        txtMedico.setText(r.getPersonal());
-        txtFolio.setText(r.getId()+"");
-        txtFechaHora.setText(r.getFecha()+" "+r.getHora());
-        txtPrescripcion.setText(r.getPrescripcion());
-        cbxEstado.setSelectedItem(r.getEstado());
-        txtNSS.setEditable(false);
-        btnEstado.setEnabled(true);
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "No existe ninguna receta para este paciente");
-        }
+            if(r.mostrarReceta(NSS)){
+                txtMedico.setText(r.getPersonal());
+                txtFolio.setText(r.getId()+"");
+                txtFechaHora.setText(r.getFecha()+" "+r.getHora());
+                txtPrescripcion.setText(r.getPrescripcion());
+                cbxEstado.setSelectedItem(r.getEstado());
+                txtNSS.setEditable(false);
+                btnEstado.setEnabled(true);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(null, "No existe ninguna receta para este paciente");
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -230,6 +242,22 @@ public class Visualizar_Receta extends javax.swing.JFrame {
        m.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
+        // TODO add your handling code here:
+        TDABuscarReceta rec = new TDABuscarReceta();
+        if(rec.mostrarReceta(txtNSS.getText())){
+            try {
+                rec.imprimir();
+            } catch (DocumentException ex) {
+                Logger.getLogger(Visualizar_Receta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Visualizar_Receta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            showMessageDialog(null,"Sin receta para mostrar");
+        }
+    }//GEN-LAST:event_btnImprimirMouseClicked
 
     /**
      * @param args the command line arguments
