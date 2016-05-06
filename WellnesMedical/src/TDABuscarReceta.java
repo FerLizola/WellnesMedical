@@ -27,8 +27,8 @@ import java.sql.Statement;
  */
 public class TDABuscarReceta {
     
-    private String nss, personal, prescripcion, fecha, hora, estado;
-    private int id;
+    private String nss, personal, prescripcion, fecha, hora, estado, paciente, unidad_medica;
+    private int id, consultorio;
 
     public String getNss() {
         return nss;
@@ -85,6 +85,32 @@ public class TDABuscarReceta {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
+    }
+
+    public String getUnidad_medica() {
+        return unidad_medica;
+    }
+
+    public void setUnidad_medica(String unidad_medica) {
+        this.unidad_medica = unidad_medica;
+    }
+
+    public int getConsultorio() {
+        return consultorio;
+    }
+
+    public void setConsultorio(int consultorio) {
+        this.consultorio = consultorio;
+    }
+    
+    
     
     public boolean mostrarReceta(String NSS){
     Connection miCon = (new Conexion()).conectar();
@@ -103,6 +129,7 @@ public class TDABuscarReceta {
                    hora = r.getString(4);
                    prescripcion = r.getString(5);
                    estado = r.getString(6);
+                   nss=NSS;
                  return true;
                 }
                 else{
@@ -118,6 +145,27 @@ public class TDABuscarReceta {
       }
     
     public void imprimir() throws FileNotFoundException, DocumentException, BadElementException, IOException{
+        
+         Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "select NOMBRE, UNIDAD_MEDICA, CONSULTORIO from PACIENTE where NSS='"+nss+"'";
+        ResultSet r = stmt.executeQuery(sql);
+                
+                if(r.next()==true){ 
+                   paciente = r.getString(1);
+                   unidad_medica = r.getString(2);
+                  consultorio = r.getInt(3);
+                  miCon.close();
+                }
+                else{
+                    miCon.close();
+                }
+            }
+            catch(Exception e){   
+            }
+        }
         
         TDAPaciente pac = new TDAPaciente();
         TDABuscarReceta rec = new TDABuscarReceta();
@@ -139,16 +187,15 @@ public class TDABuscarReceta {
         
         receta.add(new Paragraph(" "));
         receta.add(new Paragraph("NSS: "+nss));
-        receta.add(new Paragraph("Nombre: "+pac.getNombre()));
-        receta.add(new Paragraph("Unidad Medica: "+pac.getUnidad_medica()));
-        receta.add(new Paragraph("Consultorio: "+pac.getUnidad_medica()));
-        receta.add(new Paragraph("Unidad Medica: "+pac.getUnidad_medica()));
+        receta.add(new Paragraph("Nombre: "+paciente));
+        receta.add(new Paragraph("Unidad Medica: "+unidad_medica));
+        receta.add(new Paragraph("Consultorio: "+consultorio));
         receta.add(new Paragraph(" "));
         
         PdfPTable tabla = new PdfPTable(1);
         tabla.addCell("Fecha: "+fecha);
         tabla.addCell(" "+prescripcion);
-        tabla.addCell("Medico:        "+pac.getDoctor());
+        tabla.addCell("Medico:        "+personal);
         tabla.addCell("Firma: _____________________________");
         
         receta.add(tabla);
