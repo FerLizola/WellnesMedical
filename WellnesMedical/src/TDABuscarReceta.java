@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -153,6 +154,12 @@ public class TDABuscarReceta {
         
         receta.add(tabla);
         receta.close();
+        try{
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"receta_"+nss+".pdf");
+        }catch(IOException e){
+            //e.printStackTrace()
+        }
+        
     }
     
     public boolean ActualizarEstado(String est, String ns){ 
