@@ -149,7 +149,7 @@ public class TDAGenerarHistorial {
             try{
                Statement stmt = miCon.createStatement();
         String sql = "SELECT * FROM EXPEDIENTE WHERE NSS ='"+busca+"'";
-        JOptionPane.showMessageDialog(null,expediente);
+        //JOptionPane.showMessageDialog(null,expediente);
         ResultSet r = stmt.executeQuery(sql);
                 if(r.next()==true){ 
                     expediente=r.getString("ID_EXPEDIENTE");
