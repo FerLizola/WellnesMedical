@@ -8,7 +8,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class HistorialTDA {
     String peri,NSS,fecha,sinto, pade,expediente;
-    String nombre;
+    String nombre, presion;
+    float peso, temperatura, altura;
     public HistorialTDA(String peri, String NSS, String fecha, String sinto, String pade,String exp){
     
         this.peri=peri;
@@ -94,7 +95,7 @@ public class HistorialTDA {
             while(res.next()){
                 String fecha=res.getString("FECHA");
                 String pad=res.getString("PADECIMIENTO_ACTUAL");
-                String des=res.getString("SINTOMATOLOGIA");
+                String des=res.getString("ID_EXPEDIENTE");
                 String val=res.getString("PERINATALES");
                 //Object a=""+0;
                 
@@ -117,7 +118,35 @@ public class HistorialTDA {
         
         
     }
-     
+     public boolean obtenerSignos(String busca){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "SELECT * FROM EXPEDIENTE WHERE NSS ='"+busca+"'";
+        //JOptionPane.showMessageDialog(null,expediente);
+        ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                    peso=Float.parseFloat(r.getString("PESO"));
+                    altura=Float.parseFloat(r.getString("ALTURA"));
+                    temperatura=Float.parseFloat(r.getString("TEMPERATURA"));
+                    presion=r.getString("PRESION_ARTERIAL");
+                    miCon.close();
+                    return true;
+                }
+                else{
+                    miCon.close();
+                    return false;
+                     }
+                
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        return false;
+    }
      public String getExp(){
          return expediente;
      }
@@ -127,4 +156,16 @@ public class HistorialTDA {
      public String getNombre(){
          return nombre;
      }
+     public float getPeso(){
+        return peso;
+    }
+     public float getAltura(){
+        return altura;
+    }
+    public float getTemperatura(){
+        return temperatura;
+    }
+    public String getPresion(){
+        return presion;
+    }
 }

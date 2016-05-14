@@ -175,6 +175,36 @@ public class TDAGenerarHistorial {
         }
         return false;
     }
+    public boolean obtenerSignos(String busca){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "SELECT * FROM EXPEDIENTE WHERE NSS ='"+busca+"'";
+        //JOptionPane.showMessageDialog(null,expediente);
+        ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                    peso=Float.parseFloat(r.getString("PESO"));
+                    altura=Float.parseFloat(r.getString("ALTURA"));
+                    temperatura=Float.parseFloat(r.getString("TEMPERATURA"));
+                    presion=r.getString("PRESION_ARTERIAL");
+                    miCon.close();
+                    return true;
+                }
+                else{
+                    miCon.close();
+                    return false;
+                     }
+                
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        return false;
+    }
+    
     private void setNSS(String NSS){
         this.NSS=NSS;
     }
