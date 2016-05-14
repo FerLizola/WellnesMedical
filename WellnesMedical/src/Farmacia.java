@@ -63,6 +63,8 @@ public class Farmacia extends javax.swing.JFrame {
         txtFecha = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JTextField();
         btnMenu = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -149,6 +151,10 @@ public class Farmacia extends javax.swing.JFrame {
         jLabel11.setForeground(java.awt.Color.white);
         jLabel11.setText("Codigo:");
 
+        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
+        jLabel12.setForeground(java.awt.Color.white);
+        jLabel12.setText("Precio:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -179,8 +185,14 @@ public class Farmacia extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                                     .addComponent(txtStock))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                                .addComponent(btnRegis))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnRegis)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtPrecio)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,20 +215,14 @@ public class Farmacia extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRegis)
-                                .addGap(18, 18, 18)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -233,11 +239,15 @@ public class Farmacia extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegis))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -262,7 +272,7 @@ public class Farmacia extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Descripcion", "Tipo", "Presentacion", "Cantidad", "Stock", "Caducidad"
+                "Codigo", "Nombre", "Descripcion", "Tipo", "Presentacion", "Cantidad", "Stock", "Caducidad", "Precio"
             }
         ));
         jScrollPane3.setViewportView(tabla);
@@ -345,12 +355,12 @@ public class Farmacia extends javax.swing.JFrame {
     private void btnRegisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisMouseClicked
         if(txtMed.getText().isEmpty()||txtDes.getText().isEmpty()||txtTipo.getText().isEmpty()
            || txtCantidad.getText().isEmpty() || txtStock.getText().isEmpty() || txtCodigo.getText().isEmpty()
-           || txtFecha.getText().isEmpty()){
+           || txtFecha.getText().isEmpty() || txtPrecio.getText().isEmpty()){
             showMessageDialog(null,"¡Rellene todos los campos para guardar datos!");
         }
         else{
             MedicamentoTDA med=new MedicamentoTDA(txtMed.getText(),txtDes.getText(),txtTipo.getText(),(String)(cbxPres.getSelectedItem()),
-            Integer.parseInt(txtCantidad.getText()),Integer.parseInt(txtStock.getText()),Long.parseLong(txtCodigo.getText()),txtFecha.getText());
+            Integer.parseInt(txtCantidad.getText()),Integer.parseInt(txtStock.getText()),Long.parseLong(txtCodigo.getText()),txtFecha.getText(),txtPrecio.getText());
             if(med.guardar()){
                 txtMed.setText("");
                 txtDes.setText("");
@@ -360,10 +370,11 @@ public class Farmacia extends javax.swing.JFrame {
                 txtStock.setText("");
                 txtCodigo.setText("");
                 txtFecha.setText("");
+                txtPrecio.setText("");
                 showMessageDialog(null,"Registro Exitoso, Medicamento Agregado a Inventario");
             }
             else {
-                showMessageDialog(null,"Registro No Agregado a Inventario, Ocurrio un error.\n Intente de Nuevo Porfavor.");
+                showMessageDialog(null,"Registro No Agregado a Inventario, Ocurrio un error.");
             }
         }
     }//GEN-LAST:event_btnRegisMouseClicked
@@ -444,6 +455,7 @@ public class Farmacia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -463,6 +475,7 @@ public class Farmacia extends javax.swing.JFrame {
     private javax.swing.JTextArea txtDes;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtMed;
+    private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables

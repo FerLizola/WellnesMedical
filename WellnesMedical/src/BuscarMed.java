@@ -60,6 +60,8 @@ public class BuscarMed extends javax.swing.JFrame {
         txtPresentacion = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,6 +150,10 @@ public class BuscarMed extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("Precio:");
+
+        txtPrecio.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -192,7 +198,11 @@ public class BuscarMed extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
                             .addComponent(btnGuardar)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTipo)
@@ -248,11 +258,15 @@ public class BuscarMed extends javax.swing.JFrame {
                             .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPieza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPieza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegresar)
@@ -312,6 +326,7 @@ public class BuscarMed extends javax.swing.JFrame {
                 txtTipo.setText(nom.getTipo());
                 txtFecha.setText(nom.getFecha());
                 txtPresentacion.setText(nom.getPresentacion());
+                txtPrecio.setText(nom.getPrecio());
             }
             else{
                 showMessageDialog(null,"¡No ha sido encontrado el producto!");
@@ -335,6 +350,7 @@ public class BuscarMed extends javax.swing.JFrame {
                 txtTipo.setText(nom.getTipo());
                 txtFecha.setText(nom.getFecha());
                 txtPresentacion.setText(nom.getPresentacion());
+                txtPrecio.setText(nom.getPrecio());
             }
             else{
                 showMessageDialog(null,"¡No ha sido encontrado el producto!");
@@ -364,6 +380,7 @@ public class BuscarMed extends javax.swing.JFrame {
                 txtPieza.setEditable(true);
                 txtStock.setEditable(true);
                 txtFecha.setEditable(true);
+                txtPrecio.setEditable(true);
             btnBuscarNom.setEnabled(false);
             btnBuscarCod.setEnabled(false);
             btnRegresar.setEnabled(false);
@@ -373,16 +390,17 @@ public class BuscarMed extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-                int id=Integer.parseInt(txtCod.getText());
+                long id=Long.parseLong(txtCod.getText());
                 int cantidad=Integer.parseInt(txtPieza.getText());
                 int stoc=Integer.parseInt(txtStock.getText());
+                String prec=txtPrecio.getText();
                 String fechaC=txtFecha.getText();
                 if(txtCod.getText().isEmpty() || txtPieza.getText().isEmpty() || txtStock.getText().isEmpty()
-                        || txtFecha.getText().isEmpty()){
+                        || txtFecha.getText().isEmpty() || txtPrecio.getText().isEmpty()){
                     showMessageDialog(null,"No es posible guardar, existen campos vacios");
                 }else{
                     MedicamentoTDA m=new MedicamentoTDA();
-                    if(m.ActualizarMedicamento(id, fechaC, cantidad, stoc)){
+                    if(m.ActualizarMedicamento(id, fechaC, cantidad, stoc, prec)){
                         showMessageDialog(null,"Actualizacion exitosa..!");
                         btnGuardar.setEnabled(false);
                         txtNom.setEditable(true);
@@ -390,6 +408,7 @@ public class BuscarMed extends javax.swing.JFrame {
                         txtPieza.setEditable(false);
                         txtStock.setEditable(false);
                         txtFecha.setEditable(false);
+                        txtPrecio.setEditable(false);
                         btnBuscarNom.setEnabled(true);
                         btnBuscarCod.setEnabled(true);
                         btnRegresar.setEnabled(true);
@@ -444,6 +463,7 @@ public class BuscarMed extends javax.swing.JFrame {
     private javax.swing.JButton btnLimp;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -459,6 +479,7 @@ public class BuscarMed extends javax.swing.JFrame {
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNom;
     private javax.swing.JTextField txtPieza;
+    private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtPresentacion;
     private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTipo;

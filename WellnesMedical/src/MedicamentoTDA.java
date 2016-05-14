@@ -16,12 +16,12 @@ import javax.swing.table.DefaultTableModel;
  * @author nando
  */
 public class MedicamentoTDA {
-    private String nombre, descripcion, tipo, presentacion,fecha;
+    private String nombre, descripcion, tipo, presentacion,fecha,precio;
     private int pieza,stock;
     private long cod;
     
 
-    public MedicamentoTDA(String nombre, String descr, String tipo, String pres,int pieza, int stock, long cod, String fecha){
+    public MedicamentoTDA(String nombre, String descr, String tipo, String pres,int pieza, int stock, long cod, String fecha, String precio){
     
         setNombre(nombre);
         setDescripcion(descr);
@@ -31,6 +31,7 @@ public class MedicamentoTDA {
         setStock(stock);
         setCod(cod);
         setFecha(fecha);
+        setPrecio(precio);
         
     }
     public MedicamentoTDA(){
@@ -83,6 +84,15 @@ public class MedicamentoTDA {
     public String getFecha(){
         return fecha;
     }
+
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+    
     
     public boolean guardar(){
     Connection miCon = (new Conexion()).conectar();
@@ -91,7 +101,7 @@ public class MedicamentoTDA {
                Statement stmt = miCon.createStatement();
              
                stmt.executeUpdate("INSERT INTO MEDICAMENTO " +
-                  "VALUES ("+cod+",'"+nombre+"','"+descripcion+"','"+tipo+"','"+presentacion+"',"+pieza+","+stock+",'"+fecha+"')"); 
+                  "VALUES ("+cod+",'"+nombre+"','"+descripcion+"','"+tipo+"','"+presentacion+"',"+pieza+","+stock+",'"+fecha+"','"+precio+"')"); 
                 miCon.close();
                 return true;
                 
@@ -117,7 +127,7 @@ public class MedicamentoTDA {
                     stock=Integer.parseInt(r.getString("STOCK"));
                     cod=Long.parseLong(r.getString("ID_MEDICAMENTO"));
                     fecha=r.getString("FECHA_CADUCIDAD");
-                   
+                    precio=r.getString("PRECIO");
                    return true;
                 }
                 else{
@@ -149,7 +159,7 @@ public class MedicamentoTDA {
                     pieza=Integer.parseInt(r.getString("CANTIDAD"));
                     stock=Integer.parseInt(r.getString("STOCK"));
                     fecha=r.getString("FECHA_CADUCIDAD");
-                   
+                    precio=r.getString("PRECIO");
                     return true;
                 }
                 
@@ -183,7 +193,8 @@ public class MedicamentoTDA {
                    int Cantidad=r.getInt("CANTIDAD");
                    int Stock=r.getInt("STOCK");
                    String Caducidad=r.getString("FECHA_CADUCIDAD");
-                   modelo.addRow(new Object[]{Codigo,Nombre,Descripcion,Tipo,Presentacion,Cantidad,Stock,Caducidad});
+                   String Precio=r.getString("PRECIO");
+                   modelo.addRow(new Object[]{Codigo,Nombre,Descripcion,Tipo,Presentacion,Cantidad,Stock,Caducidad,Precio});
                 }
                 miCon.close();
             }
@@ -230,14 +241,14 @@ public class MedicamentoTDA {
             }
     }
     
-    public boolean ActualizarMedicamento(int id, String fechaC, int cantidad, int stoc){
+    public boolean ActualizarMedicamento(long id, String fechaC, int cantidad, int stoc, String precio){
         
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
                Statement stmt = miCon.createStatement();
         
-            String sql= "UPDATE MEDICAMENTO SET FECHA_CADUCIDAD='"+fechaC+"', CANTIDAD="+cantidad+", STOCK="+stoc+"  WHERE ID_MEDICAMENTO="+id+"";
+            String sql= "UPDATE MEDICAMENTO SET FECHA_CADUCIDAD='"+fechaC+"', CANTIDAD="+cantidad+", STOCK="+stoc+", PRECIO='"+precio+"'  WHERE ID_MEDICAMENTO="+id+"";
             int a=stmt.executeUpdate(sql);
             
             if(a>0){
