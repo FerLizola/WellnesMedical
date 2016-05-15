@@ -325,12 +325,11 @@ public class BuscarPaciente extends javax.swing.JFrame {
     private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
         // TODO add your handling code here:
         Character e= evt.getKeyChar();
-        if(((e < '0') ||
-         (e > '9')) &&
-         (e != '\b' /*corresponde a BACK_SPACE*/))
-        {
+        if(((e < '0') ||(e > '9')) &&(e != '-' && e!='\b'))
+         //(e != '\b' /*corresponde a BACK_SPACE*/))
+      {
          evt.consume();  // ignorar el evento de teclado
-        }
+      }
                                    
     }//GEN-LAST:event_txtNSSKeyTyped
 
