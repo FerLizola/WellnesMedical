@@ -16,8 +16,19 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
     /**
      * Creates new form OrdenarAnalisis
      */
+    String rfc, nss, puesto,nombre;
     public OrdenarAnalisis() {
         initComponents();
+    }
+    public OrdenarAnalisis(String rfc, String puesto, String nss,String nombre){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
+        this.nss=nss;
+        this.nombre=nombre;
+        txtNSS.setText(nss);
+        txtNombre.setText(nombre);
+        
     }
 
     /**
@@ -34,7 +45,6 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtTipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDes = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
@@ -42,6 +52,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
         txtNSS = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         txtOrdenar = new javax.swing.JButton();
+        cbxTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +62,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Nombre:");
 
+        txtNombre.setEditable(false);
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -82,7 +94,6 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
         });
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -90,13 +101,14 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
             }
         });
 
-        txtOrdenar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/reporte.png"))); // NOI18N
         txtOrdenar.setText("Ordenar");
         txtOrdenar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtOrdenarMouseClicked(evt);
             }
         });
+
+        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perfil de Lipidos", "Perfil hematologico" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +123,16 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -118,17 +140,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(cbxTipo, 0, 101, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -147,7 +159,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
@@ -183,11 +195,11 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
 
     private void txtOrdenarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtOrdenarMouseClicked
         // TODO add your handling code here:
-        if(!txtNSS.toString().isEmpty() && !txtTipo.toString().isEmpty()
+        if(!txtNSS.toString().isEmpty() 
                 && !txtDes.toString().isEmpty() && !txtNombre.toString().isEmpty()){
             TDAExpediente exp = new TDAExpediente();
             exp.setNss(txtNSS.getText());
-            String analisis = txtNombre.getText()+", "+txtTipo.getText()+", "+txtDes.getText();
+            String analisis = txtNombre.getText()+", "+cbxTipo.getSelectedItem()+", "+txtDes.getText();
             exp.setAnalisis(analisis);
             if(exp.ordenarAnalisis()){
                 txtNSS.setText("");
@@ -204,7 +216,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         // TODO add your handling code here:
-        Menu a= new Menu();
+        Menu a= new Menu(rfc,puesto);
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
@@ -246,6 +258,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox<String> cbxTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -257,6 +270,5 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
     private javax.swing.JTextField txtNSS;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JButton txtOrdenar;
-    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }
