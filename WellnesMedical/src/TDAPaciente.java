@@ -122,8 +122,8 @@ public class TDAPaciente {
         if(miCon!=null){
             try{
                Statement stmt = miCon.createStatement();
-        String sql = "SELECT * FROM PACIENTE";
-        ResultSet r = stmt.executeQuery(sql);
+               String sql = "SELECT * FROM PACIENTE";
+               ResultSet r = stmt.executeQuery(sql);
                 
                 while(r.next()){ 
                    String nss = r.getString("NSS");
