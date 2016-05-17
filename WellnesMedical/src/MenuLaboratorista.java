@@ -199,7 +199,7 @@ public class MenuLaboratorista extends javax.swing.JFrame {
 
     private void txtAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgendarActionPerformed
         
-            CitaLaboratorio al=new CitaLaboratorio(rfc);
+            CitLaboratorio al=new CitLaboratorio(rfc);
             al.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_txtAgendarActionPerformed
