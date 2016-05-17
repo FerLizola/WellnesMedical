@@ -86,6 +86,7 @@ public class GenerarHistorial extends javax.swing.JFrame {
         txtNom.setEditable(false);
         txtNom.setBackground(java.awt.Color.white);
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -113,6 +114,7 @@ public class GenerarHistorial extends javax.swing.JFrame {
         txtAntec.setRows(5);
         jScrollPane3.setViewportView(txtAntec);
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,6 +122,7 @@ public class GenerarHistorial extends javax.swing.JFrame {
             }
         });
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"))); // NOI18N
         btnCancel.setText("Cancelar");
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

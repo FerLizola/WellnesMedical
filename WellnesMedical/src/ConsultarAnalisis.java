@@ -92,6 +92,7 @@ public class ConsultarAnalisis extends javax.swing.JFrame {
         });
 
         btnConsultar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/buscar.png"))); // NOI18N
         btnConsultar.setText("Consultar");
         btnConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,6 +100,7 @@ public class ConsultarAnalisis extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,7 +174,7 @@ public class ConsultarAnalisis extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();

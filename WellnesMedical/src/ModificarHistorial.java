@@ -76,6 +76,7 @@ public class ModificarHistorial extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/buscar.png"))); // NOI18N
         jButton1.setText("Buscar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,6 +116,7 @@ public class ModificarHistorial extends javax.swing.JFrame {
         txtAntec.setRows(5);
         jScrollPane3.setViewportView(txtAntec);
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,6 +124,7 @@ public class ModificarHistorial extends javax.swing.JFrame {
             }
         });
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"))); // NOI18N
         btnCancel.setText("Cancelar");
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -188,7 +191,7 @@ public class ModificarHistorial extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

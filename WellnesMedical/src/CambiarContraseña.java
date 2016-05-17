@@ -66,6 +66,7 @@ public class CambiarContraseña extends javax.swing.JFrame {
 
         jLabel4.setText("Repita Nueva contraseña:");
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

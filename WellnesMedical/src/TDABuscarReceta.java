@@ -201,6 +201,7 @@ public class TDABuscarReceta {
         
         receta.add(tabla);
         receta.close();
+       
         try{
             Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"receta_"+nss+".pdf");
         }catch(IOException e){

@@ -51,6 +51,7 @@ public class Citas extends javax.swing.JFrame {
 
         jLabel3.setText("NSS:");
 
+        txtAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/reporte.png"))); // NOI18N
         txtAgendar.setText("Agendar");
         txtAgendar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtAgendar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +100,7 @@ public class Citas extends javax.swing.JFrame {
 
         jLabel5.setText("NSS:");
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar Citas");
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -131,6 +133,7 @@ public class Citas extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
+        txtMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"))); // NOI18N
         txtMenu.setText("Regresar");
         txtMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtMenu.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -139,6 +139,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="txtAgendar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/reporte.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Agendar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
@@ -220,6 +223,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/buscar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar Citas"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
@@ -230,6 +236,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="txtMenu">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
