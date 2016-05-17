@@ -194,7 +194,7 @@ public class Citas extends javax.swing.JFrame {
      if(nss.isEmpty()){
          javax.swing.JOptionPane.showMessageDialog(this,"Ingrese un NSS para continuar");
      } else {
-         AgendarCita a=new AgendarCita(nss);
+         CitaAgendar a=new CitaAgendar(nss);
          a.setVisible(true);
          this.setVisible(false);
      }
