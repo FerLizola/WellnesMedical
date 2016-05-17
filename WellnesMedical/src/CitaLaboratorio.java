@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 /**
  *
  * @author Medrano
+ * 
  */
 public class CitaLaboratorio extends javax.swing.JFrame {
 
