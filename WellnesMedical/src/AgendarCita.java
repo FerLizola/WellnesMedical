@@ -274,7 +274,7 @@ public class AgendarCita extends javax.swing.JFrame {
             }
         });
     }
-
+    private com.toedter.calendar.JDateChooser Calendario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgendar;
     private javax.swing.JButton btnCancelar;

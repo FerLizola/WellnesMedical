@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,8 +17,36 @@ public class Lipidos extends javax.swing.JFrame {
     /**
      * Creates new form Lipidos
      */
+    String rfc,puesto,nss;
     public Lipidos() {
         initComponents();
+    }
+    public Lipidos(String rfc,String puesto, String nss){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
+        this.nss=nss;
+        txtNSS.setText(nss);
+        if(puesto.equals("Medico General")){
+            txtCam1.setEditable(false);
+            txtCam2.setEditable(false);
+            txtCam3.setEditable(false);
+            txtCam4.setEditable(false);
+            txtCam5.setEditable(false);
+            txtCam6.setEditable(false);
+            txtCam7.setEditable(false);
+            AnalisisResultados a= new AnalisisResultados(nss);
+            if(a.getLipidos()){
+                txtCam1.setText(a.campo1);
+                txtCam2.setText(a.campo2);
+                txtCam3.setText(a.campo3);
+                txtCam4.setText(a.campo4);
+                txtCam5.setText(a.campo5);
+                txtCam6.setText(a.campo6);
+                txtCam7.setText(a.campo7);
+            }
+            
+        }
     }
 
     /**
@@ -57,11 +86,6 @@ public class Lipidos extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         txtNSS = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
-        txtNombre = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -108,6 +132,7 @@ public class Lipidos extends javax.swing.JFrame {
 
         jLabel19.setText("NSS:");
 
+        txtNSS.setEditable(false);
         txtNSS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNSSKeyTyped(evt);
@@ -117,90 +142,75 @@ public class Lipidos extends javax.swing.JFrame {
             }
         });
 
-        jLabel20.setText("Nombre:");
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
+                btnGuardarMouseClicked(evt);
             }
         });
 
-        txtNombre.setEditable(false);
-
-        txtID.setEditable(false);
-
-        jLabel21.setText("ID Analisis");
-
-        btnGuardar.setText("Guardar");
-
         btnBack.setText("Regresar");
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGap(117, 117, 117)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtCam6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(133, 133, 133)
-                                        .addComponent(jLabel18))
-                                    .addComponent(txtCam5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCam2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCam3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCam4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCam7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(txtCam1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(95, 95, 95)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(17, 17, 17)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel13)
-                                                    .addComponent(jLabel12)
-                                                    .addComponent(jLabel14)
-                                                    .addComponent(jLabel15)
-                                                    .addComponent(jLabel16)
-                                                    .addComponent(jLabel17)
-                                                    .addComponent(btnBack)))))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                                .addComponent(jLabel21)
-                                .addGap(26, 26, 26)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(64, 64, 64))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(32, 32, 32)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8))
+                            .addGap(117, 117, 117)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtCam6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(133, 133, 133)
+                                    .addComponent(jLabel18))
+                                .addComponent(txtCam5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCam2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCam3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCam4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCam7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)
+                                        .addComponent(txtCam1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(95, 95, 95)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel11)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(17, 17, 17)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel13)
+                                                .addComponent(jLabel12)
+                                                .addComponent(jLabel14)
+                                                .addComponent(jLabel15)
+                                                .addComponent(jLabel16)
+                                                .addComponent(jLabel17)
+                                                .addComponent(btnBack)))))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel19)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 128, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel1)
+                    .addGap(64, 64, 64)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
@@ -214,15 +224,8 @@ public class Lipidos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
-                .addGap(18, 18, 18)
+                    .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
@@ -287,10 +290,6 @@ public class Lipidos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     String estado;
-    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        
-    }//GEN-LAST:event_btnBuscarMouseClicked
-
     private void txtNSSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyPressed
         
             
@@ -304,6 +303,40 @@ public class Lipidos extends javax.swing.JFrame {
          evt.consume();  // ignorar el evento de teclado
       }
     }//GEN-LAST:event_txtNSSKeyTyped
+
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        AnalisisResultados a= new AnalisisResultados(nss,txtCam1.getText(),txtCam2.getText(),txtCam3.getText(),
+                txtCam4.getText(),txtCam5.getText(),txtCam6.getText(),txtCam7.getText());
+        if(a.guardarLipidos()){
+            JOptionPane.showMessageDialog(null,"Registro Exitoso");
+            if(!puesto.equals("Medico General")){
+            MenuLaboratorista m= new MenuLaboratorista(rfc,puesto);
+            m.setVisible(true);
+            dispose();}
+            else{
+                Consulta c= new Consulta(rfc,puesto);
+                c.setVisible(true);
+                dispose();
+            }
+                
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un error");
+        
+    }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        if(!puesto.equals("Medico General")){
+            MenuLaboratorista m= new MenuLaboratorista(rfc,puesto);
+            m.setVisible(true);
+            dispose();}
+            else{
+                Consulta c= new Consulta(rfc,puesto);
+                c.setVisible(true);
+                dispose();
+            }
+        
+    }//GEN-LAST:event_btnBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -342,7 +375,6 @@ public class Lipidos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -356,8 +388,6 @@ public class Lipidos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -373,8 +403,6 @@ public class Lipidos extends javax.swing.JFrame {
     private javax.swing.JTextField txtCam5;
     private javax.swing.JTextField txtCam6;
     private javax.swing.JTextField txtCam7;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNSS;
-    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

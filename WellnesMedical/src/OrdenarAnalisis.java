@@ -82,6 +82,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("NSS:");
 
+        txtNSS.setEditable(false);
         txtNSS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNSSActionPerformed(evt);
@@ -199,8 +200,11 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
                 && !txtDes.toString().isEmpty() && !txtNombre.toString().isEmpty()){
             TDAExpediente exp = new TDAExpediente();
             exp.setNss(txtNSS.getText());
-            String analisis = txtNombre.getText()+", "+cbxTipo.getSelectedItem()+", "+txtDes.getText();
-            exp.setAnalisis(analisis);
+            exp.setAnalisis(cbxTipo.getSelectedItem().toString());
+            exp.setRFC(rfc);
+            
+            //String analisis = txtNombre.getText()+", "+cbxTipo.getSelectedItem()+", "+txtDes.getText();
+            //exp.setAnalisis(analisis);
             if(exp.ordenarAnalisis()){
                 txtNSS.setText("");
                 txtNombre.setText("");
@@ -216,7 +220,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         // TODO add your handling code here:
-        Menu a= new Menu(rfc,puesto);
+        Menu_Medico a= new Menu_Medico(rfc,puesto);
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked

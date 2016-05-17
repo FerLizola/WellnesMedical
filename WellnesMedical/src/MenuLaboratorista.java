@@ -93,6 +93,11 @@ public class MenuLaboratorista extends javax.swing.JFrame {
         });
 
         jButton6.setText("Registrar Resutados");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -203,6 +208,12 @@ public class MenuLaboratorista extends javax.swing.JFrame {
             al.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_txtAgendarActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        RegistrarResultados r=new RegistrarResultados(rfc,puesto);
+        r.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments

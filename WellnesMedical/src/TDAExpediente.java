@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Bryan
  */
 public class TDAExpediente {
-    private String nss, analisis;
+    private String nss, analisis,rfc;
     
     public boolean ordenarAnalisis(){
         Connection miCon = (new Conexion()).conectar();
@@ -25,6 +25,8 @@ public class TDAExpediente {
              
                stmt.executeUpdate("UPDATE EXPEDIENTE SET NSS='"+nss+"', ANALISIS='" 
                        +analisis+"' WHERE NSS='"+nss+"'"); 
+               stmt.executeUpdate("INSERT INTO RESULTADO_ANALISIS (PACIENTE, MEDICO, ANALISIS)"
+                     +"VALUES ('"+nss+"','"+rfc+"','"+analisis+"')"); 
                 miCon.close();
                 return true;
             }
@@ -75,5 +77,9 @@ public class TDAExpediente {
 
     public void setAnalisis(String analisis) {
         this.analisis = analisis;
+        
+    }
+    public void setRFC(String rfc){
+        this.rfc=rfc;
     }
 }
