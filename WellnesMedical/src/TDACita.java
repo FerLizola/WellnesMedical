@@ -3,6 +3,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -154,5 +157,90 @@ public class TDACita {
         return false;
     }
    
+     public void limpiarTabla(JTable tabla){
+         DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
+            int filas=tabla.getRowCount();
+            for (int i = 0;filas>i; i++) {
+                modelo.removeRow(0);
+            }
+    }
+    
+     public void mostrar(DefaultTableModel modelo, String NSS){
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        String sql = "SELECT * FROM CITAS WHERE TIPO='Cita Previa' AND NSS='"+NSS+"'";
+        ResultSet r = stmt.executeQuery(sql);
+                
+                while(r.next()){ 
+                   String id = r.getString("ID_CITA");
+                   String fch = r.getString("FECHA");
+                   String hr = r.getString("HORA");
+                   String person = r.getString("PERSONAL");
+                   
+                   
+                   modelo.addRow(new Object[]{id,fch,hr,person});
+                }
+                miCon.close();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+      }
+     
+     public boolean Nombre(String ns){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "select NOMBRE  from PACIENTE where NSS='"+ns+"'";
+                ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                   paciente = r.getString(1);
+                   return true;
+                }
+                else{
+                    miCon.close();
+                    return false;
+                }
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return false;
+    }
+     
+    public boolean eliminar(JTable tabla){
+        int i=tabla.getSelectedRow();
+        if(i==-1){
+            return false;
+        }
+        else {
+            String id=tabla.getValueAt(i, 0).toString();
+            Connection miCon = (new Conexion()).conectar();
+            if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        
+            String sql= "DELETE FROM CITAS WHERE ID_CITA="+id+"";
+            int a=stmt.executeUpdate(sql);
+            
+            if(a>0){
+                return true;
+            }
+            else
+                return false;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return true;
+        }
+    }
      
 }

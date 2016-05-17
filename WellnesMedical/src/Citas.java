@@ -101,6 +101,11 @@ public class Citas extends javax.swing.JFrame {
 
         btnBuscar.setText("Buscar Citas");
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -199,6 +204,17 @@ public class Citas extends javax.swing.JFrame {
          this.setVisible(false);
      }
     }//GEN-LAST:event_txtAgendarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    String nss=txtConsultar.getText();
+     if(nss.isEmpty()){
+         javax.swing.JOptionPane.showMessageDialog(this,"Ingrese un NSS para continuar");
+     } else {
+         BusCitas b=new BusCitas(nss);
+         b.setVisible(true);
+         this.setVisible(false);
+     }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
