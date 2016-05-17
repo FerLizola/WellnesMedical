@@ -75,7 +75,6 @@ public class Menu_Auxiliar extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/exit.png"))); // NOI18N
         btnCerrar.setText("Cerrar Sesión");
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,7 +117,7 @@ public class Menu_Auxiliar extends javax.swing.JFrame {
                     .addComponent(btnLogOut))
                 .addGap(37, 37, 37)
                 .addComponent(btnCerrar)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -72,7 +72,6 @@ public class ActualizarPaciente extends javax.swing.JFrame {
 
         jLabel2.setText("NSS:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/buscar.png"))); // NOI18N
         jButton1.setText("Buscar");
 
         txtNSS.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -119,7 +118,6 @@ public class ActualizarPaciente extends javax.swing.JFrame {
 
         jLabel12.setText("Ocupación:");
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bryan\\Documents\\NetBeansProjects\\Medical_WellNess\\WellnesMedical\\WellnesMedical\\guardar.png")); // NOI18N
         jButton2.setText("Guardar");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

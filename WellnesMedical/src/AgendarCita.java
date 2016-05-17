@@ -46,7 +46,6 @@ public class AgendarCita extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnAgendar = new javax.swing.JButton();
-        Calendario = new com.toedter.calendar.JDateChooser();
         txtTipo = new javax.swing.JTextField();
         txtPaciente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -82,7 +81,6 @@ public class AgendarCita extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Fecha:");
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,15 +88,12 @@ public class AgendarCita extends javax.swing.JFrame {
             }
         });
 
-        btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/reporte.png"))); // NOI18N
         btnAgendar.setText("Agendar");
         btnAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendarActionPerformed(evt);
             }
         });
-
-        Calendario.setDateFormatString("yyyy-MM-dd");
 
         txtTipo.setEditable(false);
         txtTipo.setText("Cita Previa");
@@ -128,9 +123,7 @@ public class AgendarCita extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel6)
-                                .addGap(26, 26, 26)
-                                .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
                                 .addComponent(btnAgendar)
                                 .addGap(45, 45, 45)
                                 .addComponent(btnCancelar))))
@@ -188,7 +181,6 @@ public class AgendarCita extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -284,7 +276,6 @@ public class AgendarCita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser Calendario;
     private javax.swing.JButton btnAgendar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> cbxHora;

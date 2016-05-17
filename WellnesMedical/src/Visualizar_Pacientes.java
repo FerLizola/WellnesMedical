@@ -69,7 +69,6 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NetBeansProjects/Medical_WellNess/WellnesMedical/WellnesMedical/regresar.png"))); // NOI18N
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +76,6 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
             }
         });
 
-        btnMostrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bryan\\Documents\\NetBeansProjects\\Medical_WellNess\\WellnesMedical\\WellnesMedical\\ver.png")); // NOI18N
         btnMostrar.setText("Mostrar");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +119,7 @@ public class Visualizar_Pacientes extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar)
                     .addComponent(btnMostrar))
