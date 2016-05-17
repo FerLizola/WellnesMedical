@@ -63,6 +63,12 @@ public class Signos extends javax.swing.JFrame {
 
         jLabel2.setText("NSS:");
 
+        txtNSS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNSSKeyTyped(evt);
+            }
+        });
+
         jButton1.setText("Buscar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -237,6 +243,15 @@ public class Signos extends javax.swing.JFrame {
                         + "\nverifique su información!");
         }
     }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
+        Character e= evt.getKeyChar();
+        if(((e < '0') ||(e > '9')) &&(e != '-' && e!='\b'))
+         //(e != '\b' /*corresponde a BACK_SPACE*/))
+      {
+         evt.consume();  // ignorar el evento de teclado
+      }
+    }//GEN-LAST:event_txtNSSKeyTyped
 
     /**
      * @param args the command line arguments

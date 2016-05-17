@@ -118,6 +118,41 @@ public class HistorialTDA {
         
         
     }
+     public Object[] getReceta(DefaultTableModel modelo, String exp){
+        Connection miCon=(new Conexion()).conectar();
+        Object[]s= new String[3];
+        
+        try{
+            Statement stmt=miCon.createStatement();
+            ResultSet res= stmt.executeQuery("SELECT * FROM RECETA WHERE NSS='"+exp+"'");
+            
+            
+            while(res.next()){
+                String fecha=res.getString("FECHA");
+                String pad=res.getString("ID_RECETA");
+                String des=res.getString("PRESCRIPCION");
+                
+                //Object a=""+0;
+                
+                s[0]=fecha;
+                s[1]=pad;
+                s[2]=des;
+                
+                
+                modelo.addRow(s);
+                
+            }
+            
+            res.close();
+            return s;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        
+    }
      public boolean obtenerSignos(String busca){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){

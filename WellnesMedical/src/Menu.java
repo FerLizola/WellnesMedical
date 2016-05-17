@@ -82,7 +82,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnRegSig.setText("Registrar Signos Vitales");
+        btnRegSig.setText("Somatometría");
         btnRegSig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegSig.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -175,16 +175,17 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(btnCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(233, 233, 233)
-                                .addComponent(btnFar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(210, 210, 210)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton1)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(btnRegPac)
-                                        .addComponent(btnRegTra)
-                                        .addComponent(btnRegSig)))))))
+                                        .addComponent(btnRegTra))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(233, 233, 233)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRegSig)
+                                    .addComponent(btnFar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -266,7 +267,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCitasMouseClicked
 
     private void btnRegSigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegSigMouseClicked
-        Signos s = new Signos();
+        Signos s = new Signos(rfc,"Administrador");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegSigMouseClicked

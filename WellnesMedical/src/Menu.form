@@ -73,18 +73,20 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
-                                  <Component id="btnFar" min="-2" pref="104" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="btnRegPac" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnRegTra" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnRegSig" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btnRegSig" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnFar" min="-2" pref="104" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -176,7 +178,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnRegSig">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registrar Signos Vitales"/>
+            <Property name="text" type="java.lang.String" value="Somatometr&#xed;a"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>
