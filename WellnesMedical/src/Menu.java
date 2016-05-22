@@ -44,14 +44,13 @@ public class Menu extends javax.swing.JFrame {
         btnRegPac = new javax.swing.JButton();
         btnRegTra = new javax.swing.JButton();
         btnRegSig = new javax.swing.JButton();
-        btnCitas = new javax.swing.JButton();
-        btnFar = new javax.swing.JButton();
+        btnMenuMEd = new javax.swing.JButton();
         btnActHist = new javax.swing.JButton();
         btnBuscarPer = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        btnCatAn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,11 +60,16 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 18)); // NOI18N
         jLabel1.setText("Menu Medical Wellness.");
 
-        btnRegPac.setText("Registrar Paciente");
+        btnRegPac.setText("Menu Secretaria");
         btnRegPac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegPac.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegPacMouseClicked(evt);
+            }
+        });
+        btnRegPac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegPacActionPerformed(evt);
             }
         });
 
@@ -82,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnRegSig.setText("Somatometría");
+        btnRegSig.setText("Menu Farmaceutico");
         btnRegSig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegSig.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -90,24 +94,21 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnCitas.setText("Citas");
-        btnCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMenuMEd.setText("Menu Medico");
+        btnMenuMEd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenuMEd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCitasMouseClicked(evt);
+                btnMenuMEdMouseClicked(evt);
             }
         });
 
-        btnFar.setText("Farmacia");
-        btnFar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnFar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnFarMouseClicked(evt);
-            }
-        });
-
-        btnActHist.setText("Actualizar Historial");
+        btnActHist.setText("Menu Laboratorio");
         btnActHist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActHist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActHistMouseClicked(evt);
+            }
+        });
 
         btnBuscarPer.setText("Buscar Personal");
         btnBuscarPer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,7 +123,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setText("Buscar Paciente");
+        btnBuscar.setText("Menu Auxiliar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
@@ -136,13 +137,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnCatAn.setText("Catalogo de Analisis");
-        btnCatAn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCatAnMouseClicked(evt);
-            }
-        });
-
         jButton1.setText("Cambiar Contraseña");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -150,78 +144,74 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imss_2.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnBuscarPer)
-                                    .addComponent(btnActHist)
-                                    .addComponent(btnCatAn)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(btnBuscar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(btnCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(210, 210, 210)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnRegPac)
-                                        .addComponent(btnRegTra))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(233, 233, 233)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRegSig)
-                                    .addComponent(btnFar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnCerrar)
                 .addGap(58, 58, 58))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnMenuMEd, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBuscar))
+                            .addComponent(btnRegSig)
+                            .addComponent(btnActHist))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(btnBuscarPer))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(232, 232, 232)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRegPac)
+                                    .addComponent(btnRegTra))))))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMenuMEd)
+                    .addComponent(btnRegPac))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnRegTra))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCitas)
-                            .addComponent(btnRegPac))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBuscar)
-                            .addComponent(btnRegTra))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBuscarPer)
-                            .addComponent(btnRegSig))
-                        .addGap(43, 43, 43)
-                        .addComponent(btnActHist)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnFar)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCatAn)
-                    .addComponent(jButton1))
-                .addGap(44, 44, 44)
+                        .addGap(57, 57, 57)
+                        .addComponent(btnRegSig)
+                        .addGap(64, 64, 64)
+                        .addComponent(btnActHist))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(btnBuscarPer)
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(btnCerrar)
                 .addGap(22, 22, 22))
         );
@@ -230,7 +220,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,8 +231,9 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegPacMouseClicked
-        pac.setVisible(true);
-        setVisible(false);
+        MenuSecretaria m= new MenuSecretaria(rfc,"Administrador");
+        m.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnRegPacMouseClicked
 
     private void btnRegTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegTraMouseClicked
@@ -250,24 +241,14 @@ public class Menu extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_btnRegTraMouseClicked
 
-    private void btnFarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFarMouseClicked
-        /*Menu_Farmacia men= new Menu_Farmacia("Administrador",rfc);
-        men.setVisible(true);
-        setVisible(false);*/
-        Farmacia far= new Farmacia(rfc,"Administrador");
-        far.setVisible(true);
-        setVisible(false);
-                       
-    }//GEN-LAST:event_btnFarMouseClicked
-
-    private void btnCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseClicked
-        Citas n = new Citas();
+    private void btnMenuMEdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMEdMouseClicked
+        Menu_Medico n = new Menu_Medico(rfc,"Administrador");
         n.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnCitasMouseClicked
+    }//GEN-LAST:event_btnMenuMEdMouseClicked
 
     private void btnRegSigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegSigMouseClicked
-        Signos s = new Signos(rfc,"Administrador");
+        Menu_Farmacia s = new Menu_Farmacia("Administrador",rfc);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegSigMouseClicked
@@ -277,7 +258,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarPerActionPerformed
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        BuscarPaciente b = new BuscarPaciente();
+        Menu_Auxiliar b = new Menu_Auxiliar(rfc,"Administrador");
         b.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarMouseClicked
@@ -298,17 +279,21 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegTraActionPerformed
 
-    private void btnCatAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatAnMouseClicked
-        CatalogoAnalisis cat= new CatalogoAnalisis(rfc,"Administrador");
-        cat.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnCatAnMouseClicked
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         CambiarContraseña cam= new CambiarContraseña(rfc,"Administrador");
         cam.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnRegPacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegPacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegPacActionPerformed
+
+    private void btnActHistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActHistMouseClicked
+        MenuLaboratorista m= new MenuLaboratorista(rfc,"Administrador");
+        m.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnActHistMouseClicked
 
     /**
      * @param args the command line arguments
@@ -351,15 +336,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnActHist;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarPer;
-    private javax.swing.JButton btnCatAn;
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnCitas;
-    private javax.swing.JButton btnFar;
+    private javax.swing.JButton btnMenuMEd;
     private javax.swing.JButton btnRegPac;
     private javax.swing.JButton btnRegSig;
     private javax.swing.JButton btnRegTra;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

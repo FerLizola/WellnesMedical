@@ -10,7 +10,7 @@ public class Conexion {
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String url = "jdbc:sqlserver://localhost:1433;databaseName=MEDICAL_WELLNESS";
-            con = DriverManager.getConnection(url, "sa", "abril21");
+            con = DriverManager.getConnection(url, "sa", "medrano7502");
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error en la Conexión con la BD "+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
