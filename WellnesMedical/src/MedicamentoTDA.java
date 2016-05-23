@@ -181,8 +181,8 @@ public class MedicamentoTDA {
         if(miCon!=null){
             try{
                Statement stmt = miCon.createStatement();
-        String sql = "SELECT * FROM MEDICAMENTO";
-        ResultSet r = stmt.executeQuery(sql);
+               String sql = "SELECT * FROM MEDICAMENTO";
+               ResultSet r = stmt.executeQuery(sql);
                 
                 while(r.next()){ 
                    long Codigo=r.getInt("ID_MEDICAMENTO");
@@ -234,7 +234,7 @@ public class MedicamentoTDA {
     }
     
     public void limpiarTabla(JTable tabla){
-         DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
+            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
             int filas=tabla.getRowCount();
             for (int i = 0;filas>i; i++) {
                 modelo.removeRow(0);
