@@ -259,7 +259,7 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNSSKeyTyped
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Consulta c= new Consulta(rfc,puesto);
+        Consulta c= new Consulta(rfc,puesto,txtNSS.getText());
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed

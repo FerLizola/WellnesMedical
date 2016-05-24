@@ -20,7 +20,7 @@ public class Consulta extends javax.swing.JFrame {
     /**
      * Creates new form Consulta
      */
-    String rfc,puesto;
+    String rfc,puesto,nss;
     DefaultTableModel model,modelrec;
     public Consulta() {
         initComponents();
@@ -31,18 +31,23 @@ public class Consulta extends javax.swing.JFrame {
         fec+= fecha.get(Calendar.DAY_OF_MONTH);
         txtFecha.setText(fec);
     }
-    public Consulta(String rfc,String puesto){
+    public Consulta(String rfc,String puesto,String nss){
         initComponents();
         this.rfc=rfc;
         this.puesto=puesto;
+        this.nss=nss;
         Calendar fecha = new GregorianCalendar();
         String fec="";
         fec+= fecha.get(Calendar.YEAR)+"-";
         fec+= (fecha.get(Calendar.MONTH)+1)+"-";
         fec+= fecha.get(Calendar.DAY_OF_MONTH);
         txtFecha.setText(fec);
+        txtNSS.setText(nss);
         model= (DefaultTableModel)tblMostrar.getModel();
         modelrec=(DefaultTableModel)tblRec.getModel();
+        btnBuscarMouseClicked(null);
+        btnBuscar.setVisible(false);
+        txtNSS.setEditable(false);
     }
      protected void tabla(){
         HistorialTDA a= new HistorialTDA();

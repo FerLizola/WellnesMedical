@@ -220,7 +220,7 @@ public class OrdenarAnalisis extends javax.swing.JFrame {
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         // TODO add your handling code here:
-        Menu_Medico a= new Menu_Medico(rfc,puesto);
+        Consulta a= new Consulta(rfc,puesto,nss);
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked

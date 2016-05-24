@@ -314,7 +314,7 @@ public class Lipidos extends javax.swing.JFrame {
             m.setVisible(true);
             dispose();}
             else{
-                Consulta c= new Consulta(rfc,puesto);
+                Consulta c= new Consulta(rfc,puesto,nss);
                 c.setVisible(true);
                 dispose();
             }
@@ -331,7 +331,7 @@ public class Lipidos extends javax.swing.JFrame {
             m.setVisible(true);
             dispose();}
             else{
-                Consulta c= new Consulta(rfc,puesto);
+                Consulta c= new Consulta(rfc,puesto,nss);
                 c.setVisible(true);
                 dispose();
             }

@@ -217,7 +217,7 @@ public class Resultados_Analisis extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
-        Consulta c= new Consulta(rfc,puesto);
+        Consulta c= new Consulta(rfc,puesto,txtPaciente.getText());
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked

@@ -1,4 +1,5 @@
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -20,11 +21,13 @@ public class ConsultarCitas extends javax.swing.JFrame {
         initComponents();
     }
     DefaultTableModel model;
-    String rfc, puesto;
+    String rfc, puesto,valor;
     public ConsultarCitas(String rfc, String puesto){
         initComponents();
         this.rfc=rfc;
         this.puesto=puesto;
+        model= (DefaultTableModel)tblCitas.getModel();
+        tabla();
     }
     protected void tabla(){
         TDAConsultarCitas a= new TDAConsultarCitas(rfc);
@@ -67,11 +70,21 @@ public class ConsultarCitas extends javax.swing.JFrame {
                 "Fecha", "Hora", "NSS"
             }
         ));
+        tblCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCitasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCitas);
 
         jLabel1.setText("CITAS PROGRAMADAS");
 
         jButton1.setText("Ver Citas");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,6 +133,22 @@ public class ConsultarCitas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if(valor.equals(null))
+            JOptionPane.showMessageDialog(this, "Seleccione un paciente");
+        else{
+            Consulta c= new Consulta(rfc,puesto,valor);
+            c.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void tblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCitasMouseClicked
+        int row = tblCitas.getSelectedRow();
+        valor=(String)tblCitas.getValueAt(row, 2);
+        
+    }//GEN-LAST:event_tblCitasMouseClicked
 
     /**
      * @param args the command line arguments
