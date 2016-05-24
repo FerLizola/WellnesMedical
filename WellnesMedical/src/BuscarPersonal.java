@@ -259,7 +259,7 @@ public class BuscarPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
-       Menu_Farmacia m=new Menu_Farmacia(puesto,rfc);
+       Menu m=new Menu(rfc,puesto);
        m.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked

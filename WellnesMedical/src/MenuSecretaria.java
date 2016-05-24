@@ -163,32 +163,38 @@ public class MenuSecretaria extends javax.swing.JFrame {
     private void btnRegPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegPacMouseClicked
         Paciente pac= new Paciente(rfc,puesto);
         pac.setVisible(true);
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegPacMouseClicked
 
     private void btnCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseClicked
-        Citas cit= new Citas();
+        Citas cit= new Citas(rfc,puesto);
         cit.setVisible(true);
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnCitasMouseClicked
 
     private void btnBusPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBusPacMouseClicked
         BuscarPaciente bp=new BuscarPaciente(rfc,puesto);
         bp.setVisible(true);
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnBusPacMouseClicked
 
     private void btnModPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModPacMouseClicked
         ActualizarPaciente act = new ActualizarPaciente(rfc,puesto);
         act.setVisible(true);
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnModPacMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       
+       if(puesto.equals("Administrador")){
+            Menu obj= new Menu();
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+        else{
             Login log= new Login();
             log.setVisible(true);
             this.setVisible(false);
+        }
         
     }//GEN-LAST:event_jButton1MouseClicked
 

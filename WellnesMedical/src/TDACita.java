@@ -102,6 +102,27 @@ public class TDACita {
         return false;
     }
     
+    public boolean buscarHorario(String tip, String fcha, String hra, String rf){ 
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "select * from CITAS where PERSONAL='"+rf+"' and FECHA='"+fcha+"' and HORA='"+hra+"' and TIPO='"+tip+"'";
+                ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){
+                miCon.close();
+                return true;
+                } else {
+                return false;
+                }
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+   }
+    
     public boolean Datos(String nss){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){

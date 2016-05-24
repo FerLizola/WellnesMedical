@@ -274,7 +274,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnBuscarPerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarPerMouseClicked
-        BuscarPersonal g= new BuscarPersonal();
+        BuscarPersonal g= new BuscarPersonal(rfc,puesto);
         g.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarPerMouseClicked

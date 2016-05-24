@@ -13,10 +13,17 @@ public class Citas extends javax.swing.JFrame {
     /**
      * Creates new form Citas
      */
+    String rfc, puesto;
     public Citas() {
         initComponents();
     }
 
+    public Citas(String RFC,String puesto){
+        
+        initComponents();
+        rfc=RFC;
+        this.puesto=puesto;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,7 +196,7 @@ public class Citas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMenuMouseClicked
-        MenuSecretaria ob=new MenuSecretaria();
+        MenuSecretaria ob=new MenuSecretaria(rfc,puesto);
         ob.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_txtMenuMouseClicked
@@ -199,7 +206,7 @@ public class Citas extends javax.swing.JFrame {
      if(nss.isEmpty()){
          javax.swing.JOptionPane.showMessageDialog(this,"Ingrese un NSS para continuar");
      } else {
-         CitAgend a=new CitAgend(nss);
+         AgendarCita a=new AgendarCita(nss,rfc,puesto);
          a.setVisible(true);
          this.setVisible(false);
      }
@@ -210,7 +217,7 @@ public class Citas extends javax.swing.JFrame {
      if(nss.isEmpty()){
          javax.swing.JOptionPane.showMessageDialog(this,"Ingrese un NSS para continuar");
      } else {
-         BusCitas b=new BusCitas(nss);
+         BusCitas b=new BusCitas(nss,rfc,puesto);
          b.setVisible(true);
          this.setVisible(false);
      }

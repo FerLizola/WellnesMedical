@@ -17,16 +17,18 @@ public class BusCitas extends javax.swing.JFrame {
      * Creates new form BusCitas
      */
     DefaultTableModel modelo;
-    String NSS;
+    String NSS,rfc,puesto;
     public BusCitas() {
         initComponents();
         modelo = (DefaultTableModel)tabla.getModel();
         Mostrar();
     }
     
-    public BusCitas(String nss){
+    public BusCitas(String nss,String rfc, String puesto){
         initComponents();
         this.NSS=nss;
+        this.rfc=rfc;
+        this.puesto=puesto;
         modelo = (DefaultTableModel)tabla.getModel();
         Mostrar();
     }
@@ -180,7 +182,7 @@ public class BusCitas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     Citas c=new Citas();
+     Citas c=new Citas(rfc,puesto);
      c.setVisible(true);
      this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

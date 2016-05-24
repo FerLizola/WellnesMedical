@@ -1,5 +1,7 @@
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -59,7 +61,11 @@ public class Cambio extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Nueva Hora:");
 
-        cbxHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30" }));
+        Calendario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                CalendarioPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,8 +79,8 @@ public class Cambio extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(27, 27, 27)
-                                .addComponent(cbxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
@@ -104,17 +110,51 @@ public class Cambio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String TIP="Cita Previa";
-        String fec= new SimpleDateFormat("yyyy-MM-dd").format(Calendario.getCalendar().getTime());
-        String hra=cbxHora.getSelectedItem().toString();
-        TDACita t=new TDACita();
-        if(t.agendar(NSS, TIP, fec, hra, RFC)){
-            javax.swing.JOptionPane.showMessageDialog(this, "Cambio Exitoso");
+        Calendar c = new GregorianCalendar();
+        int dia1 = c.get(Calendar.DATE);
+        int mes1 = c.get(Calendar.MONTH)+1;
+        int año1 = c.get(Calendar.YEAR);
+        
+        String fecha= new SimpleDateFormat("yyyy-MM-dd").format(Calendario.getCalendar().getTime());
+        
+        int año2= Integer.parseInt(fecha.substring(0,4));
+        int mes2= Integer.parseInt(fecha.substring(5,7));
+        int dia2= Integer.parseInt(fecha.substring(8,10));  
+        
+        String hora=cbxHora.getSelectedItem().toString();
+        String tip="Cita Previa";
+        
+        if(año2>=año1 && mes2>mes1){
+            TDACita t=new TDACita();
+            t.agendar(NSS,tip,fecha,hora,RFC);
+            javax.swing.JOptionPane.showMessageDialog(this, "Cita Cambiada Correctamente");
             this.setVisible(false);
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "La fecha y/u hora seleccionada no esta disponible");
-        }
+            } 
+        if(año2>=año1 && mes2==mes1 && dia2>=dia1){
+            TDACita t=new TDACita();
+            t.agendar(NSS,tip,fecha,hora,RFC);
+            javax.swing.JOptionPane.showMessageDialog(this, "Cita Cambiada Correctamente");
+            this.setVisible(false);
+            }
+        else{
+            javax.swing.JOptionPane.showMessageDialog(this, "Fecha No Valida");
+        }                                    
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CalendarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarioPropertyChange
+     cbxHora.removeAllItems();
+           String tip="Cita Previa";
+           String fec= new SimpleDateFormat("yyyy-MM-dd").format(Calendario.getCalendar().getTime());
+           String hra[]={"8:00","8:20","8:40","9:00","9:20","9:40","10:00","10:20","10:40","11:00","11:20","11:40","12:00","12:20",
+           "12:40","13:00","13:20","13:40","14:00","14:20","14:40","15:00","15:20","15:40","16:00"};
+    for(int i=0; i<hra.length; i++){
+        String hora=hra[i];
+        TDACita t=new TDACita();
+        if(!t.buscarHorario(tip, fec, hora, RFC)){
+            cbxHora.addItem(hra[i]);
+        } 
+    }
+    }//GEN-LAST:event_CalendarioPropertyChange
 
     /**
      * @param args the command line arguments
