@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class TDAPaciente {
     
-    private String nombre, nss, domicilio, unidad_medica, telefono, curp, doctor,
+    protected String nombre, nss, domicilio, unidad_medica, telefono, curp, doctor,
                     ciudad, estado, edo_civil, ocupacion, consultorio, sexo, depende;
 
     public String getDepende() {
@@ -36,7 +36,7 @@ public class TDAPaciente {
         this.consultorio = consultorio;
     }
     private String fecha; //Pendiente analizar el uso de util.Date ó sql.Date para almacenar la fecha
-    private int edad, codigo_postal;
+    protected int edad, codigo_postal;
     public TDAPaciente(){
     }
     public boolean insertar(){ 
@@ -117,6 +117,38 @@ public class TDAPaciente {
         return true;
         }
     }
+    
+     public boolean Actualizar(String ns, String nom, String edad, String sex, String dom, String cp, String est,
+             String ciu, String tel, String edoc, String ocup){
+        int i=0;
+        if(i==-1){
+            return false;
+        }
+        else {
+            
+            Connection miCon = (new Conexion()).conectar();
+            if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+        
+            String sql= "UPDATE PACIENTE SET NOMBRE='"+nom+"', EDAD="+edad+",SEXO='"+sex+"',"
+                    + "DOMICILIO='"+dom+"',CP="+cp+",ESTADO='"+est+"',CIUDAD='"+ciu+"',TELEFONO='"+tel+"',ESTADO_CIVIL='"+edoc+"',OCUPACION='"+ocup+"' WHERE NSS='"+ns+"'";
+            int a=stmt.executeUpdate(sql);
+            
+            if(a>0){
+                return true;
+            }
+            else
+                return false;
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return true;
+        }
+    }
+    
     public void limpiarTabla(JTable tabla){
          DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
             int filas=tabla.getRowCount();
@@ -177,6 +209,11 @@ public class TDAPaciente {
                     edad = Integer.parseInt(r.getString("EDAD"));
                     domicilio = r.getString("DOMICILIO");
                     estado = r.getString("ESTADO");
+                    codigo_postal = r.getInt("CP");
+                    telefono = r.getString("TELEFONO");
+                    edo_civil = r.getString("ESTADO_CIVIL");
+                    ocupacion = r.getString("OCUPACION");
+                    sexo = r.getString("SEXO");
                     
                     return true;
                 }

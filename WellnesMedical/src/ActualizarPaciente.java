@@ -73,6 +73,11 @@ public class ActualizarPaciente extends javax.swing.JFrame {
         jLabel2.setText("NSS:");
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         txtNSS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -134,6 +139,11 @@ public class ActualizarPaciente extends javax.swing.JFrame {
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -325,7 +335,34 @@ public class ActualizarPaciente extends javax.swing.JFrame {
         if(cbxSex.getSelectedIndex()==0||cbxEst.getSelectedIndex()==0||cbxEdoCiv.getSelectedIndex()==0)
             JOptionPane.showMessageDialog(this,"¡Verifique selección de Sexo, Estado y Estado Civil!");
         else{
-        
+            TDAPaciente t=new TDAPaciente();
+            String ns=txtNSS.getText();
+            String nom=txtNom.getText();
+            String edad=txtEdad.getText();
+            String sex=cbxSex.getSelectedItem().toString();
+            String dom=txtDom.getText();
+            String cp=txtCP.getText();
+            String est=cbxEst.getSelectedItem().toString();
+            String ciu=txtCiudad.getText();
+            String tel=txtTel.getText();
+            String edoc=cbxEdoCiv.getSelectedItem().toString();
+            String ocup=txtOcup.getText();
+           if(t.Actualizar(ns, nom, edad, sex, dom, cp, est, ciu, tel, edoc, ocup)){
+               javax.swing.JOptionPane.showMessageDialog(this, "Actualizacion Correctamente Efectuada");
+            txtNom.setText("");
+            txtEdad.setText("");
+            cbxSex.setSelectedItem("");
+            txtDom.setText("");
+            txtCP.setText("");
+            cbxEst.setSelectedItem("");
+            txtCiudad.setText("");
+            txtTel.setText("");
+            cbxEdoCiv.setSelectedItem("");
+            txtOcup.setText("");
+            txtNSS.setText("");
+           } else {
+               javax.swing.JOptionPane.showMessageDialog(this,"No se puedo actualizar");
+           }
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -342,6 +379,31 @@ public class ActualizarPaciente extends javax.swing.JFrame {
         men.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String ns=txtNSS.getText();
+        if(ns.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this,"Capture un NSS");         
+        }
+        else {
+            TDAPaciente p=new TDAPaciente();
+            p.buscarNSS(ns);
+            txtNom.setText(p.nombre);
+            txtEdad.setText(p.edad+"");
+            cbxSex.setSelectedItem(p.sexo);
+            txtDom.setText(p.domicilio);
+            txtCP.setText(p.codigo_postal+"");
+            cbxEst.setSelectedItem(p.estado);
+            txtCiudad.setText(p.ciudad);
+            txtTel.setText(p.telefono);
+            cbxEdoCiv.setSelectedItem(p.edo_civil);
+            txtOcup.setText(p.ocupacion);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
