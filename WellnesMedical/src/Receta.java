@@ -8,7 +8,10 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Timestamp;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,9 +32,21 @@ public class Receta extends javax.swing.JFrame {
     java.util.Date date;
     Timestamp t;
     String f,h,rfc,puesto;
-            
+    DefaultTableModel model;        
     public Receta() {
         initComponents();
+        Calendar fecha = new GregorianCalendar();
+        String fec="";
+        fec+= fecha.get(Calendar.YEAR)+"-";
+        int a=(fecha.get(Calendar.MONTH)+1);
+        if(a<10)
+            fec+="0"+(fecha.get(Calendar.MONTH)+1)+"-";
+        else
+            fec+= (fecha.get(Calendar.MONTH)+1)+"-";
+        fec+= fecha.get(Calendar.DAY_OF_MONTH);
+        txtFecha.setText(fec);
+        txtFecha.setEditable(false);
+        model=(DefaultTableModel)tblMedicamentos.getModel();
     }
     public Receta(String rfc,String puesto, String NSS){
         initComponents();
@@ -39,6 +54,21 @@ public class Receta extends javax.swing.JFrame {
         txtPersonal.setText(rfc);
         this.rfc=rfc;
         this.puesto=puesto;
+        Calendar fecha = new GregorianCalendar();
+        String fec="";
+        fec+= fecha.get(Calendar.YEAR)+"-";
+        int a=(fecha.get(Calendar.MONTH)+1);
+        if(a<10)
+            fec+="0"+(fecha.get(Calendar.MONTH)+1)+"-";
+        else
+            fec+= (fecha.get(Calendar.MONTH)+1)+"-";
+        fec+= fecha.get(Calendar.DAY_OF_MONTH);
+        txtFecha.setText(fec);
+        txtFecha.setEditable(false);
+        model=(DefaultTableModel)tblMedicamentos.getModel();
+        TDAReceta rec=new TDAReceta();
+        String[] med=rec.AgregarMedicamentos();
+        cbxMed=new JComboBox(med);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,11 +87,19 @@ public class Receta extends javax.swing.JFrame {
         txtPersonal = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tiempo = new com.lavantech.gui.comp.DateTimePicker();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtPres = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnGenerar = new javax.swing.JButton();
+        txtFecha = new javax.swing.JTextField();
+        txtMed = new javax.swing.JTextField();
+        txtPres = new javax.swing.JTextField();
+        txtCant = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblMedicamentos = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        cbxMed = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,10 +139,6 @@ public class Receta extends javax.swing.JFrame {
             }
         });
 
-        txtPres.setColumns(20);
-        txtPres.setRows(5);
-        jScrollPane1.setViewportView(txtPres);
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Prescripción:");
 
@@ -124,6 +158,38 @@ public class Receta extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Medicamento:");
+
+        tblMedicamentos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Medicamento", "Prescripcion", "Cantidad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblMedicamentos);
+
+        btnAgregar.setText("Agregar");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Cantidad:");
+
+        cbxMed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,40 +197,55 @@ public class Receta extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(cbxMed, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(43, 43, 43)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5))
+                                    .addGap(38, 38, 38)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnAgregar)))))
+                            .addGap(13, 13, 13))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(272, 272, 272)
+                            .addComponent(btnGenerar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar)))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jScrollPane1))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGenerar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar)))
-                .addContainerGap())
+                            .addComponent(jLabel6)
+                            .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,19 +261,34 @@ public class Receta extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnGenerar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar)
+                    .addComponent(cbxMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(btnGenerar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btnCancelar)))
+                .addGap(84, 84, 84))
         );
 
         pack();
@@ -201,28 +297,6 @@ public class Receta extends javax.swing.JFrame {
     private void txtNSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNSSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNSSActionPerformed
-
-    private void tiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tiempoActionPerformed
-
-    private void tiempoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tiempoPropertyChange
-      
-        String sdia,smes;
-        int dia = tiempo.getCalendar().getTime().getDate();
-        sdia = dia + "";
-        if(dia < 10){ sdia = "0"+dia; }
-        int mes = tiempo.getCalendar().getTime().getMonth() + 1;
-        smes = mes + "";
-        if(mes < 10){ smes = "0"+mes; }
-        int ano = tiempo.getCalendar().getTime().getYear() + 1900;
-        int hora = tiempo.getCalendar().getTime().getHours();
-        int minuto = tiempo.getCalendar().getTime().getMinutes();
-      
-        f=ano+"-"+smes+"-"+sdia;
-        h=hora+":"+minuto;
-        
-    }//GEN-LAST:event_tiempoPropertyChange
 
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
         TDAReceta rec = new TDAReceta();
@@ -264,6 +338,37 @@ public class Receta extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void tiempoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tiempoPropertyChange
+
+        String sdia,smes;
+        int dia = tiempo.getCalendar().getTime().getDate();
+        sdia = dia + "";
+        if(dia < 10){ sdia = "0"+dia; }
+        int mes = tiempo.getCalendar().getTime().getMonth() + 1;
+        smes = mes + "";
+        if(mes < 10){ smes = "0"+mes; }
+        int ano = tiempo.getCalendar().getTime().getYear() + 1900;
+        int hora = tiempo.getCalendar().getTime().getHours();
+        int minuto = tiempo.getCalendar().getTime().getMinutes();
+
+        f=ano+"-"+smes+"-"+sdia;
+        h=hora+":"+minuto;
+
+    }//GEN-LAST:event_tiempoPropertyChange
+
+    private void tiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tiempoActionPerformed
+
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        String[] datos= new String[4];
+        datos[0]=txtMed.getText();
+        datos[1]=txtPres.getText();
+        datos[2]=txtCant.getText();
+        model.addRow(datos);
+        
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -300,18 +405,26 @@ public class Receta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGenerar;
+    private javax.swing.JComboBox<String> cbxMed;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable tblMedicamentos;
     private com.lavantech.gui.comp.DateTimePicker tiempo;
+    private javax.swing.JTextField txtCant;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtMed;
     private javax.swing.JTextField txtNSS;
     private javax.swing.JTextField txtPersonal;
-    private javax.swing.JTextArea txtPres;
+    private javax.swing.JTextField txtPres;
     // End of variables declaration//GEN-END:variables
 }

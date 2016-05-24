@@ -15,6 +15,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -138,5 +139,32 @@ public class TDAReceta {
         receta.close();
     }
     
-    
+  String[] AgregarMedicamentos(){
+     Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+             
+                ResultSet res=stmt.executeQuery("SELECT COUNT(ID_MEDICAMENTO) AS TOTAL FROM MEDICAMENTO");
+                res.next();
+                int x=res.getInt("TOTAL");
+                String[] med= new String[x];
+                res = stmt.executeQuery("SELECT * FROM MEDICAMENTO");
+                res.next();
+                int a=0;
+                while(res.next()){
+                    med[a]=res.getString("NOMBRE");
+                    a++;
+                    res.next();
+                }
+                
+                miCon.close();
+                return med;
+            }
+            catch(Exception e){
+                return null;
+            }
+        }
+      return null;
+  }  
 }
