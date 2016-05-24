@@ -39,6 +39,7 @@ public class TDAPaciente {
     protected int edad, codigo_postal;
     public TDAPaciente(){
     }
+    
     public boolean insertar(){ 
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
@@ -46,7 +47,7 @@ public class TDAPaciente {
                Statement stmt = miCon.createStatement();
              
                stmt.executeUpdate("INSERT INTO PACIENTE " +
-                  "VALUES ('"+nss+"','"+nombre+"','"+domicilio+"','"+unidad_medica+"','"+telefono+"','"+curp+"','"+fecha+"','"+ciudad+"','"+estado+"','"+edo_civil+"','"+ocupacion+"',"+edad+","+codigo_postal+",'"+sexo+"',"+consultorio+")"); 
+                  "VALUES ('"+nss+"','"+nombre+"','"+domicilio+"','"+unidad_medica+"','"+telefono+"','"+curp+"','"+fecha+"','"+ciudad+"','"+estado+"','"+edo_civil+"','"+ocupacion+"',"+edad+","+codigo_postal+",'"+sexo+"',"+consultorio+",'"+depende+"')"); 
                 
                 //JOptionPane.showMessageDialog(null,"Registro de Paciente, Exitoso..!");
                 miCon.close();

@@ -123,7 +123,7 @@ public class Paciente extends javax.swing.JFrame {
         });
 
         txtUM.setEditable(false);
-        txtUM.setText("Unidad medico familiar # 24");
+        txtUM.setText("UMF 24");
 
         jLabel12.setText("Unidad Médica:");
 
@@ -146,6 +146,8 @@ public class Paciente extends javax.swing.JFrame {
         });
 
         jLabel14.setText("Fecha de nacimiento:");
+
+        txtFN.setText("AAAA-MM-DD");
 
         jLabel15.setText("CP:");
 
@@ -357,8 +359,12 @@ public class Paciente extends javax.swing.JFrame {
         
         if(!txtNSS.getText().isEmpty()&&!txtNom.getText().isEmpty()&&!txtDom.getText().isEmpty()&&
                 !txtUM.getText().isEmpty()&&!txtTel.getText().isEmpty()&&!txtCURP.getText().isEmpty()&&
-                !txtFN.getText().isEmpty()&&!txtCiudad.getText().isEmpty()&& !txtDepende.getText().isEmpty() &&
+                !txtFN.getText().isEmpty()&&!txtCiudad.getText().isEmpty() &&
                 !txtCP.getText().isEmpty()&&!txtOcup.getText().isEmpty()&&!txtEdad.getText().isEmpty()){
+            String dep=txtDepende.getText();
+            if(dep.isEmpty()){
+                dep="";
+            }
             TDAPaciente pac=new TDAPaciente();    
             pac.setNss(txtNSS.getText());
             pac.setNombre(txtNom.getText());
@@ -375,6 +381,7 @@ public class Paciente extends javax.swing.JFrame {
             pac.setOcupacion(txtOcup.getText());
             pac.setSexo((String)cbxSexo.getSelectedItem());
             pac.setEdad(Integer.parseInt(txtEdad.getText()));
+            pac.setDepende(dep);
             
             if(pac.insertar()){
                 
