@@ -16,14 +16,15 @@ public class CitLaboratorio extends javax.swing.JFrame {
     /**
      * Creates new form CitLaboratorio
      */
-    String RFC;
+    String RFC,puesto;
     public CitLaboratorio() {
         initComponents();
     }
 
-     public CitLaboratorio(String rfc) {
+     public CitLaboratorio(String rfc,String puesto) {
         initComponents();
         this.RFC=rfc;
+        this.puesto=puesto;
     }
     
     /**
@@ -237,9 +238,9 @@ public class CitLaboratorio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgendarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        MenuLaboratorista j=new MenuLaboratorista();
+        MenuLaboratorista j=new MenuLaboratorista(RFC,puesto);
         j.setVisible(true);
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
