@@ -334,14 +334,13 @@ public class BuscarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNSSKeyTyped
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
         TDAPaciente pac = new TDAPaciente();
         if(pac.eliminar(tabla)){
             showMessageDialog(null,"Paciente eliminado correctamente");
             pac.limpiarTabla(tabla);
             pac.mostrar(modelo);
         }else{
-            showMessageDialog(null,"Seleccione un paciente para eliminar");
+            showMessageDialog(null,"Paciente no eliminado");
         }
     }//GEN-LAST:event_jButton2MouseClicked
 

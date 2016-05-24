@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date; //pendiente sql.Date o util.Date
 import javax.swing.JOptionPane;
@@ -71,25 +72,54 @@ public class TDAPaciente {
             String nss=tabla.getValueAt(i, 0).toString();
             Connection miCon = (new Conexion()).conectar();
             if(miCon!=null){
-            try{
+            try{    
                Statement stmt = miCon.createStatement();
-        
+            
+               String sql1 = "SELECT FAMILIAR FROM PACIENTE WHERE NSS='"+nss+"'";
+               ResultSet r = stmt.executeQuery(sql1);
+                
+                while(r.next()){ 
+                   depende = r.getString("FAMILIAR");  } 
+            
+            int confir=javax.swing.JOptionPane.showConfirmDialog(null,"Paciente dependiente de: "+depende+" ¿Desea Eliminarlo?");
+               
+            if(JOptionPane.OK_OPTION==confir){
+            
+            String sql2= "DELETE FROM CITAS WHERE NSS='"+nss+"'";
+            int b=stmt.executeUpdate(sql2);
+            
+            String sql3= "DELETE FROM CONSULTA WHERE PACIENTE='"+nss+"'";
+            int f=stmt.executeUpdate(sql3);
+            
+            String sql4= "DELETE FROM EXPEDIENTE WHERE NSS='"+nss+"'";
+            int o=stmt.executeUpdate(sql4);
+            
+            String sql5= "DELETE FROM RESULTADO_ANALISIS WHERE PACIENTE='"+nss+"'";
+            int l=stmt.executeUpdate(sql5);
+            
+            String sql6= "DELETE FROM RECETA WHERE NSS='"+nss+"'";
+            int p=stmt.executeUpdate(sql6);
+            
             String sql= "DELETE FROM PACIENTE WHERE NSS='"+nss+"'";
             int a=stmt.executeUpdate(sql);
             
             if(a>0){
                 return true;
             }
-            else
+            else{
+                return false;}
+            } else{
                 return false;
             }
-            catch(Exception e){
+            }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
             }
+            
         }
         return true;
         }
     }
+    
     public boolean Modificar(){
         int i=0;
         if(i==-1){
