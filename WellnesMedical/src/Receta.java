@@ -1,6 +1,9 @@
 
 import com.lavantech.gui.comp.DateTimePicker;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -66,9 +69,29 @@ public class Receta extends javax.swing.JFrame {
         txtFecha.setText(fec);
         txtFecha.setEditable(false);
         model=(DefaultTableModel)tblMedicamentos.getModel();
-        TDAReceta rec=new TDAReceta();
-        String[] med=rec.AgregarMedicamentos();
-        cbxMed=new JComboBox(med);
+        //TDAReceta rec=new TDAReceta();
+        //String[] med=rec.AgregarMedicamentos();
+        //cbxMed=new JComboBox(med);
+        
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+               String sql = "SELECT * FROM MEDICAMENTO";
+               ResultSet r = stmt.executeQuery(sql);
+                
+                while(r.next()){ 
+                   long consultorio=r.getInt("NOMBRE");
+                   cbxMed.addItem(consultorio+"");
+                }
+                miCon.close();
+                
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
