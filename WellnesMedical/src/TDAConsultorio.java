@@ -54,29 +54,7 @@ public class TDAConsultorio {
         }
         return true;
     }
-    
-   /* public void mostrar(DefaultTableModel modelo){
-        Connection miCon = (new Conexion()).conectar();
-        if(miCon!=null){
-            try{
-               Statement stmt = miCon.createStatement();
-               String sql = "SELECT * FROM CONSULTORIO";
-               ResultSet r = stmt.executeQuery(sql);
-                
-                while(r.next()){ 
-                   int consultorio_ = r.getInt("N_CONSULTORIO");
-                   String medico_ = r.getString("MEDICO");
-                   String especialidad_ = r.getString("DESCRIPCION");
-                   modelo.addRow(new Object[]{consultorio_, medico_, especialidad_});
-                }
-                miCon.close();
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }*/
-    
+        
     public void mostrar(DefaultTableModel modelo){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){

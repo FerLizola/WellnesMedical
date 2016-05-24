@@ -10,7 +10,15 @@ import javax.swing.table.DefaultTableModel;
 public class TDAPaciente {
     
     private String nombre, nss, domicilio, unidad_medica, telefono, curp, doctor,
-                    ciudad, estado, edo_civil, ocupacion, consultorio, sexo;
+                    ciudad, estado, edo_civil, ocupacion, consultorio, sexo, depende;
+
+    public String getDepende() {
+        return depende;
+    }
+
+    public void setDepende(String depende) {
+        this.depende = depende;
+    }
 
     public String getConsultorio() {
         return consultorio;
