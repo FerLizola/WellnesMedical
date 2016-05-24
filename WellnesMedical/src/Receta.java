@@ -81,7 +81,7 @@ public class Receta extends javax.swing.JFrame {
                ResultSet r = stmt.executeQuery(sql);
                 
                 while(r.next()){ 
-                   long consultorio=r.getInt("NOMBRE");
+                   String consultorio=r.getString("NOMBRE");
                    cbxMed.addItem(consultorio+"");
                 }
                 miCon.close();
