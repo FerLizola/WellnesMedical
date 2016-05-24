@@ -66,9 +66,9 @@ public class GenerarHistorial extends javax.swing.JFrame {
         jPanel1.setBackground(java.awt.Color.white);
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel1.setText("Generar Historial");
+        jLabel1.setText("Generar Expediente");
 
-        jLabel2.setText("No. Historial:");
+        jLabel2.setText("No. Expediente:");
 
         jLabel3.setText("NSS:");
 

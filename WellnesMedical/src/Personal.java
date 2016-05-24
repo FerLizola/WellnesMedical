@@ -20,7 +20,13 @@ public class Personal extends javax.swing.JFrame {
     public Personal() {
         initComponents();
     }
-
+    String rfc,puesto;
+    public Personal(String rfc, String puesto){
+        initComponents();
+        this.rfc=rfc;
+        this.puesto=puesto;
+        txtRFC.setText(rfc);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -243,7 +249,7 @@ public class Personal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomActionPerformed
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        Menu c= new Menu();
+        Menu c= new Menu(rfc,puesto);
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked
