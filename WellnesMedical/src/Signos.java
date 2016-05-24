@@ -16,14 +16,18 @@ public class Signos extends javax.swing.JFrame {
     /**
      * Creates new form Signos
      */
-    String rfc,puesto;
+    String rfc,puesto,nss;
     public Signos() {
         initComponents();
     }
-    public Signos(String rfc,String puesto){
+    public Signos(String rfc,String puesto,String nss){
         initComponents();
         this.rfc=rfc;
         this.puesto=puesto;
+        this.nss=nss;
+        txtNSS.setText(nss);
+        btnBuscarMouseClicked(null);
+        btnBuscar.setVisible(false);
     }
     
 
@@ -40,7 +44,7 @@ public class Signos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNSS = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -63,16 +67,18 @@ public class Signos extends javax.swing.JFrame {
 
         jLabel2.setText("NSS:");
 
+        txtNSS.setEditable(false);
         txtNSS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNSSKeyTyped(evt);
             }
         });
 
-        jButton1.setText("Buscar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.setEnabled(false);
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnBuscarMouseClicked(evt);
             }
         });
 
@@ -119,7 +125,7 @@ public class Signos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(btnBuscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -161,7 +167,7 @@ public class Signos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1))
+                    .addComponent(btnBuscar))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,18 +216,6 @@ public class Signos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(!txtNSS.getText().isEmpty()){
-            TDAGenerarHistorial gh= new TDAGenerarHistorial(txtNSS.getText());
-            if(gh.buscarNSS(txtNSS.getText())){
-                txtNom.setText(gh.getNombre());
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "¡El beneficiario NO ha sido encontrado, \nfavor de verificar sus datos!");
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
-
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         if(txtPeso.getText().isEmpty()||txtPresion.getText().isEmpty()||
                 txtTemp.getText().isEmpty()||txtAlt.getText().isEmpty())
@@ -252,6 +246,18 @@ public class Signos extends javax.swing.JFrame {
          evt.consume();  // ignorar el evento de teclado
       }
     }//GEN-LAST:event_txtNSSKeyTyped
+
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        if(!txtNSS.getText().isEmpty()){
+            TDAGenerarHistorial gh= new TDAGenerarHistorial(txtNSS.getText());
+            if(gh.buscarNSS(txtNSS.getText())){
+                txtNom.setText(gh.getNombre());
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "¡El beneficiario NO ha sido encontrado, \nfavor de verificar sus datos!");
+        }
+    }//GEN-LAST:event_btnBuscarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -289,9 +295,9 @@ public class Signos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

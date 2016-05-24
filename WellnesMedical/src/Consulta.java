@@ -634,7 +634,7 @@ public class Consulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Menu_Medico men= new Menu_Medico(rfc,puesto);
+        ConsultarCitas men= new ConsultarCitas(rfc,puesto);
         men.show(true);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked

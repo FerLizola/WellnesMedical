@@ -49,7 +49,7 @@ public boolean guardar(){
                     if(user.equals(password)){
                         CambiarContraseña cam= new CambiarContraseña(user,r.getString("PUESTO"));
                         cam.setVisible(true);
-                    } 
+                    }else{ 
                     if(r.getString("PUESTO").equals("Administrador")){
                         Menu men= new Menu(user,"Administrador");
                         Login log=new Login();
@@ -93,6 +93,7 @@ public boolean guardar(){
                         log.dispose();
                         return true;
                        
+                    }
                     }
                 }
                 else {
@@ -172,6 +173,13 @@ public boolean guardar(){
                        men.setVisible(true);
                        log.dispose();
                        return true;
+                   }
+                   if(r.getString("PUESTO").equals("Auxiliar Medico")){
+                        Menu_Auxiliar men= new Menu_Auxiliar(user,"Auxiliar Medico");
+                        Login log=new Login();
+                        men.setVisible(true);
+                        log.dispose();
+                        return true;
                    }
                 }
                 else {

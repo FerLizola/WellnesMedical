@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 public class TDAPersonal {
@@ -35,7 +36,8 @@ public class TDAPersonal {
             try{
                Statement stmt = miCon.createStatement();
              
-               stmt.executeUpdate("INSERT INTO PERSONAL " +
+               stmt.executeUpdate("INSERT INTO PERSONAL (RFC,NOMBRE,DOMICILIO,TELEFONO,PUESTO,HORARIO,PASSWORD"
+                       +") " +
                   "VALUES ('"+rfc+"','"+nombre+"','"+domicilio+"','"+telefono+"','"+puesto+"','"+horario+"','"+pass+"')"); 
                 
                 //JOptionPane.showMessageDialog(null,"Registro de Personal, Exitoso..!");
@@ -43,7 +45,7 @@ public class TDAPersonal {
                 return true;
             }
             catch(Exception e){
-                //JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
