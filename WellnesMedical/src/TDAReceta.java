@@ -24,13 +24,24 @@ import java.util.logging.Logger;
  */
 public class TDAReceta {
     private String nss, personal, prescripcion, fcha, hra;
-    private Date fecha;
+    private String fecha, idRec;
+    String med,can,precio,pres;
+    public String getPrecio(){
+        return precio;
+    }
+    public void setMed(String med){this.med=med;}
+    public void setCan(String can){this.can=can;}
+    public void setPres(String pres){this.pres=pres;}
+    public void setPrecio(String pres){precio=pres;}
+    
     private Timestamp hora;
-
+    
     public String getNss() {
         return nss;
     }
-
+    public String getId(){
+        return idRec;
+    }
     public void setNss(String nss) {
         this.nss = nss;
     }
@@ -51,11 +62,11 @@ public class TDAReceta {
         this.prescripcion = prescripcion;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -92,6 +103,7 @@ public class TDAReceta {
                 stmt.executeUpdate("INSERT INTO RECETA " +
                   "VALUES ('"+nss+"','"+personal+"','"+fcha+"','"+hra+"','"+prescripcion+"','Pendiente')"); 
                 
+                
                 miCon.close();
                 return true;
             }
@@ -101,7 +113,64 @@ public class TDAReceta {
         }
         return true;
     }
-    
+    public boolean inserRec(){ 
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+             
+                stmt.executeUpdate("INSERT INTO RECETA (NSS,PERSONAL,FECHA) " +
+                  "VALUES ('"+nss+"','"+personal+"','"+fcha+"')"); 
+                
+                
+                String sql = "SELECT TOP 1 * FROM RECETA WHERE NSS ='"+nss+"' ORDER BY ID_RECETA DESC";
+                ResultSet r= stmt.executeQuery(sql);
+                if(r.next())
+                    idRec=""+r.getInt("ID_RECETA");
+                miCon.close();
+                return true;
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean inserMed(){ 
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+             
+                stmt.executeUpdate("INSERT INTO EXPEDICION_RECETA (ID_RECETA,NOM_MEDIC,CANTIDAD,PRESCRIPCION,SUBTOTAL) " +
+                  "VALUES ('"+idRec+"','"+med+"','"+can+"','"+pres+"','"+precio+"')"); 
+                miCon.close();
+                return true;
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean obtenerPrecio(){ 
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT * FROM MEDICAMENTO WHERE NOMBRE ='"+med+"'";
+                ResultSet r= stmt.executeQuery(sql);
+                if(r.next())
+                    precio=""+r.getFloat("PRECIO");
+                miCon.close();
+                return true;
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
     public void imprimir() throws FileNotFoundException, DocumentException, BadElementException, IOException{
         
         TDAPaciente pac = new TDAPaciente();
@@ -167,4 +236,8 @@ public class TDAReceta {
         }
       return null;
   }  
+
+    void setID(String text) {
+        idRec=text;
+    }
 }

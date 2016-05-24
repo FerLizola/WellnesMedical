@@ -95,7 +95,7 @@ public class HistorialTDA {
             while(res.next()){
                 String fecha=res.getString("FECHA");
                 String pad=res.getString("PADECIMIENTO_ACTUAL");
-                String des=res.getString("ID_EXPEDIENTE");
+                String des=res.getString("SINTOMAS");
                 String val=res.getString("PERINATALES");
                 //Object a=""+0;
                 

@@ -1,5 +1,6 @@
 
 import com.lavantech.gui.comp.DateTimePicker;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -11,10 +12,12 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Timestamp;
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -69,10 +72,14 @@ public class Receta extends javax.swing.JFrame {
         txtFecha.setText(fec);
         txtFecha.setEditable(false);
         model=(DefaultTableModel)tblMedicamentos.getModel();
-        //TDAReceta rec=new TDAReceta();
-        //String[] med=rec.AgregarMedicamentos();
-        //cbxMed=new JComboBox(med);
+        TDAReceta rec=new TDAReceta();
+        rec.setNss(txtNSS.getText());
+        rec.setPersonal(txtPersonal.getText());
+        rec.setFecha(txtFecha.getText());
+        rec.inserRec();
+        txtIdRec.setText(rec.getId());
         
+        txtMed.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
@@ -109,7 +116,6 @@ public class Receta extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtPersonal = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tiempo = new com.lavantech.gui.comp.DateTimePicker();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnGenerar = new javax.swing.JButton();
@@ -123,8 +129,11 @@ public class Receta extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cbxMed = new javax.swing.JComboBox<>();
+        txtIdRec = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         jLabel1.setText("Generar Receta");
@@ -147,20 +156,7 @@ public class Receta extends javax.swing.JFrame {
         jLabel3.setText("RFC Medico:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Fecha y fecha:");
-
-        tiempo.setDate(new java.util.Date(1461822384000L));
-        tiempo.setPattern("yyyy-MM-dd HH:mm");
-        tiempo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tiempoActionPerformed(evt);
-            }
-        });
-        tiempo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                tiempoPropertyChange(evt);
-            }
-        });
+        jLabel4.setText("Fecha:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Prescripción:");
@@ -211,7 +207,27 @@ public class Receta extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Cantidad:");
 
-        cbxMed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxMed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otro" }));
+        cbxMed.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxMedItemStateChanged(evt);
+            }
+        });
+        cbxMed.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cbxMedFocusGained(evt);
+            }
+        });
+        cbxMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbxMedMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbxMedMousePressed(evt);
+            }
+        });
+
+        jLabel8.setText("No. Receta:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,55 +236,58 @@ public class Receta extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(cbxMed, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(43, 43, 43)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5))
-                                    .addGap(38, 38, 38)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnAgregar)))))
-                            .addGap(13, 13, 13))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(272, 272, 272)
-                            .addComponent(btnGenerar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(cbxMed, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5))
+                                        .addGap(38, 38, 38)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnAgregar)))))
+                                .addGap(13, 13, 13))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnGenerar)
+                                .addGap(38, 38, 38)
+                                .addComponent(btnCancelar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8)
+                        .addGap(8, 8, 8)
+                        .addComponent(txtIdRec, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,13 +302,14 @@ public class Receta extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdRec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,14 +324,11 @@ public class Receta extends javax.swing.JFrame {
                 .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(btnGenerar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btnCancelar)))
-                .addGap(84, 84, 84))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnGenerar))
+                .addGap(95, 95, 95))
         );
 
         pack();
@@ -322,7 +339,7 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNSSActionPerformed
 
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
-        TDAReceta rec = new TDAReceta();
+        /*TDAReceta rec = new TDAReceta();
         
         if(!txtNSS.getText().isEmpty() && !txtPersonal.getText().isEmpty() 
                 && !txtPres.getText().isEmpty()){
@@ -341,7 +358,35 @@ public class Receta extends javax.swing.JFrame {
             }
         }else{
             showMessageDialog(null,"Llene todos los campos");
+        }*/
+        TableModel m= tblMedicamentos.getModel();
+        int a= m.getRowCount();
+        TDAReceta rec= new TDAReceta();
+        rec.setID(txtIdRec.getText());
+        for(int i=0;i<a;i++){
+            rec.setMed(m.getValueAt(i,0).toString());
+            rec.setPres(m.getValueAt(i,1).toString());
+            rec.setCan(m.getValueAt(i,2).toString());
+            rec.obtenerPrecio();
+            float can=(Float.parseFloat(m.getValueAt(i,2).toString())*Float.parseFloat(rec.getPrecio()));
+            rec.setPrecio(""+can);
+            rec.inserMed();
+            /*showMessageDialog(this,can);
+            showMessageDialog(this,m.getValueAt(i,0));
+            showMessageDialog(this,m.getValueAt(i,1));
+            showMessageDialog(this,m.getValueAt(i,2));
+            //rec.setMed();*/
         }
+        showMessageDialog(this,"Receta Generada Correctamente");
+        Consulta c= new Consulta(rfc,puesto,txtNSS.getText());
+        c.setVisible(true);
+        dispose();
+        /*
+        rec.setNSS(txtNss.getText());
+        rec.setPersonal(txtPersonal.getText());
+        rec.setFecha(txtFecha.getText());
+        
+        */
     }//GEN-LAST:event_btnGenerarMouseClicked
 
     private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
@@ -361,36 +406,65 @@ public class Receta extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void tiempoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tiempoPropertyChange
-
-        String sdia,smes;
-        int dia = tiempo.getCalendar().getTime().getDate();
-        sdia = dia + "";
-        if(dia < 10){ sdia = "0"+dia; }
-        int mes = tiempo.getCalendar().getTime().getMonth() + 1;
-        smes = mes + "";
-        if(mes < 10){ smes = "0"+mes; }
-        int ano = tiempo.getCalendar().getTime().getYear() + 1900;
-        int hora = tiempo.getCalendar().getTime().getHours();
-        int minuto = tiempo.getCalendar().getTime().getMinutes();
-
-        f=ano+"-"+smes+"-"+sdia;
-        h=hora+":"+minuto;
-
-    }//GEN-LAST:event_tiempoPropertyChange
-
-    private void tiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tiempoActionPerformed
-
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        String[] datos= new String[4];
-        datos[0]=txtMed.getText();
+        
+        String[] datos= new String[3];
+        if(cbxMed.getSelectedItem().equals("Otro"))
+            datos[0]=txtMed.getText();
+        else
+            datos[0]=cbxMed.getSelectedItem().toString();
         datos[1]=txtPres.getText();
         datos[2]=txtCant.getText();
         model.addRow(datos);
+        txtMed.setText("");
+        txtPres.setText("");
+        txtCant.setText("");
+        cbxMed.setSelectedIndex(0);
         
     }//GEN-LAST:event_btnAgregarMouseClicked
+
+    private void cbxMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxMedMouseClicked
+        /*String valor=cbxMed.getSelectedItem().toString();
+        if(valor.equals("Otro")){
+            txtMed.setEditable(true);
+        }*/
+    }//GEN-LAST:event_cbxMedMouseClicked
+
+    private void cbxMedMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxMedMousePressed
+        /*String valor=cbxMed.getSelectedItem().toString();
+        if(valor.equals("Otro")){
+            txtMed.setEditable(true);
+            txtMed.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+        }
+        else{
+            txtMed.setEditable(false);
+            txtMed.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        }*/
+    }//GEN-LAST:event_cbxMedMousePressed
+
+    private void cbxMedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbxMedFocusGained
+        /*String valor=cbxMed.getSelectedItem().toString();
+        if(valor.equals("Otro")){
+            txtMed.setEditable(true);
+            txtMed.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+        }
+        else{
+            txtMed.setEditable(false);
+            txtMed.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        }*/
+    }//GEN-LAST:event_cbxMedFocusGained
+
+    private void cbxMedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMedItemStateChanged
+        String valor=cbxMed.getSelectedItem().toString();
+        if(valor.equals("Otro")){
+            txtMed.setEditable(true);
+            txtMed.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+        }
+        else{
+            txtMed.setEditable(false);
+            txtMed.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        }
+    }//GEN-LAST:event_cbxMedItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -439,12 +513,13 @@ public class Receta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblMedicamentos;
-    private com.lavantech.gui.comp.DateTimePicker tiempo;
     private javax.swing.JTextField txtCant;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtIdRec;
     private javax.swing.JTextField txtMed;
     private javax.swing.JTextField txtNSS;
     private javax.swing.JTextField txtPersonal;

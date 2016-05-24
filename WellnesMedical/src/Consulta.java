@@ -42,7 +42,10 @@ public class Consulta extends javax.swing.JFrame {
         Calendar fecha = new GregorianCalendar();
         String fec="";
         fec+= fecha.get(Calendar.YEAR)+"-";
-        fec+= (fecha.get(Calendar.MONTH)+1)+"-";
+        if(fecha.get(Calendar.MONTH)+1<10)
+            fec+="0"+(fecha.get(Calendar.MONTH)+1)+"-";
+        else
+            fec+= (fecha.get(Calendar.MONTH)+1)+"-";
         fec+= fecha.get(Calendar.DAY_OF_MONTH);
         txtFecha.setText(fec);
         txtNSS.setText(nss);
