@@ -230,10 +230,9 @@ public class MenuLaboratorista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void txtAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgendarActionPerformed
-        
-            CitLaboratorio al=new CitLaboratorio(rfc,puesto);
-            al.setVisible(true);
-            dispose();
+        CitLaboratorio al=new CitLaboratorio(rfc,puesto);
+        al.setVisible(true);
+        dispose();
     }//GEN-LAST:event_txtAgendarActionPerformed
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked

@@ -77,6 +77,30 @@ public class TDACita {
         this.paciente = paciente;
     }
     
+    public boolean buscarNSS(String buscar){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT NOMBRE FROM PERSONAL WHERE RFC ='"+buscar+"'";
+                ResultSet r = stmt.executeQuery(sql);
+                if(r.next()==true){ 
+                    personal = r.getString("ANALISIS");
+                    miCon.close();
+                    return true;
+                }
+                else{
+                    miCon.close();
+                    return false;
+                }
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return false;
+    }
     
     public boolean Datos(String nss){
         Connection miCon = (new Conexion()).conectar();

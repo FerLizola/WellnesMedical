@@ -25,6 +25,11 @@ public class CitLaboratorio extends javax.swing.JFrame {
         initComponents();
         this.RFC=rfc;
         this.puesto=puesto;
+        txtRFC.setText(rfc);
+        TDACita a= new TDACita();
+        a.buscarNSS(rfc);
+        txtPersonal.setText(a.getPersonal());
+        
     }
     
     /**
