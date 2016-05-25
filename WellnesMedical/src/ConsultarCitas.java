@@ -84,7 +84,7 @@ public class ConsultarCitas extends javax.swing.JFrame {
         jLabel1.setText("CITAS PROGRAMADAS");
 
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jButton1.setText("Consultar Paciente");
+        jButton1.setText("Registrar Datos");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);

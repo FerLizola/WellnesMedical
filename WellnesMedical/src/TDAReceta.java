@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Bryan
@@ -26,6 +27,7 @@ public class TDAReceta {
     private String nss, personal, prescripcion, fcha, hra;
     private String fecha, idRec;
     String med,can,precio,pres;
+    Boolean estatus;
     public String getPrecio(){
         return precio;
     }
@@ -120,7 +122,7 @@ public class TDAReceta {
                 Statement stmt = miCon.createStatement();
              
                 stmt.executeUpdate("INSERT INTO RECETA (NSS,PERSONAL,FECHA) " +
-                  "VALUES ('"+nss+"','"+personal+"','"+fcha+"')"); 
+                  "VALUES ('"+nss+"','"+personal+"','"+fecha+"')"); 
                 
                 
                 String sql = "SELECT TOP 1 * FROM RECETA WHERE NSS ='"+nss+"' ORDER BY ID_RECETA DESC";
@@ -153,11 +155,94 @@ public class TDAReceta {
         }
         return true;
     }
+    public boolean guardarEstatus(){ 
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql= "UPDATE EXPEDICION_RECETA SET ESTATUS='"+estatus+"' WHERE NOM_MEDIC='"+med+"' AND ID_RECETA='"+
+                        idRec+"'";
+                stmt.executeUpdate(sql);
+                if(estatus){
+                    sql="SELECT * FROM MEDICAMENTO WHERE NOMBRE='"+med+"'";
+                    ResultSet r=stmt.executeQuery(sql);
+                    if(r.next()){
+                        int a= r.getInt("CANTIDAD");
+                        a=a-Integer.parseInt(can);
+                        sql= "UPDATE MEDICAMENTO SET CANTIDAD='"+a+"' WHERE NOMBRE='"+med+"'";
+                        stmt.executeUpdate(sql);
+                    }
+                    
+                }
+                //stmt.executeUpdate("INSERT INTO EXPEDICION_RECETA (ID_RECETA,NOM_MEDIC,CANTIDAD,PRESCRIPCION,SUBTOTAL) " +
+                 // "VALUES ('"+idRec+"','"+med+"','"+can+"','"+pres+"','"+precio+"')"); 
+                miCon.close();
+                return true;
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean obtenerNSS(){
+    
+        Connection miCon= (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql="SELECT * FROM RECETA WHERE NSS='"+nss+"'";
+                ResultSet r= stmt.executeQuery(sql);
+                if(r.next()){
+                    personal=r.getString("PERSONAL");
+                    fecha=r.getString("FECHA");
+                }
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean obtenerRec(DefaultTableModel modelo){ 
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT TOP 1 * FROM RECETA WHERE NSS ='"+nss+"' ORDER BY ID_RECETA DESC";
+                ResultSet r=stmt.executeQuery(sql);
+                
+                if(r.next())
+                    idRec=""+r.getInt("ID_RECETA");
+                sql = "SELECT * FROM EXPEDICION_RECETA WHERE ID_RECETA ='"+idRec+"'";
+                r= stmt.executeQuery(sql);
+                Object[] a= new Object[4];
+                while(r.next()){
+                    med=""+r.getString("NOM_MEDIC");
+                    can=r.getString("CANTIDAD");
+                    pres=r.getString("PRESCRIPCION");
+                    a[0]=Boolean.parseBoolean("false");
+                    a[1]=med;
+                    a[2]=can;
+                    a[3]=pres;
+                    modelo.addRow(a);
+                    
+                }
+                miCon.close();
+                return true;
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
     public boolean obtenerPrecio(){ 
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
                 Statement stmt = miCon.createStatement();
+                
                 String sql = "SELECT * FROM MEDICAMENTO WHERE NOMBRE ='"+med+"'";
                 ResultSet r= stmt.executeQuery(sql);
                 if(r.next())
@@ -239,5 +324,9 @@ public class TDAReceta {
 
     void setID(String text) {
         idRec=text;
+    }
+
+    void setEstatus(Boolean toString) {
+        estatus=toString;
     }
 }
