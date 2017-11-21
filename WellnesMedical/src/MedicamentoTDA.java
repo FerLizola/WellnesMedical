@@ -1,6 +1,9 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Predicate;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -143,6 +146,62 @@ public class MedicamentoTDA {
         return false;
     }
     
+    public boolean buscarNomFuncional(String buscar){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+               Statement stmt = miCon.createStatement();
+                String sql = "SELECT * FROM MEDICAMENTO";
+                ResultSet r = stmt.executeQuery(sql);
+                
+                LinkedList consulta = new LinkedList();
+                
+                while(r.next()){
+                    nombre = r.getString("NOMBRE");
+                    presentacion = r.getString("PRESENTACION");
+                    tipo = r.getString("TIPO");
+                    descripcion = r.getString("DESCRIPCION");
+                    pieza = Integer.parseInt(r.getString("CANTIDAD"));
+                    stock = Integer.parseInt(r.getString("STOCK"));
+                    cod = Long.parseLong(r.getString("ID_MEDICAMENTO"));
+                    fecha = r.getString("FECHA_CADUCIDAD");
+                    precio = r.getString("PRECIO");
+                    
+                    MedicamentoTDA medicamento = new MedicamentoTDA(nombre, descripcion, 
+                                tipo, presentacion, pieza, stock, cod, fecha, precio);
+                    
+                    consulta.add(medicamento);
+                }
+                
+                Predicate<MedicamentoTDA> busqueda = medicamento -> medicamento.getCod().equals(buscar);
+                
+                List <MedicamentoTDA> resultado = new ListComprehension<MedicamentoTDA>()
+                .suchThat(x -> {
+                    x.belongsTo(consulta);
+                    x.is(busqueda);
+                });
+                
+                for(MedicamentoTDA m : resultado){
+                    this.nombre = m.getNombre();
+                    this.descripcion = m.getDescripcion();
+                    this.tipo = m.getTipo();
+                    this.presentacion = m.getPresentacion();
+                    this.pieza = Integer.parseInt(m.getPieza());
+                    this.stock = Integer.parseInt(m.getStock());
+                    this.cod = Long.parseLong(m.getCod());
+                    this.fecha = m.getFecha();
+                    this.precio = m.getPrecio();
+                    miCon.close();
+                    return true;
+                }
+                //
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return false;
+    }
     
     public boolean buscarCod(long busca){
         Connection miCon = (new Conexion()).conectar();
@@ -167,6 +226,63 @@ public class MedicamentoTDA {
                     miCon.close();
                     return false;
                      }
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return false;
+    }
+    
+    public boolean buscarCodFuncional(long busca){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT * FROM MEDICAMENTO";
+                ResultSet r = stmt.executeQuery(sql);
+                
+                LinkedList consulta = new LinkedList();
+                
+                while(r.next()){
+                    cod = r.getInt("id_medicamento");
+                    nombre=r.getString("NOMBRE");
+                    presentacion=r.getString("PRESENTACION");
+                    tipo=r.getString("TIPO");
+                    descripcion=r.getString("DESCRIPCION");
+                    pieza=Integer.parseInt(r.getString("CANTIDAD"));
+                    stock=Integer.parseInt(r.getString("STOCK"));
+                    fecha=r.getString("FECHA_CADUCIDAD");
+                    precio=r.getString("PRECIO");
+                    
+                    MedicamentoTDA medicamento = new MedicamentoTDA(nombre, descripcion, 
+                                tipo, presentacion, pieza, stock, cod, fecha, precio);
+                    
+                    consulta.add(medicamento);
+                }
+
+                Predicate<MedicamentoTDA> busqueda = medicamento -> medicamento.getCod().equals(busca+"");
+                
+                List <MedicamentoTDA> resultado = new ListComprehension<MedicamentoTDA>()
+                .suchThat(x -> {
+                    x.belongsTo(consulta);
+                    x.is(busqueda);
+                });
+                
+                for(MedicamentoTDA m : resultado){
+                    this.nombre = m.getNombre();
+                    this.descripcion = m.getDescripcion();
+                    this.tipo = m.getTipo();
+                    this.presentacion = m.getPresentacion();
+                    this.pieza = Integer.parseInt(m.getPieza());
+                    this.stock = Integer.parseInt(m.getStock());
+                    this.cod = Long.parseLong(m.getCod());
+                    this.fecha = m.getFecha();
+                    this.precio = m.getPrecio();
+                    miCon.close();
+                    return true;
+                }
                 
             }
             catch(Exception e){

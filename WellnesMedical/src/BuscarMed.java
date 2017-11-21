@@ -341,7 +341,7 @@ public class BuscarMed extends javax.swing.JFrame {
         else{
             long codigo=Long.parseLong(txtCod.getText());
             MedicamentoTDA nom=new MedicamentoTDA();
-            if(nom.buscarCod(codigo)){
+            if(nom.buscarCodFuncional(codigo)){
                 showMessageDialog(null,"¡Producto encontrado!");
                 txtNom.setText(nom.getNombre());
                 txtDesc.setText(nom.getDescripcion());

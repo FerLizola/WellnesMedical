@@ -95,7 +95,7 @@ public class TDAPersonal {
                 String sql = "SELECT * FROM PERSONAL";
                 ResultSet r = stmt.executeQuery(sql);
                 
-                LinkedList ll = new LinkedList();
+                LinkedList consulta = new LinkedList();
                 // 
                 while (r.next()) {
                   String rfc = r.getString("rfc");
@@ -108,14 +108,14 @@ public class TDAPersonal {
                   
                   TDAPersonal personal = new TDAPersonal(rfc, nombre, domicilio, 
                           telefono, puesto, horario, pass);
-                  ll.add(personal);
+                  consulta.add(personal);
                 }
                 
                 Predicate<TDAPersonal> busqueda = persona -> persona.getRfc().equals(buscar);
                 
                 List <TDAPersonal> resultado = new ListComprehension<TDAPersonal>()
                 .suchThat(x -> {
-                    x.belongsTo(ll);
+                    x.belongsTo(consulta);
                     x.is(busqueda);
                 });
                 
