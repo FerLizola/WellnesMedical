@@ -37,7 +37,7 @@ public class MedicamentoTDA {
     public MedicamentoTDA(){
     }
     public void setNombre(String nombre){
-
+        
         this.nombre=nombre;
     }
     

@@ -192,30 +192,30 @@ public class TDAPaciente {
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
-               Statement stmt = miCon.createStatement();
-               String sql = "SELECT * FROM PACIENTE";
-               ResultSet r = stmt.executeQuery(sql);
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT * FROM PACIENTE";
+                ResultSet r = stmt.executeQuery(sql);
                 
                 while(r.next()){ 
-                   String nss = r.getString("NSS");
-                   String Nombre = r.getString("NOMBRE");
-                   String Domicilio = r.getString("DOMICILIO");
-                   String Unidad = r.getString("UNIDAD_MEDICA");
-                   String Telefono = r.getString("TELEFONO");
-                   String Curp = r.getString("CURP");
-                   String Fecha_nac = r.getString("FECHA_NACIMIENTO");
-                   String Ciudad = r.getString("CIUDAD");
-                   String Estado = r.getString("ESTADO");
-                   String Estado_civ = r.getString("ESTADO_CIVIL");
-                   String Ocupacion = r.getString("OCUPACION");
-                   String Edad = r.getString("EDAD");
-                   String Cp = r.getString("CP");
-                   String Sexo = r.getString("SEXO");
-                   String Consultorio = r.getString("CONSULTORIO");
-                   
-                   modelo.addRow(new Object[]{nss,Nombre,Domicilio,Unidad,Telefono,
-                       Curp,Fecha_nac,Ciudad,Estado,Estado_civ,Ocupacion,
-                       Edad,Cp,Sexo,Consultorio});
+                    String nss = r.getString("NSS");
+                    String Nombre = r.getString("NOMBRE");
+                    String Domicilio = r.getString("DOMICILIO");
+                    String Unidad = r.getString("UNIDAD_MEDICA");
+                    String Telefono = r.getString("TELEFONO");
+                    String Curp = r.getString("CURP");
+                    String Fecha_nac = r.getString("FECHA_NACIMIENTO");
+                    String Ciudad = r.getString("CIUDAD");
+                    String Estado = r.getString("ESTADO");
+                    String Estado_civ = r.getString("ESTADO_CIVIL");
+                    String Ocupacion = r.getString("OCUPACION");
+                    String Edad = r.getString("EDAD");
+                    String Cp = r.getString("CP");
+                    String Sexo = r.getString("SEXO");
+                    String Consultorio = r.getString("CONSULTORIO");
+
+                    modelo.addRow(new Object[]{nss,Nombre,Domicilio,Unidad,Telefono,
+                        Curp,Fecha_nac,Ciudad,Estado,Estado_civ,Ocupacion,
+                        Edad,Cp,Sexo,Consultorio});
                 }
                 miCon.close();
             }
@@ -232,6 +232,11 @@ public class TDAPaciente {
                 Statement stmt = miCon.createStatement();
                 String sql = "SELECT * FROM PACIENTE WHERE NSS ='"+buscar+"'";
                 ResultSet r = stmt.executeQuery(sql);
+                
+                //
+                System.out.println(r.getString(2));
+                //
+                
                 if(r.next()==true){ 
                     nss = r.getString("NSS");
                     nombre = r.getString("NOMBRE");

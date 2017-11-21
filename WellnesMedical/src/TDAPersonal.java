@@ -2,6 +2,12 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Predicate;
 import javax.swing.JOptionPane;
 
 
@@ -58,8 +64,8 @@ public class TDAPersonal {
             try{
                 Statement stmt = miCon.createStatement();
                 String sql = "SELECT * FROM PERSONAL WHERE RFC ='"+buscar+"'";
-                ResultSet r = stmt.executeQuery(sql);
-                if(r.next()==true){ 
+                ResultSet r = stmt.executeQuery(sql);                
+                if(r.next()){ 
                     nombre = r.getString("NOMBRE");
                     domicilio = r.getString("DOMICILIO");
                     telefono = r.getString("TELEFONO");
@@ -78,6 +84,80 @@ public class TDAPersonal {
             }
         }
         return false;
+    }
+   
+    public boolean buscarRfcFuncional(String buscar){
+        Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                
+                Statement stmt = miCon.createStatement();
+                String sql = "SELECT * FROM PERSONAL";
+                ResultSet r = stmt.executeQuery(sql);
+                
+                LinkedList ll = new LinkedList();
+                // 
+                while (r.next()) {
+                  String rfc = r.getString("rfc");
+                  String nombre = r.getString("nombre");
+                  String domicilio = r.getString("domicilio");
+                  String telefono = r.getString("telefono");
+                  String puesto = r.getString("puesto");
+                  String horario = r.getString("horario");
+                  String pass = r.getString("password");
+                  
+                  TDAPersonal personal = new TDAPersonal(rfc, nombre, domicilio, 
+                          telefono, puesto, horario, pass);
+                  ll.add(personal);
+                }
+                
+                Predicate<TDAPersonal> busqueda = persona -> persona.getRfc().equals(buscar);
+                
+                List <TDAPersonal> resultado = new ListComprehension<TDAPersonal>()
+                .suchThat(x -> {
+                    x.belongsTo(ll);
+                    x.is(busqueda);
+                });
+                
+                for(TDAPersonal personal : resultado){
+                    this.rfc = personal.getRfc();
+                    this.nombre = personal.getNombre();
+                    this.domicilio = personal.getDomicilio();
+                    this.telefono = personal.getTelefono();
+                    this.puesto = personal.getPuesto();
+                    this.horario = personal.getHorario();
+                    this.pass = personal.getPass();
+                    miCon.close();
+                    return true;
+                }
+                
+                /*
+                for(Object p: ll){
+                    TDAPersonal personal = (TDAPersonal)p;
+                    if(personal.getRfc().equals(buscar)){
+                        this.rfc = personal.getRfc();
+                        this.nombre = personal.getNombre();
+                        this.domicilio = personal.getDomicilio();
+                        this.telefono = personal.getTelefono();
+                        this.puesto = personal.getPuesto();
+                        this.horario = personal.getHorario();
+                        this.pass = personal.getPass();
+                        miCon.close();
+                        return true;
+                    }else{
+                        this.rfc = null;
+                    }
+                }*/
+                
+                miCon.close();
+                return false;
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
     }
     
     public String getRfc() {

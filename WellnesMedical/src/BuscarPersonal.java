@@ -240,7 +240,12 @@ public class BuscarPersonal extends javax.swing.JFrame {
             showMessageDialog(null,"Ingresa RFC del empleado a buscar");
         }else{
             String rfc = txtRFC.getText();
+            
+            //
             TDAPersonal per = new TDAPersonal();
+            per.buscarRfcFuncional(rfc);
+            //
+            //TDAPersonal per = new TDAPersonal();
             if(per.buscarRFC(rfc)){
                 showMessageDialog(null,"Empleado encontrado");
                 txtNombre.setText(per.getNombre());
@@ -253,8 +258,9 @@ public class BuscarPersonal extends javax.swing.JFrame {
             }else{
                 showMessageDialog(null,"No encontrado");
             }
-            
         }
+        
+        
         
     }//GEN-LAST:event_btnBuscarMouseClicked
 
