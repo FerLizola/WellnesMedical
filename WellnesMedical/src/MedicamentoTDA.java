@@ -173,7 +173,7 @@ public class MedicamentoTDA {
                     consulta.add(medicamento);
                 }
                 
-                Predicate<MedicamentoTDA> busqueda = medicamento -> medicamento.getCod().equals(buscar);
+                Predicate<MedicamentoTDA> busqueda = medicamento -> medicamento.getNombre().equals(buscar);
                 
                 List <MedicamentoTDA> resultado = new ListComprehension<MedicamentoTDA>()
                 .suchThat(x -> {
