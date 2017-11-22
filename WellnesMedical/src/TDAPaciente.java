@@ -237,7 +237,7 @@ public class TDAPaciente {
                 System.out.println(r.getString(2));
                 //
                 
-                if(r.next()==true){ 
+                if(r.next()){ 
                     nss = r.getString("NSS");
                     nombre = r.getString("NOMBRE");
                     consultorio = r.getString("CONSULTORIO");

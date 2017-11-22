@@ -14,19 +14,12 @@ import javax.swing.JOptionPane;
 public class TDAPersonal {
     
     private String rfc, nombre, domicilio, telefono, puesto, pass, horario;
-
-    public String getPass() {
-        return pass;
-    }
-
-    public String getHorario() {
-        return horario;
-    }
     private Date hora_ini, hora_fin;
     
     public TDAPersonal(){
         
     }
+    
     public TDAPersonal(String rfc,String nombre, String domicilio, String telefono, String puesto,String horario, String pass){
         setRfc(rfc);
         setNombre(nombre);
@@ -36,6 +29,15 @@ public class TDAPersonal {
         setHorario(horario);
         setPass(pass);
     }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+        
     public boolean insertar(){
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
