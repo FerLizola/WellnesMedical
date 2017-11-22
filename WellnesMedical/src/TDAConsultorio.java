@@ -39,9 +39,7 @@ public class TDAConsultorio {
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
-               Statement stmt = miCon.createStatement();
-             
-                stmt.executeUpdate("INSERT INTO CONSULTORIO " +
+               miCon.createStatement().executeUpdate("INSERT INTO CONSULTORIO " +
                   "VALUES ('"+consultorio+"','"+medico+"','"+especialidad+"')"); 
                 
                 miCon.close();
@@ -54,20 +52,16 @@ public class TDAConsultorio {
         }
         return true;
     }
-        
+/**/        
     public void mostrar(DefaultTableModel modelo){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
-               Statement stmt = miCon.createStatement();
-               String sql = "SELECT * FROM CONSULTORIO";
-               ResultSet r = stmt.executeQuery(sql);
+               
+               ResultSet r = miCon.createStatement().executeQuery("SELECT * FROM CONSULTORIO");
                 
                 while(r.next()){ 
-                   long consultorio=r.getInt("N_CONSULTORIO");
-                   String medico=r.getString("MEDICO");
-                   String especialidad=r.getString("DESCRIPCION");
-                   modelo.addRow(new Object[]{consultorio, medico, especialidad});
+                   modelo.addRow(new Object[]{r.getInt("N_CONSULTORIO"), r.getString("MEDICO"), r.getString("DESCRIPCION")});
                 }
                 miCon.close();
             }

@@ -240,26 +240,26 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegPacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegPacMouseClicked
-        MenuSecretaria m= new MenuSecretaria(rfc,"Administrador");
-        m.setVisible(true);
+        new MenuSecretaria(rfc,"Administrador")
+            .setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegPacMouseClicked
 
     private void btnRegTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegTraMouseClicked
-        Personal p= new Personal(rfc,"Administrador");
-        p.setVisible(true);
+        new Personal(rfc,"Administrador")
+        .setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegTraMouseClicked
 
     private void btnMenuMEdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMEdMouseClicked
-        Menu_Medico n = new Menu_Medico(rfc,"Administrador");
-        n.setVisible(true);
+        new Menu_Medico(rfc,"Administrador")
+        .setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuMEdMouseClicked
 
     private void btnRegSigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegSigMouseClicked
-        Menu_Farmacia s = new Menu_Farmacia("Administrador",rfc);
-        s.setVisible(true);
+        new Menu_Farmacia("Administrador",rfc)
+        .setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegSigMouseClicked
 
@@ -268,20 +268,20 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarPerActionPerformed
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        Menu_Auxiliar b = new Menu_Auxiliar(rfc,"Administrador");
-        b.setVisible(true);
+        new Menu_Auxiliar(rfc,"Administrador")
+        .setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnBuscarPerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarPerMouseClicked
-        BuscarPersonal g= new BuscarPersonal(rfc,puesto);
-        g.setVisible(true);
+        new BuscarPersonal(rfc,puesto)
+        .setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarPerMouseClicked
 
     private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
-        Login log= new Login();
-        log.setVisible(true);
+        new Login()
+        .setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCerrarMouseClicked
 
@@ -290,8 +290,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegTraActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        CambiarContraseña cam= new CambiarContraseña(rfc,"Administrador");
-        cam.setVisible(true);
+        new CambiarContraseña(rfc,"Administrador")
+        .setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -300,15 +300,15 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegPacActionPerformed
 
     private void btnActHistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActHistMouseClicked
-        MenuLaboratorista m= new MenuLaboratorista(rfc,"Administrador");
-        m.setVisible(true);
+         new MenuLaboratorista(rfc,"Administrador")
+        .setVisible(true);
         dispose();
     }//GEN-LAST:event_btnActHistMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        AgregarClinica clin= new AgregarClinica();
-        clin.setVisible(true);
+       new AgregarClinica()
+        .setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton2MouseClicked
 
