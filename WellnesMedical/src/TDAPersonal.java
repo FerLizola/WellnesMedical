@@ -97,7 +97,7 @@ public class TDAPersonal {
                 
                 LinkedList consulta = new LinkedList();
                 // 
-                while (r.next()) {
+                while(r.next()) {
                   String rfc = r.getString("rfc");
                   String nombre = r.getString("nombre");
                   String domicilio = r.getString("domicilio");
@@ -130,24 +130,6 @@ public class TDAPersonal {
                     miCon.close();
                     return true;
                 }
-                
-                /*
-                for(Object p: ll){
-                    TDAPersonal personal = (TDAPersonal)p;
-                    if(personal.getRfc().equals(buscar)){
-                        this.rfc = personal.getRfc();
-                        this.nombre = personal.getNombre();
-                        this.domicilio = personal.getDomicilio();
-                        this.telefono = personal.getTelefono();
-                        this.puesto = personal.getPuesto();
-                        this.horario = personal.getHorario();
-                        this.pass = personal.getPass();
-                        miCon.close();
-                        return true;
-                    }else{
-                        this.rfc = null;
-                    }
-                }*/
                 
                 miCon.close();
                 return false;

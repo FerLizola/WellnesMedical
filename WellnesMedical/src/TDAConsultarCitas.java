@@ -20,7 +20,6 @@ public class TDAConsultarCitas {
             Statement stmt=miCon.createStatement();
             ResultSet res= stmt.executeQuery("SELECT * FROM CITAS WHERE PERSONAL='"+rfc+"'");
             
-            
             while(res.next()){
                 String fecha=res.getString("FECHA");
                 String pad=res.getString("HORA");
