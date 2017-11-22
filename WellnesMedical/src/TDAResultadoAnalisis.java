@@ -2,21 +2,50 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Predicate;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Medrano
- */
 public class TDAResultadoAnalisis {
     String paciente, medico, resultado, fecha, hora, estado, ana_nom;
     int id, analisis;
+    
+    
+    public TDAResultadoAnalisis(){
+        
+    }
 
+    /*
+    ana_nom = r.getString(1);
+                    fecha = r.getString(2);
+                    hora = r.getString(3);
+                    resultado = r.getString(4);
+                    estado = r.getString(5);
+    */
+    
+    public TDAResultadoAnalisis(String ana_nom, String fecha, String hora, String resultado, String estado){
+        setAna_nom(ana_nom);
+        setFecha(fecha);
+        setHora(hora);
+        setResultado(resultado);
+        setEstado(estado);
+    }
+    
+    public TDAResultadoAnalisis(String paciente, String medico, String resultado,
+            String fecha, String hora, String estado, 
+            String ana_nom, int id, int analisis){
+        setPaciente(paciente);
+        setMedico(medico);
+        setResultado(resultado);
+        setFecha(fecha);
+        setHora(hora);
+        setEstado(estado);
+        setAna_nom(ana_nom);
+        setId(id);
+        setAnalisis(analisis);
+    }
+    
     public String getPaciente() {
         return paciente;
     }
@@ -89,11 +118,6 @@ public class TDAResultadoAnalisis {
         this.ana_nom = ana_nom;
     }
     
-    
-    
-    
-    
-    
     public boolean mostrarReceta(String NSS){
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
@@ -117,6 +141,49 @@ public class TDAResultadoAnalisis {
                     miCon.close();
                     return false;
                 }
+            }
+            catch(Exception e){
+               return false;
+            }
+        }
+        return false;
+      }
+    
+    
+    public boolean mostrarRecetaFuncional(String NSS){
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                String sql = "select ANALISIS.NOMBRE, RESULTADO_ANALISIS.FECHA, RESULTADO_ANALISIS.HORA,\n" +
+                "RESULTADO_ANALISIS.RESULTADO, RESULTADO_ANALISIS.ESTADO "
+                + "from RESULTADO_ANALISIS, ANALISIS\n" +
+                "where ANALISIS.ID_ANALISIS = RESULTADO_ANALISIS.ANALISIS and RESULTADO_ANALISIS.PACIENTE = '"+NSS+"'";
+                ResultSet r = stmt.executeQuery(sql);
+                
+                LinkedList consulta = new LinkedList();
+                
+                while(r.next()){
+                    ana_nom = r.getString(1);
+                    fecha = r.getString(2);
+                    hora = r.getString(3);
+                    resultado = r.getString(4);
+                    estado = r.getString(5);
+
+                    TDAResultadoAnalisis analisis = new TDAResultadoAnalisis(ana_nom, 
+                            fecha, hora, resultado, estado);
+                    
+                    consulta.add(analisis);
+                }
+                
+                Predicate <TDAResultadoAnalisis> busqueda = analisis -> analisis.getAnalisis() == 0;
+                
+                List <TDAResultadoAnalisis> resultado = new ListComprehension<TDAResultadoAnalisis>()
+                .suchThat(x -> {
+                    x.belongsTo(consulta);
+                    x.is(busqueda);
+                });
+                
             }
             catch(Exception e){
                return false;

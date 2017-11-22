@@ -181,7 +181,7 @@ public class Resultados_Analisis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-    TDAResultadoAnalisis a=new TDAResultadoAnalisis();
+    TDAResultadoAnalisis a = new TDAResultadoAnalisis();
     String NSS=txtPaciente.getText();
     if(NSS.isEmpty()){
         javax.swing.JOptionPane.showMessageDialog(null, "Ingrese un NSS de paciente");
