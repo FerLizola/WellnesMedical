@@ -19,9 +19,6 @@ public class Menu extends javax.swing.JFrame {
     String rfc, puesto;
     public Menu() {
         initComponents();
-        pac=new Paciente();
-        per=new Personal();
-        far=new Farmacia();
     }
     public Menu(String RFC,String puesto){
         
