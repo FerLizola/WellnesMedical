@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Timestamp;
+import java.util.stream.IntStream;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -63,8 +64,7 @@ public class Receta extends javax.swing.JFrame {
         Calendar fecha = new GregorianCalendar();
         String fec="";
         fec+= fecha.get(Calendar.YEAR)+"-";
-        int a=(fecha.get(Calendar.MONTH)+1);
-        if(a<10)
+        if((fecha.get(Calendar.MONTH)+1)<10)
             fec+="0"+(fecha.get(Calendar.MONTH)+1)+"-";
         else
             fec+= (fecha.get(Calendar.MONTH)+1)+"-";
@@ -83,9 +83,7 @@ public class Receta extends javax.swing.JFrame {
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
-               Statement stmt = miCon.createStatement();
-               String sql = "SELECT * FROM MEDICAMENTO";
-               ResultSet r = stmt.executeQuery(sql);
+               ResultSet r = miCon.createStatement().executeQuery("SELECT * FROM MEDICAMENTO");
                 
                 while(r.next()){ 
                    String consultorio=r.getString("NOMBRE");
@@ -339,54 +337,24 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNSSActionPerformed
 
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
-        /*TDAReceta rec = new TDAReceta();
-        
-        if(!txtNSS.getText().isEmpty() && !txtPersonal.getText().isEmpty() 
-                && !txtPres.getText().isEmpty()){
-            rec.setNss(txtNSS.getText());
-            rec.setPersonal(txtPersonal.getText());
-            rec.setFcha(f);
-            rec.setHra(h);
-            rec.setPrescripcion(txtPres.getText());
-            if(rec.insertar()){
-                showMessageDialog(null,"Receta registrada");
-                txtNSS.setText("");
-                txtPersonal.setText("");
-                txtPres.setText("");
-            }else{
-                showMessageDialog(null,"Error al insertar los datos");
-            }
-        }else{
-            showMessageDialog(null,"Llene todos los campos");
-        }*/
         TableModel m= tblMedicamentos.getModel();
         int a= m.getRowCount();
         TDAReceta rec= new TDAReceta();
         rec.setID(txtIdRec.getText());
-        for(int i=0;i<a;i++){
+        IntStream.range(0,a).forEach(i->{
             rec.setMed(m.getValueAt(i,0).toString());
             rec.setPres(m.getValueAt(i,1).toString());
             rec.setCan(m.getValueAt(i,2).toString());
             rec.obtenerPrecio();
-            float can=(Float.parseFloat(m.getValueAt(i,2).toString())*Float.parseFloat(rec.getPrecio()));
-            rec.setPrecio(""+can);
+            rec.setPrecio(""+(Float.parseFloat(m.getValueAt(i,2).toString())*Float.parseFloat(rec.getPrecio())));
             rec.inserMed();
-            /*showMessageDialog(this,can);
-            showMessageDialog(this,m.getValueAt(i,0));
-            showMessageDialog(this,m.getValueAt(i,1));
-            showMessageDialog(this,m.getValueAt(i,2));
-            //rec.setMed();*/
-        }
-        showMessageDialog(this,"Receta Generada Correctamente");
-        Consulta c= new Consulta(rfc,puesto,txtNSS.getText());
-        c.setVisible(true);
-        dispose();
-        /*
-        rec.setNSS(txtNss.getText());
-        rec.setPersonal(txtPersonal.getText());
-        rec.setFecha(txtFecha.getText());
+        });
         
-        */
+        showMessageDialog(this,"Receta Generada Correctamente");
+        new Consulta(rfc,puesto,txtNSS.getText())
+            .setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_btnGenerarMouseClicked
 
     private void txtNSSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNSSKeyTyped
@@ -401,8 +369,8 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNSSKeyTyped
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Consulta c= new Consulta(rfc,puesto,txtNSS.getText());
-        c.setVisible(true);
+        new Consulta(rfc,puesto,txtNSS.getText())
+            .setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -455,8 +423,7 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxMedFocusGained
 
     private void cbxMedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMedItemStateChanged
-        String valor=cbxMed.getSelectedItem().toString();
-        if(valor.equals("Otro")){
+        if(cbxMed.getSelectedItem().toString().equals("Otro")){
             txtMed.setEditable(true);
             txtMed.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         }

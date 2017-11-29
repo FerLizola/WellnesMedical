@@ -20,8 +20,6 @@ public class TDALogin {
     public TDALogin(String usr,String pswd){
         setUser(usr);
         setPass(pswd);
-        user=usr;
-        password=pswd;
     }
     public String getUser() {
         return user;
@@ -42,55 +40,41 @@ public boolean guardar(){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
-               Statement stmt = miCon.createStatement();
-        String sql = "SELECT * FROM PERSONAL WHERE RFC ='"+user+"' AND PASSWORD ='"+password+"'";
-        ResultSet r = stmt.executeQuery(sql);
-                if(r.next()==true){    
+               
+            ResultSet r = miCon.createStatement().executeQuery("SELECT * FROM PERSONAL WHERE RFC ='"+user+"' AND PASSWORD ='"+password+"'");
+                if(r.next()){    
                     if(user.equals(password)){
-                        CambiarContraseña cam= new CambiarContraseña(user,r.getString("PUESTO"));
-                        cam.setVisible(true);
+                        new CambiarContraseña(user,r.getString("PUESTO")).setVisible(true);
                     }else{ 
                     if(r.getString("PUESTO").equals("Administrador")){
-                        Menu men= new Menu(user,"Administrador");
-                        Login log=new Login();
-                        men.setVisible(true);
-                        log.dispose();
+                        new Menu(user,"Administrador").setVisible(true);
+                        new Login().dispose();
                         return true;
                        
                     }
                     if(r.getString("PUESTO").equals("Auxiliar Medico")){
-                        Menu_Auxiliar men= new Menu_Auxiliar(user,"Auxiliar Medico");
-                        Login log=new Login();
-                        men.setVisible(true);
-                        log.dispose();
+                        new Menu_Auxiliar(user,"Auxiliar Medico").setVisible(true);
+                        new Login().dispose();
                         return true;
                    }
                    if(r.getString("PUESTO").equals("Farmaceutico")){
-                       Menu_Farmacia men= new Menu_Farmacia("Farmaceutico",user);
-                       Login log=new Login();
-                       men.setVisible(true);
-                       log.dispose();
+                       new Menu_Farmacia("Farmaceutico",user).setVisible(true);
+                       new Login().dispose();
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Secretaria")){
-                       MenuSecretaria men= new MenuSecretaria(user,"Secretaria");
-                       Login log=new Login();
-                       men.setVisible(true);
-                       log.dispose();
+                       new MenuSecretaria(user,"Secretaria").setVisible(true);
+                       new Login().dispose();
                        return true;
                    }//Secretaria
                    if(r.getString("PUESTO").equals("Medico General")){
-                       Menu_Medico men= new Menu_Medico(user,"Medico General");
-                       Login log=new Login();
-                       men.setVisible(true);
-                       log.dispose();
+                       new Menu_Medico(user,"Medico General").setVisible(true);
+                       new Login().dispose();
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Laboratorista")){
-                        MenuLaboratorista men= new MenuLaboratorista(user,"Laboratorista");
-                        Login log=new Login();
-                        men.setVisible(true);
-                        log.dispose();
+                        new MenuLaboratorista(user,"Laboratorista").setVisible(true);
+                        new Login().dispose();
                         return true;
                        
                     }
@@ -113,10 +97,7 @@ public boolean guardar(){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
-               Statement stmt = miCon.createStatement();
-        
-            String sql= "UPDATE PERSONAL SET PASSWORD='"+password+"' WHERE RFC='"+user+"'";
-            int a=stmt.executeUpdate(sql);
+           int a=miCon.createStatement().executeUpdate("UPDATE PERSONAL SET PASSWORD='"+password+"' WHERE RFC='"+user+"'");
             
             if(a>0){
                 Puesto();
@@ -137,48 +118,36 @@ public boolean guardar(){
         Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
             try{
-               Statement stmt = miCon.createStatement();
-        
-        String sql= "SELECT * FROM PERSONAL WHERE RFC='"+user+"'";
-        ResultSet r=stmt.executeQuery(sql);
-                if(r.next()==true){    
+               
+        ResultSet r=miCon.createStatement().executeQuery("SELECT * FROM PERSONAL WHERE RFC='"+user+"'");
+                if(r.next()){    
                    if(r.getString("PUESTO").equals("Administrador")){
                        
-                       Menu men= new Menu(user,"Administrador");
-                       Login log=new Login();
-                       men.setVisible(true);
-                       log.dispose();
+                       new Menu(user,"Administrador").setVisible(true);
+                       new Login().dispose();
                        miCon.close();
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Secretaria")){
-                       MenuSecretaria men= new MenuSecretaria(user,"Secretaria");
-                       Login log=new Login();
-                       men.setVisible(true);
-                       log.dispose();
+                       new MenuSecretaria(user,"Secretaria").setVisible(true);
+                       new Login().dispose();
                        miCon.close();
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Farmaceutico")){
-                       Menu_Farmacia men= new Menu_Farmacia("Farmaceutico",user);
-                       Login log=new Login();
-                       men.setVisible(true);
-                       log.dispose();
+                       new Menu_Farmacia("Farmaceutico",user).setVisible(true);
+                       new Login().dispose();
                        miCon.close();
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Medico General")){
-                       Menu_Medico men= new Menu_Medico(user,"Medico General");
-                       Login log=new Login();
-                       men.setVisible(true);
-                       log.dispose();
+                       new Menu_Medico(user,"Medico General").setVisible(true);
+                       new Login().dispose();
                        return true;
                    }
                    if(r.getString("PUESTO").equals("Auxiliar Medico")){
-                        Menu_Auxiliar men= new Menu_Auxiliar(user,"Auxiliar Medico");
-                        Login log=new Login();
-                        men.setVisible(true);
-                        log.dispose();
+                        new Menu_Auxiliar(user,"Auxiliar Medico").setVisible(true);
+                        new Login().dispose();
                         return true;
                    }
                 }
