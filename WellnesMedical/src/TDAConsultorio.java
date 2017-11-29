@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.stream.IntStream;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -69,7 +70,7 @@ public class TDAConsultorio {
                 JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-      }
+    }
     
     public void limpiarTabla(JTable tabla){
          DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();   
@@ -79,5 +80,11 @@ public class TDAConsultorio {
          }
     }
     
-
+    public void limpiarTablafuncional(JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        IntStream.range(0, tabla.getRowCount()).forEach( i -> {
+            modelo.removeRow(0);
+        });
+    }
+    
 }
