@@ -16,6 +16,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +31,21 @@ public class TDAReceta {
     private String fecha, idRec;
     String med,can,precio,pres;
     Boolean estatus;
+    
+    public TDAReceta(){
+    
+    }
+    
+    public TDAReceta(String med, Float precio){
+        setPrecio(precio.toString());
+        setMed(med);
+    }
+    
+    public TDAReceta(String personal, String fecha){
+        setPersonal(personal);
+        setFecha(fecha);
+    }
+    
     public String getPrecio(){
         return precio;
     }
@@ -37,6 +55,10 @@ public class TDAReceta {
     public void setPrecio(String pres){precio=pres;}
     
     private Timestamp hora;
+    
+    public String getMed(){
+        return med;
+    }
     
     public String getNss() {
         return nss;
@@ -204,6 +226,51 @@ public class TDAReceta {
         }
         return true;
     }
+    
+    /*
+    Funcional
+    */
+    
+    public boolean obtenerNSSFuncional(String nss){
+    
+        Connection miCon= (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                //String sql="SELECT * FROM RECETA WHERE NSS='"+nss+"'";
+                String sql="SELECT * FROM RECETA";
+                ResultSet r= stmt.executeQuery(sql);
+                
+                LinkedList consulta = new LinkedList();
+                
+                while(r.next()){
+                    personal=r.getString("PERSONAL");
+                    fecha=r.getString("FECHA");
+                    TDAReceta receta = new TDAReceta(personal, fecha);
+                    consulta.add(receta);
+                }
+                
+                Predicate<TDAReceta> busqueda = receta -> receta.getNss().equals(nss);
+                
+                List<TDAReceta> resultado = new ListComprehension<TDAReceta>()
+                        .suchThat(x -> {
+                            x.belongsTo(consulta);
+                            x.is(busqueda);
+                        });
+
+                for(TDAReceta receta:resultado){
+                    setPersonal(receta.getPersonal());
+                    setFecha(receta.getFecha());
+                }
+                
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public boolean obtenerRec(DefaultTableModel modelo){ 
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
@@ -214,10 +281,10 @@ public class TDAReceta {
                 
                 if(r.next())
                     idRec=""+r.getInt("ID_RECETA");
-                sql = "SELECT * FROM EXPEDICION_RECETA WHERE ID_RECETA ='"+idRec+"'";
-                r= stmt.executeQuery(sql);
-                Object[] a= new Object[4];
-                while(r.next()){
+                    sql = "SELECT * FROM EXPEDICION_RECETA WHERE ID_RECETA ='"+idRec+"'";
+                    r= stmt.executeQuery(sql);
+                    Object[] a= new Object[4];
+                    while(r.next()){
                     med=""+r.getString("NOM_MEDIC");
                     can=r.getString("CANTIDAD");
                     pres=r.getString("PRESCRIPCION");
@@ -237,6 +304,7 @@ public class TDAReceta {
         }
         return true;
     }
+    
     public boolean obtenerPrecio(){ 
     Connection miCon = (new Conexion()).conectar();
         if(miCon!=null){
@@ -256,6 +324,46 @@ public class TDAReceta {
         }
         return true;
     }
+    
+    public boolean obtenerPrecioFuncional(String med){ 
+    Connection miCon = (new Conexion()).conectar();
+        if(miCon!=null){
+            try{
+                Statement stmt = miCon.createStatement();
+                
+                //String sql = "SELECT * FROM MEDICAMENTO WHERE NOMBRE ='"+med+"'";
+                String sql = "SELECT * FROM MEDICAMENTO";
+                
+                ResultSet r= stmt.executeQuery(sql);
+                
+                LinkedList consulta = new LinkedList();
+                
+                if(r.next()){
+                    consulta.add(new TDAReceta(r.getString("NOMBRE"),r.getFloat("PRECIO")));
+                }
+                
+                Predicate<TDAReceta> busqueda = receta -> receta.getMed().equals(med);
+                
+                List<TDAReceta> resultado = new ListComprehension<TDAReceta>()
+                        .suchThat(x-> {
+                                x.belongsTo(consulta);
+                                x.is(busqueda);
+                        });
+                
+                for(TDAReceta receta : resultado){
+                    setPrecio(receta.getPrecio());
+                }
+                
+                miCon.close();
+                return true;
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public void imprimir() throws FileNotFoundException, DocumentException, BadElementException, IOException{
         
         TDAPaciente pac = new TDAPaciente();

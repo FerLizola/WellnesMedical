@@ -281,9 +281,13 @@ public class Visualizar_Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImprimirMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        TDAReceta a= new TDAReceta();
+        TDAReceta a = new TDAReceta();
+        /*
         a.setNss(txtNSS.getText());
         a.obtenerNSS();
+        */
+        a.obtenerNSSFuncional(txtNSS.getText());
+        
         txtFecha.setText(a.getFecha());
         txtPersonal.setText(a.getPersonal());
         tabla();
